@@ -502,43 +502,45 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      padding: 14px 16px;
+      padding: 14px 18px;
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
       background: #ffffff;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
       cursor: pointer;
       transition: all .2s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
     }
     .task-item:last-child { margin-bottom: 0; }
     .task-item:hover {
       background: #f8fafc;
-      border-color: #cbd5e1;
-      transform: translateX(4px);
+      border-color: #93c5fd;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.08);
     }
     .task-left {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
+      gap: 14px;
       flex: 1;
       min-width: 0;
     }
     .task-priority-indicator {
-      width: 8px;
-      height: 8px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       flex-shrink: 0;
-      margin-top: 6px;
+      margin-top: 5px;
     }
-    .priority-urgent { background: var(--red); box-shadow: 0 0 6px rgba(239,68,68,0.5); }
-    .priority-high   { background: var(--amber); box-shadow: 0 0 6px rgba(245,158,11,0.5); }
-    .priority-medium { background: var(--blue); box-shadow: 0 0 6px rgba(37,99,235,0.5); }
+    .priority-urgent { background: var(--red); box-shadow: 0 0 8px rgba(239,68,68,0.6); }
+    .priority-high   { background: var(--amber); box-shadow: 0 0 8px rgba(245,158,11,0.6); }
+    .priority-medium { background: var(--blue); box-shadow: 0 0 8px rgba(37,99,235,0.6); }
     .priority-low    { background: #94a3b8; }
 
     .task-info { flex: 1; min-width: 0; }
     .task-info h4 {
-      margin: 0 0 4px;
-      font-size: 14px;
+      margin: 0 0 5px;
+      font-size: 14.5px;
       font-weight: 700;
       color: #0f172a;
       white-space: nowrap;
@@ -546,14 +548,15 @@
       text-overflow: ellipsis;
     }
     .task-meta {
-      font-size: 11.5px;
+      font-size: 12px;
       color: #64748b;
       display: flex;
       align-items: center;
-      gap: 10px;
+      flex-wrap: wrap;
+      gap: 12px;
     }
-    .task-meta span { display: inline-flex; align-items: center; gap: 4px; }
-    .task-meta svg { width: 12px; height: 12px; }
+    .task-meta span { display: inline-flex; align-items: center; gap: 5px; }
+    .task-meta svg { width: 13px; height: 13px; }
 
     .task-right {
       display: flex;
@@ -564,7 +567,7 @@
 
     /* Badges & Pills */
     .pill {
-      font-size: 10px;
+      font-size: 10.5px;
       font-weight: 800;
       letter-spacing: .06em;
       text-transform: uppercase;
@@ -585,23 +588,86 @@
     .pill-completed   { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
 
     .update-btn {
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      border-radius: 8px;
-      color: #1d4ed8;
-      font-size: 11px;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      border: 1px solid #1d4ed8;
+      border-radius: 10px;
+      color: #ffffff;
+      font-size: 12px;
       font-weight: 700;
-      padding: 6px 12px;
+      padding: 7px 14px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       transition: all .2s;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
     }
     .update-btn:hover {
-      background: #2563eb;
+      background: linear-gradient(135deg, #1d4ed8, #1e40af);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+    }
+    .update-btn.view-task-btn {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      box-shadow: none;
+    }
+    .update-btn.view-task-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    /* Modal Stepper & Submissions */
+    .status-stepper {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin: 16px 0 22px;
+    }
+    .step-chip {
+      background: #f8fafc;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 8px;
+      text-align: center;
+      cursor: pointer;
+      transition: all .2s;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #64748b;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+    .step-chip:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+      color: #0f172a;
+    }
+    .step-chip.active {
+      background: #eff6ff;
       border-color: #2563eb;
-      color: #ffffff;
+      color: #1d4ed8;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+    }
+    .step-chip i { width: 16px; height: 16px; }
+
+    .submission-box {
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      margin-top: 18px;
+    }
+    .sub-history-item {
+      padding: 10px 12px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-top: 8px;
+      font-size: 12.5px;
     }
 
     /* ===== NOTIFICATIONS LIST ===== */
@@ -1309,22 +1375,27 @@ function viewTasks(completed) {
 function taskItem(t) {
   const pri = (t.priority || 'medium').toLowerCase();
   const status = (t.status || 'pending').toLowerCase();
+  const isDone = status === 'completed';
   return `
-    <div class="task-item" data-task="${t.id}">
+    <div class="task-item" data-task="${t.id}" title="Click to view details & submit work">
       <div class="task-left">
         <div class="task-priority-indicator priority-${pri}"></div>
         <div class="task-info">
           <h4>${esc(t.title)}</h4>
           <div class="task-meta">
-            <span><i data-lucide="folder"></i> ${esc(t.project_name || 'General')}</span>
+            <span><i data-lucide="folder"></i> ${esc(t.project_name || 'General Project')}</span>
             <span><i data-lucide="calendar"></i> ${t.deadline ? 'Due ' + esc(t.deadline) : 'No deadline'}</span>
+            ${t.description ? `<span><i data-lucide="align-left"></i> ${esc(t.description.slice(0, 45))}${t.description.length > 45 ? '…' : ''}</span>` : ''}
           </div>
         </div>
       </div>
       <div class="task-right">
         <span class="pill pill-${pri}">${pri}</span>
         <span class="pill pill-${status}">${status.replace('_', ' ')}</span>
-        ${status !== 'completed' ? `<button class="update-btn" data-task="${t.id}"><i data-lucide="external-link" style="width:12px;height:12px"></i> Update</button>` : ''}
+        <button class="update-btn ${isDone ? 'view-task-btn' : ''}" data-task="${t.id}">
+          <i data-lucide="${isDone ? 'eye' : 'file-check'}" style="width:13px;height:13px"></i>
+          ${isDone ? 'View Task' : 'Open & Submit ↗'}
+        </button>
       </div>
     </div>
   `;
@@ -1354,6 +1425,7 @@ function viewNotifications() {
 function viewProfile() {
   const u = state.user;
   const initials = u.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+  const pendingTasks = state.tasks.filter(t => t.status !== 'completed');
   return `
     <div class="profile-wrap">
       <div class="profile-hero">
@@ -1364,7 +1436,20 @@ function viewProfile() {
           <span style="margin-top:6px;display:block;color:#64748b;font-size:12px">${esc(u.email)}</span>
         </div>
       </div>
+
+      <!-- Quick Task Status in Profile -->
+      <div class="panel" style="margin-bottom: 24px">
+        <div class="panel-head">
+          <h3><i data-lucide="check-square" style="width:18px;height:18px;color:#2563eb"></i> My Assigned Tasks (${pendingTasks.length} Active)</h3>
+          <button class="view-all" onclick="document.querySelector('[data-view=tasks]').click()">Go to Tasks Board →</button>
+        </div>
+        <div class="task-list-wrap">
+          ${pendingTasks.slice(0, 3).map(taskItem).join('') || emptyState('check-circle', "No active tasks assigned to you right now.")}
+        </div>
+      </div>
+
       <div class="form-card">
+        <h3 style="margin: 0 0 16px; font-size: 17px; font-weight: 700;">Edit Profile Info</h3>
         <form id="profile-form">
           <div class="form-row">
             <div class="form-field">
@@ -1463,51 +1548,123 @@ function bind() {
 }
 
 // ===== TASK MODAL =====
-function openTaskModal(id) {
+async function openTaskModal(id) {
   const t = state.tasks.find(x => x.id === id);
   if (!t) return;
 
   const pri = (t.priority || 'medium').toLowerCase();
-  const status = (t.status || 'pending').toLowerCase();
+  let currentStatus = (t.status || 'pending').toLowerCase();
+
+  // Fetch previous submissions for this task
+  let pastSubs = [];
+  try {
+    const subRes = await api('/api/employee/tasks/' + id + '/submissions');
+    pastSubs = subRes.submissions || [];
+  } catch(err) {
+    console.warn('Could not fetch past submissions:', err);
+  }
 
   const overlay = document.createElement('div');
   overlay.className = 'modal-overlay';
   overlay.innerHTML = `
-    <div class="modal-box">
+    <div class="modal-box" style="width: min(640px, 100%)">
       <button class="modal-close" onclick="this.closest('.modal-overlay').remove()">
         <i data-lucide="x"></i>
       </button>
-      <div style="font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#2563eb;margin-bottom:6px">TASK DETAILS</div>
-      <h3>${esc(t.title)}</h3>
-      <div class="modal-sub">Project: <b>${esc(t.project_name || 'General')}</b> &nbsp;·&nbsp; Due: ${t.deadline ? esc(t.deadline) : 'Not set'}</div>
+      <div style="font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#2563eb;margin-bottom:6px">
+        TASK ACTION CENTER #${t.id}
+      </div>
+      <h3 style="font-size:22px;margin:2px 0 8px">${esc(t.title)}</h3>
       
-      ${t.description ? `<p style="font-size:13.5px;color:#334155;line-height:1.7;margin:0 0 20px;background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:14px 16px">${esc(t.description)}</p>` : ''}
-      
-      <div style="display:flex;gap:10px;margin-bottom:20px">
-        <span class="pill pill-${pri}">${pri}</span>
-        <span class="pill pill-${status}">${status.replace('_',' ')}</span>
+      <div class="modal-sub" style="display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px">
+        <span><i data-lucide="folder" style="width:14px;height:14px;vertical-align:-2px"></i> <b>${esc(t.project_name || 'General')}</b></span>
+        <span><i data-lucide="calendar" style="width:14px;height:14px;vertical-align:-2px"></i> Due: <b>${t.deadline ? esc(t.deadline) : 'Not set'}</b></span>
+        <span class="pill pill-${pri}">${pri} Priority</span>
       </div>
 
-      <div class="modal-field">
-        <label>Update Status</label>
-        <select id="task-status">
-          <option value="pending"      ${status==='pending'?'selected':''}>Pending</option>
-          <option value="in_progress"  ${status==='in_progress'?'selected':''}>In Progress</option>
-          <option value="submitted"    ${status==='submitted'?'selected':''}>Submitted for Review</option>
-          <option value="completed"    ${status==='completed'?'selected':''}>Completed</option>
-        </select>
+      ${t.description ? `
+        <div style="margin-bottom:18px">
+          <div style="font-size:11px;font-weight:800;letter-spacing:.06em;color:#64748b;text-transform:uppercase;margin-bottom:6px">Task Instructions / Description</div>
+          <div style="font-size:13.5px;color:#334155;line-height:1.7;background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:14px 16px;white-space:pre-wrap">${esc(t.description)}</div>
+        </div>
+      ` : ''}
+
+      <!-- Status Stepper / Quick Status Picker -->
+      <div style="font-size:11px;font-weight:800;letter-spacing:.06em;color:#64748b;text-transform:uppercase;margin-bottom:6px">Progress Status</div>
+      <div class="status-stepper" id="task-stepper">
+        <div class="step-chip ${currentStatus === 'pending' ? 'active' : ''}" data-val="pending">
+          <i data-lucide="clock"></i>
+          <span>Pending</span>
+        </div>
+        <div class="step-chip ${currentStatus === 'in_progress' ? 'active' : ''}" data-val="in_progress">
+          <i data-lucide="play-circle"></i>
+          <span>In Progress</span>
+        </div>
+        <div class="step-chip ${currentStatus === 'submitted' ? 'active' : ''}" data-val="submitted">
+          <i data-lucide="send"></i>
+          <span>Submitted</span>
+        </div>
+        <div class="step-chip ${currentStatus === 'completed' ? 'active' : ''}" data-val="completed">
+          <i data-lucide="check-circle-2"></i>
+          <span>Completed</span>
+        </div>
       </div>
 
-      <div class="modal-field">
-        <label>Work Submission / Notes</label>
-        <textarea id="task-note" rows="5" placeholder="Describe what you completed, progress made, or updates for your lead…"></textarea>
+      <!-- Quick Action Buttons -->
+      <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px">
+        ${currentStatus !== 'in_progress' ? `
+          <button class="btn-ghost" style="padding:7px 14px;font-size:12px" id="quick-progress-btn">
+            <i data-lucide="play" style="width:13px;height:13px"></i> Mark "In Progress"
+          </button>
+        ` : ''}
+        ${currentStatus !== 'completed' ? `
+          <button class="btn-ghost" style="padding:7px 14px;font-size:12px;color:#15803d;border-color:#86efac" id="quick-complete-btn">
+            <i data-lucide="check" style="width:13px;height:13px"></i> Mark "Completed"
+          </button>
+        ` : ''}
       </div>
 
-      <div class="modal-actions">
-        <button class="btn-ghost" onclick="this.closest('.modal-overlay').remove()">Cancel</button>
-        <button class="btn-primary" id="save-task-btn">
-          <i data-lucide="check" style="width:15px;height:15px"></i> Save Update
-        </button>
+      <!-- Submit Work to Admin -->
+      <div class="submission-box">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+          <div style="font-size:12px;font-weight:800;letter-spacing:.06em;color:#1e40af;text-transform:uppercase;display:flex;align-items:center;gap:6px">
+            <i data-lucide="send" style="width:14px;height:14px"></i> Submit Work to Admin
+          </div>
+          <span style="font-size:11px;color:#64748b">Notifies Admin for review</span>
+        </div>
+        <p style="font-size:12px;color:#64748b;margin:0 0 10px;line-height:1.5">
+          Attach your work summary, deliverables, GitHub commit / PR link, or Figma design link for admin approval:
+        </p>
+        <textarea id="task-submission-note" rows="3" style="width:100%;box-sizing:border-box;border:1px solid #cbd5e1;border-radius:10px;padding:10px 12px;font-family:inherit;font-size:13px;outline:none" placeholder="e.g. Completed header redesign & pushed commit to main branch. Verified responsive on mobile."></textarea>
+        <div style="display:flex;justify-content:flex-end;margin-top:10px">
+          <button class="btn-primary" id="btn-submit-work" style="padding:9px 18px;font-size:12px">
+            <i data-lucide="send" style="width:13px;height:13px"></i> Submit Work & Update Status
+          </button>
+        </div>
+      </div>
+
+      <!-- Past Submissions History -->
+      ${pastSubs.length > 0 ? `
+        <div style="margin-top:20px">
+          <div style="font-size:11px;font-weight:800;letter-spacing:.06em;color:#64748b;text-transform:uppercase;margin-bottom:8px">Previous Submissions (${pastSubs.length})</div>
+          <div style="max-height:160px;overflow-y:auto;display:flex;flex-direction:column;gap:8px">
+            ${pastSubs.map(s => `
+              <div class="sub-history-item">
+                <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+                  <span class="pill pill-${s.status === 'approved' ? 'completed' : s.status === 'rejected' ? 'urgent' : 'submitted'}" style="padding:2px 8px;font-size:9.5px">
+                    ${s.status.toUpperCase()}
+                  </span>
+                  <span style="font-size:11px;color:#94a3b8">${esc(s.created_at || '')}</span>
+                </div>
+                <div style="color:#1e293b;line-height:1.5;white-space:pre-wrap">${esc(s.note)}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      ` : ''}
+
+      <div class="modal-actions" style="margin-top:24px">
+        <button class="btn-ghost" onclick="this.closest('.modal-overlay').remove()">Close</button>
       </div>
     </div>
   `;
@@ -1516,35 +1673,101 @@ function openTaskModal(id) {
 
   overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
 
-  document.getElementById('save-task-btn').onclick = async () => {
-    const saveBtn = document.getElementById('save-task-btn');
-    saveBtn.textContent = 'Saving…'; saveBtn.disabled = true;
-    try {
-      const newStatus = document.getElementById('task-status').value;
-      const note = document.getElementById('task-note').value.trim();
-      
-      await api('/api/employee/tasks/' + id, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ status: newStatus })
-      });
+  // Handle Stepper Clicks
+  overlay.querySelectorAll('.step-chip').forEach(chip => {
+    chip.onclick = async () => {
+      const val = chip.dataset.val;
+      if (val === currentStatus) return;
+      try {
+        await api('/api/employee/tasks/' + id, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status: val })
+        });
+        state = await api('/api/employee/dashboard');
+        overlay.remove();
+        render(document.querySelector('#sideNav button.active')?.dataset.view || 'tasks');
+        // Reopen to show updated state
+        openTaskModal(id);
+      } catch(e) {
+        alert(e.message);
+      }
+    };
+  });
 
-      if (note) {
+  // Handle Quick In-Progress
+  const progBtn = overlay.querySelector('#quick-progress-btn');
+  if (progBtn) {
+    progBtn.onclick = async () => {
+      progBtn.disabled = true;
+      try {
+        await api('/api/employee/tasks/' + id, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status: 'in_progress' })
+        });
+        state = await api('/api/employee/dashboard');
+        overlay.remove();
+        render(document.querySelector('#sideNav button.active')?.dataset.view || 'tasks');
+        openTaskModal(id);
+      } catch(e) {
+        alert(e.message);
+        progBtn.disabled = false;
+      }
+    };
+  }
+
+  // Handle Quick Complete
+  const compBtn = overlay.querySelector('#quick-complete-btn');
+  if (compBtn) {
+    compBtn.onclick = async () => {
+      compBtn.disabled = true;
+      try {
+        await api('/api/employee/tasks/' + id, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status: 'completed' })
+        });
+        state = await api('/api/employee/dashboard');
+        overlay.remove();
+        render(document.querySelector('#sideNav button.active')?.dataset.view || 'tasks');
+      } catch(e) {
+        alert(e.message);
+        compBtn.disabled = false;
+      }
+    };
+  }
+
+  // Handle Work Submission
+  const submitWorkBtn = overlay.querySelector('#btn-submit-work');
+  if (submitWorkBtn) {
+    submitWorkBtn.onclick = async () => {
+      const note = overlay.querySelector('#task-submission-note').value.trim();
+      if (!note) {
+        alert('Please enter a brief note or link describing your completed work before submitting.');
+        overlay.querySelector('#task-submission-note').focus();
+        return;
+      }
+      submitWorkBtn.textContent = 'Submitting…';
+      submitWorkBtn.disabled = true;
+      try {
         await api('/api/employee/tasks/' + id + '/submissions', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ note })
         });
+        state = await api('/api/employee/dashboard');
+        overlay.remove();
+        render(document.querySelector('#sideNav button.active')?.dataset.view || 'tasks');
+        alert('Work successfully submitted to Admin! Task marked as submitted.');
+      } catch(e) {
+        alert(e.message);
+        submitWorkBtn.innerHTML = '<i data-lucide="send" style="width:13px;height:13px"></i> Submit Work & Update Status';
+        submitWorkBtn.disabled = false;
+        if (window.lucide) lucide.createIcons();
       }
-
-      state = await api('/api/employee/dashboard');
-      overlay.remove();
-      render(document.querySelector('#sideNav button.active')?.dataset.view || 'tasks');
-    } catch(e) {
-      alert(e.message);
-      saveBtn.textContent = 'Save Update'; saveBtn.disabled = false;
-    }
-  };
+    };
+  }
 }
 
 async function logout() {

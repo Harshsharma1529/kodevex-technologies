@@ -256,7 +256,7 @@ function requireAuth(req, res, next) {
 }
 function requireEmployee(req, res, next) {
   requireAuth(req, res, () => {
-    if (req.user.role !== "employee") return res.status(403).json({ error: "Employee access required." });
+    if (!["employee", "admin"].includes(req.user.role)) return res.status(403).json({ error: "Employee access required." });
     next();
   });
 }
@@ -442,6 +442,12 @@ app.post("/api/employee/tasks/:id/submissions", requireEmployee, (req, res) => {
   const admins = db.prepare("SELECT id FROM users WHERE role='admin' AND status='active'").all();
   admins.forEach(a => notify(a.id, "New task submission", `${req.user.name} submitted work for "${task.title}".`));
   res.json({ ok: true });
+});
+
+app.get("/api/employee/tasks/:id/submissions", requireEmployee, (req, res) => {
+  const id = Number(req.params.id);
+  const submissions = db.prepare("SELECT * FROM submissions WHERE task_id=? AND user_id=? ORDER BY id DESC").all(id, req.user.id);
+  res.json({ submissions });
 });
 
 app.patch("/api/employee/notifications/:id/read", requireEmployee, (req, res) => {
