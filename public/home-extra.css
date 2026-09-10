@@ -27,7 +27,7 @@
 
 /* ===== PROJECTS SECTION ===== */
 .projects-section {
-  background: #f8fafc;
+  background: #f2f4f7;
   border-top: 1px solid #e2e8f0;
   border-bottom: 1px solid #e2e8f0;
 }
@@ -439,7 +439,7 @@
 
 /* ===== TESTIMONIALS ===== */
 .testimonials-section {
-  background: #f8fafc;
+  background: #f2f4f7;
   border-bottom: 1px solid #e2e8f0;
 }
 .testimonials-grid {
@@ -571,7 +571,7 @@
 
 /* Contact form */
 .contact-form {
-  background: #f8fafc;
+  background: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 18px;
   padding: 32px;
@@ -619,7 +619,7 @@
 
 /* ===== FOOTER V2 ===== */
 .site-footer-main {
-  background: #f8fafc;
+  background: #f2f4f7;
   border-top: 1px solid #e2e8f0;
 }
 .footer-top {
@@ -847,10 +847,44 @@
   }
 }
 
+/* ===== CLIENTS TICKER STRIP ===== */
+.clients-ticker-strip {
+  padding: 30px 6.5vw 34px;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  position: relative;
+  overflow: hidden;
+}
+.clients-ticker-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.clients-ticker-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #64748b;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+.clients-ticker-label::before,
+.clients-ticker-label::after {
+  content: '';
+  width: 36px;
+  height: 1px;
+  background: #cbd5e1;
+}
+
 /* ===== CLIENTS & PARTNERS SHOWCASE SECTION ===== */
 .clients-section {
   padding: 56px 6.5vw;
-  background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.05) 0%, transparent 65%), #f8fafc;
+  background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.05) 0%, transparent 65%), #f2f4f7;
   border-top: 1px solid #e2e8f0;
   border-bottom: 1px solid #e2e8f0;
   position: relative;

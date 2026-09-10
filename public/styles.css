@@ -3,7 +3,7 @@
 :root {
   --ink: #0f172a;
   --dark: #ffffff;
-  --dark2: #f8fafc;
+  --dark2: #f2f4f7;
   --panel: #ffffff;
   --blue: #2563eb;
   --blue2: #eff6ff;
@@ -14,7 +14,7 @@
   --white: #ffffff;
   --shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.06), 0 0 1px rgba(15, 23, 42, 0.1);
   --shadow-lg: 0 20px 45px -10px rgba(15, 23, 42, 0.1), 0 0 1px rgba(15, 23, 42, 0.12);
-  --surface: #f8fafc;
+  --surface: #f2f4f7;
   --danger: #ef4444;
 }
 
@@ -534,7 +534,7 @@ button {
   padding: 72px 6.5vw;
   gap: 8vw;
   align-items: center;
-  background: #f8fafc;
+  background: var(--dark2);
   border-top: 1px solid var(--line);
 }
 
@@ -568,7 +568,7 @@ footer {
   font-size: 11px;
   color: var(--muted);
   font-weight: 600;
-  background: #f8fafc;
+  background: var(--dark2);
 }
 
 /* ===== AUTH PAGES ===== */

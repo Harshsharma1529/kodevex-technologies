@@ -389,16 +389,16 @@ app.get("/api/admin/overview", requireAdmin, (req, res) => {
 
 app.get("/api/admin/employees", requireAdmin, (req, res) => {
   const employees = db.prepare(`
-    SELECT u.id,u.employee_id,u.name,u.email,u.job_title,u.department,u.status,u.created_at,
+    SELECT u.id,u.employee_id,u.name,u.email,u.role,u.job_title,u.department,u.status,u.created_at,
       COUNT(DISTINCT pm.project_id) AS project_count,
       COUNT(DISTINCT t.id) AS task_count,
       SUM(CASE WHEN t.status='completed' THEN 1 ELSE 0 END) AS completed_count
     FROM users u
     LEFT JOIN project_members pm ON pm.user_id=u.id
     LEFT JOIN tasks t ON t.assigned_to=u.id
-    WHERE u.role='employee'
+    WHERE u.id != ?
     GROUP BY u.id ORDER BY u.id DESC
-  `).all();
+  `).all(req.user.id);
   const employeeIds = db.prepare("SELECT * FROM employee_ids ORDER BY id DESC").all();
   res.json({ employees, employeeIds });
 });
@@ -425,10 +425,37 @@ app.patch("/api/admin/employees/:id", requireAdmin, (req, res) => {
   const name = clean(req.body.name, 100);
   const jobTitle = clean(req.body.jobTitle, 100);
   const department = clean(req.body.department, 100);
+  const role = clean(req.body.role, 20);
   if (!["active", "disabled"].includes(status) || !name) return res.status(400).json({ error: "Invalid employee data." });
-  db.prepare("UPDATE users SET name=?,job_title=?,department=?,status=? WHERE id=? AND role='employee'")
-    .run(name, jobTitle, department, status, id);
+
+  const targetRole = ["admin", "employee"].includes(role) && id !== req.user.id ? role : undefined;
+
+  if (targetRole) {
+    db.prepare("UPDATE users SET name=?,job_title=?,department=?,status=?,role=? WHERE id=?")
+      .run(name, jobTitle, department, status, targetRole, id);
+    notify(id, "Permissions Updated", `Your role has been set to ${targetRole === 'admin' ? 'Administrator' : 'Employee'}.`);
+  } else {
+    db.prepare("UPDATE users SET name=?,job_title=?,department=?,status=? WHERE id=?")
+      .run(name, jobTitle, department, status, id);
+  }
   res.json({ ok: true });
+});
+
+app.patch("/api/admin/employees/:id/role", requireAdmin, (req, res) => {
+  const id = Number(req.params.id);
+  const role = clean(req.body.role, 20);
+  if (!["admin", "employee"].includes(role)) {
+    return res.status(400).json({ error: "Invalid role specified." });
+  }
+  if (id === req.user.id) {
+    return res.status(400).json({ error: "You cannot modify your own role." });
+  }
+  const user = db.prepare("SELECT * FROM users WHERE id=?").get(id);
+  if (!user) return res.status(404).json({ error: "User not found." });
+
+  db.prepare("UPDATE users SET role=? WHERE id=?").run(role, id);
+  notify(id, "Permissions Updated", `You have been granted ${role === 'admin' ? 'Administrator' : 'Employee'} privileges.`);
+  res.json({ ok: true, role });
 });
 
 app.get("/api/admin/projects", requireAdmin, (req, res) => {
