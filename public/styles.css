@@ -373,7 +373,7 @@ button {
 
 /* ===== SECTIONS ===== */
 .section {
-  padding: 105px 6.5vw;
+  padding: 72px 6.5vw;
   background: var(--dark);
 }
 
@@ -403,7 +403,7 @@ button {
   justify-content: space-between;
   align-items: end;
   gap: 30px;
-  margin-bottom: 44px;
+  margin-bottom: 30px;
 }
 
 .section-head .eyebrow {
@@ -502,7 +502,7 @@ button {
 .process {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  margin-top: 58px;
+  margin-top: 36px;
 }
 
 .process > div {
@@ -531,7 +531,7 @@ button {
 .contact-section {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 105px 6.5vw;
+  padding: 72px 6.5vw;
   gap: 8vw;
   align-items: center;
   background: #f8fafc;

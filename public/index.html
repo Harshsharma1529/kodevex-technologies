@@ -81,13 +81,12 @@
   <div class="client-filter-tabs">
     <button class="client-tab active" onclick="filterClients('all', this)">All Clients</button>
     <button class="client-tab" onclick="filterClients('retail', this)">D2C & Retail</button>
-    <button class="client-tab" onclick="filterClients('logistics', this)">Logistics & Mobility</button>
-    <button class="client-tab" onclick="filterClients('health', this)">HealthTech & Clinics</button>
-    <button class="client-tab" onclick="filterClients('saas', this)">SaaS & Automation</button>
-    <button class="client-tab" onclick="filterClients('services', this)">EdTech & Services</button>
+    <button class="client-tab" onclick="filterClients('logistics', this)">Logistics & Fleet</button>
+    <button class="client-tab" onclick="filterClients('health', this)">HealthTech</button>
+    <button class="client-tab" onclick="filterClients('saas', this)">SaaS & Cloud</button>
   </div>
 
-  <!-- Client Showcase Grid -->
+  <!-- Client Showcase Grid (Top 6 Featured) -->
   <div class="clients-grid" id="clientsGrid">
 
     <!-- 1. Apex Logistics -->
@@ -215,32 +214,7 @@
       </div>
     </div>
 
-    <!-- 6. UrbanPulse Media -->
-    <div class="client-card brand-urban" data-cat="services">
-      <div class="client-card-top">
-        <div class="client-logo-box">
-          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="18" cy="18" r="14" stroke="#d946ef" stroke-width="2.5" fill="rgba(217,70,239,0.08)"/>
-            <path d="M15 12l9 6-9 6V12z" fill="#a855f7"/>
-            <circle cx="18" cy="18" r="7" stroke="#e879f9" stroke-width="1.5" stroke-dasharray="3 3"/>
-          </svg>
-        </div>
-        <div class="client-info">
-          <h3 class="client-name">UrbanPulse Media</h3>
-          <span class="client-sector">Digital Media & Studio</span>
-        </div>
-      </div>
-      <p class="client-solution">
-        <i data-lucide="check-circle-2"></i>
-        <span>High-Performance Video Portfolio & CMS</span>
-      </p>
-      <div class="client-footer-tag">
-        <span>Creative Agency</span>
-        <span class="client-status-pill"><span class="client-status-dot"></span> Live</span>
-      </div>
-    </div>
-
-    <!-- 7. Veloce Mobility -->
+    <!-- 6. Veloce Mobility -->
     <div class="client-card brand-veloce" data-cat="logistics">
       <div class="client-card-top">
         <div class="client-logo-box">
@@ -264,141 +238,15 @@
       </div>
     </div>
 
-    <!-- 8. GreenLeaf Organics -->
-    <div class="client-card brand-greenleaf" data-cat="retail">
-      <div class="client-card-top">
-        <div class="client-logo-box">
-          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7 29c2-9 9-16 22-19-1 13-8 20-17 22-2 .4-4-.8-5-3z" stroke="#22c55e" stroke-width="2.5" fill="rgba(34,197,94,0.08)"/>
-            <path d="M10 26c5-6 10-10 16-13" stroke="#84cc16" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="client-info">
-          <h3 class="client-name">GreenLeaf Organics</h3>
-          <span class="client-sector">AgriTech & Eco-Retail</span>
-        </div>
-      </div>
-      <p class="client-solution">
-        <i data-lucide="check-circle-2"></i>
-        <span>Farm-to-Door Subscription & Dispatch App</span>
-      </p>
-      <div class="client-footer-tag">
-        <span>Weekly Subscriptions</span>
-        <span class="client-status-pill"><span class="client-status-dot"></span> Live</span>
-      </div>
-    </div>
-
-    <!-- 9. Edura Academy -->
-    <div class="client-card brand-edura" data-cat="services">
-      <div class="client-card-top">
-        <div class="client-logo-box">
-          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 6l13 7-13 7-13-7 13-7z" stroke="#38bdf8" stroke-width="2.5" fill="rgba(56,189,248,0.08)" stroke-linejoin="round"/>
-            <path d="M9 16v9c0 3.5 4 6 9 6s9-2.5 9-6v-9" stroke="#0284c7" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="M31 13v10" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="client-info">
-          <h3 class="client-name">Edura Academy</h3>
-          <span class="client-sector">EdTech & Learning</span>
-        </div>
-      </div>
-      <p class="client-solution">
-        <i data-lucide="check-circle-2"></i>
-        <span>Live Interactive Classrooms & Quiz Platform</span>
-      </p>
-      <div class="client-footer-tag">
-        <span>25K+ Students</span>
-        <span class="client-status-pill"><span class="client-status-dot"></span> Active</span>
-      </div>
-    </div>
-
-    <!-- 10. PrimeTrade Hub -->
-    <div class="client-card brand-primetrade" data-cat="saas">
-      <div class="client-card-top">
-        <div class="client-logo-box">
-          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 12h18m0 0l-5-5m5 5l-5 5" stroke="#14b8a6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M28 24H10m0 0l5-5m-5 5l5 5" stroke="#f97316" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="client-info">
-          <h3 class="client-name">PrimeTrade Hub</h3>
-          <span class="client-sector">B2B Wholesale Portal</span>
-        </div>
-      </div>
-      <p class="client-solution">
-        <i data-lucide="check-circle-2"></i>
-        <span>Bulk Quotation & Multi-Tier Pricing Portal</span>
-      </p>
-      <div class="client-footer-tag">
-        <span>$4M+ Annual GMV</span>
-        <span class="client-status-pill"><span class="client-status-dot"></span> Live</span>
-      </div>
-    </div>
-
-    <!-- 11. CraftEdge Studio -->
-    <div class="client-card brand-craftedge" data-cat="services">
-      <div class="client-card-top">
-        <div class="client-logo-box">
-          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18 5l12 7-12 7-12-7 12-7z" stroke="#ec4899" stroke-width="2.5" fill="rgba(236,72,153,0.08)"/>
-            <path d="M6 12v12l12 7v-12L6 12z" stroke="#fb7185" stroke-width="2.2"/>
-            <path d="M30 12v12l-12 7v-12l12-7z" stroke="#ec4899" stroke-width="2.2"/>
-          </svg>
-        </div>
-        <div class="client-info">
-          <h3 class="client-name">CraftEdge Studio</h3>
-          <span class="client-sector">Architecture & Interior</span>
-        </div>
-      </div>
-      <p class="client-solution">
-        <i data-lucide="check-circle-2"></i>
-        <span>Architectural Design Showcase & Consultation Booking</span>
-      </p>
-      <div class="client-footer-tag">
-        <span>High-End Studio</span>
-        <span class="client-status-pill"><span class="client-status-dot"></span> Live</span>
-      </div>
-    </div>
-
-    <!-- 12. SwiftHire HR -->
-    <div class="client-card brand-swifthire" data-cat="saas">
-      <div class="client-card-top">
-        <div class="client-logo-box">
-          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="18" cy="11" r="5" stroke="#6366f1" stroke-width="2.5" fill="rgba(99,102,241,0.1)"/>
-            <path d="M9 28c0-5 4-8 9-8s9 3 9 8" stroke="#6366f1" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="7" cy="16" r="3" stroke="#38bdf8" stroke-width="2"/>
-            <circle cx="29" cy="16" r="3" stroke="#38bdf8" stroke-width="2"/>
-          </svg>
-        </div>
-        <div class="client-info">
-          <h3 class="client-name">SwiftHire HR</h3>
-          <span class="client-sector">Staffing & HR Automation</span>
-        </div>
-      </div>
-      <p class="client-solution">
-        <i data-lucide="check-circle-2"></i>
-        <span>Applicant Tracking & Automated Candidate Screening</span>
-      </p>
-      <div class="client-footer-tag">
-        <span>80% Faster Hiring</span>
-        <span class="client-status-pill"><span class="client-status-dot"></span> Active</span>
-      </div>
-    </div>
-
   </div>
 
-  <!-- Continuous Dual Marquee Live Stream -->
+  <!-- Live Marquee Stream -->
   <div class="clients-marquee-subhead">
     <span>ACTIVE CLIENT COLLABORATIONS & ECOSYSTEM PARTNERS</span>
   </div>
 
   <div class="marquee-stream-wrapper">
-    <!-- Stream 1: Drifts Left -->
     <div class="marquee-row marquee-row-left">
-      <!-- Set A -->
       <div class="ticker-badge brand-apex">
         <svg viewBox="0 0 36 36" fill="none"><polygon points="18,3 31,10.5 31,25.5 18,33 5,25.5 5,10.5" stroke="#00e5ff" stroke-width="2.5" fill="rgba(0,229,255,0.1)"/><polyline points="11,18 18,12 25,18" stroke="#00e5ff" stroke-width="2.5"/><polyline points="11,24 18,18 25,24" stroke="#0088ff" stroke-width="2.5"/></svg>
         <span>Apex Logistics</span>
@@ -419,12 +267,11 @@
         <svg viewBox="0 0 36 36" fill="none"><polygon points="12,7 24,7 30,15 18,31 6,15" stroke="#f59e0b" stroke-width="2.5" fill="rgba(245,158,11,0.1)"/><line x1="6" y1="15" x2="30" y2="15" stroke="#fbbf24" stroke-width="1.8"/></svg>
         <span>Aura Jewels</span>
       </div>
-      <div class="ticker-badge brand-urban">
-        <svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="14" stroke="#d946ef" stroke-width="2.5" fill="rgba(217,70,239,0.1)"/><path d="M15 12l9 6-9 6V12z" fill="#a855f7"/></svg>
-        <span>UrbanPulse Media</span>
+      <div class="ticker-badge brand-veloce">
+        <svg viewBox="0 0 36 36" fill="none"><path d="M21 4l-11 16h8l-2 12 12-17h-8l3-11z" stroke="#06b6d4" stroke-width="2.5" fill="rgba(6,182,212,0.1)"/><path d="M6 14h4M4 19h6M7 24h4" stroke="#eab308" stroke-width="2"/></svg>
+        <span>Veloce Mobility</span>
       </div>
-
-      <!-- Set A Duplicate for seamless loop -->
+      <!-- Duplicate for seamless loop -->
       <div class="ticker-badge brand-apex">
         <svg viewBox="0 0 36 36" fill="none"><polygon points="18,3 31,10.5 31,25.5 18,33 5,25.5 5,10.5" stroke="#00e5ff" stroke-width="2.5" fill="rgba(0,229,255,0.1)"/><polyline points="11,18 18,12 25,18" stroke="#00e5ff" stroke-width="2.5"/><polyline points="11,24 18,18 25,24" stroke="#0088ff" stroke-width="2.5"/></svg>
         <span>Apex Logistics</span>
@@ -445,64 +292,9 @@
         <svg viewBox="0 0 36 36" fill="none"><polygon points="12,7 24,7 30,15 18,31 6,15" stroke="#f59e0b" stroke-width="2.5" fill="rgba(245,158,11,0.1)"/><line x1="6" y1="15" x2="30" y2="15" stroke="#fbbf24" stroke-width="1.8"/></svg>
         <span>Aura Jewels</span>
       </div>
-      <div class="ticker-badge brand-urban">
-        <svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="18" r="14" stroke="#d946ef" stroke-width="2.5" fill="rgba(217,70,239,0.1)"/><path d="M15 12l9 6-9 6V12z" fill="#a855f7"/></svg>
-        <span>UrbanPulse Media</span>
-      </div>
-    </div>
-
-    <!-- Stream 2: Drifts Right -->
-    <div class="marquee-row marquee-row-right">
-      <!-- Set B -->
       <div class="ticker-badge brand-veloce">
         <svg viewBox="0 0 36 36" fill="none"><path d="M21 4l-11 16h8l-2 12 12-17h-8l3-11z" stroke="#06b6d4" stroke-width="2.5" fill="rgba(6,182,212,0.1)"/><path d="M6 14h4M4 19h6M7 24h4" stroke="#eab308" stroke-width="2"/></svg>
         <span>Veloce Mobility</span>
-      </div>
-      <div class="ticker-badge brand-greenleaf">
-        <svg viewBox="0 0 36 36" fill="none"><path d="M7 29c2-9 9-16 22-19-1 13-8 20-17 22-2 .4-4-.8-5-3z" stroke="#22c55e" stroke-width="2.5" fill="rgba(34,197,94,0.1)"/><path d="M10 26c5-6 10-10 16-13" stroke="#84cc16" stroke-width="2"/></svg>
-        <span>GreenLeaf Organics</span>
-      </div>
-      <div class="ticker-badge brand-edura">
-        <svg viewBox="0 0 36 36" fill="none"><path d="M18 6l13 7-13 7-13-7 13-7z" stroke="#38bdf8" stroke-width="2.5" fill="rgba(56,189,248,0.1)"/><path d="M9 16v9c0 3.5 4 6 9 6s9-2.5 9-6v-9" stroke="#0284c7" stroke-width="2.5"/></svg>
-        <span>Edura Academy</span>
-      </div>
-      <div class="ticker-badge brand-primetrade">
-        <svg viewBox="0 0 36 36" fill="none"><path d="M8 12h18m0 0l-5-5m5 5l-5 5" stroke="#14b8a6" stroke-width="2.5"/><path d="M28 24H10m0 0l5-5m-5 5l5 5" stroke="#f97316" stroke-width="2.5"/></svg>
-        <span>PrimeTrade Hub</span>
-      </div>
-      <div class="ticker-badge brand-craftedge">
-        <svg viewBox="0 0 36 36" fill="none"><path d="M18 5l12 7-12 7-12-7 12-7z" stroke="#ec4899" stroke-width="2.5" fill="rgba(236,72,153,0.1)"/><path d="M6 12v12l12 7v-12L6 12z" stroke="#fb7185" stroke-width="2.2"/><path d="M30 12v12l-12 7v-12l12-7z" stroke="#ec4899" stroke-width="2.2"/></svg>
-        <span>CraftEdge Studio</span>
-      </div>
-      <div class="ticker-badge brand-swifthire">
-        <svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="11" r="5" stroke="#6366f1" stroke-width="2.5" fill="rgba(99,102,241,0.1)"/><path d="M9 28c0-5 4-8 9-8s9 3 9 8" stroke="#6366f1" stroke-width="2.5"/><circle cx="7" cy="16" r="3" stroke="#38bdf8" stroke-width="2"/><circle cx="29" cy="16" r="3" stroke="#38bdf8" stroke-width="2"/></svg>
-        <span>SwiftHire HR</span>
-      </div>
-
-      <!-- Set B Duplicate for seamless loop -->
-      <div class="ticker-badge brand-veloce">
-        <svg viewBox="0 0 36 36" fill="none"><path d="M21 4l-11 16h8l-2 12 12-17h-8l3-11z" stroke="#06b6d4" stroke-width="2.5" fill="rgba(6,182,212,0.1)"/><path d="M6 14h4M4 19h6M7 24h4" stroke="#eab308" stroke-width="2"/></svg>
-        <span>Veloce Mobility</span>
-      </div>
-      <div class="ticker-badge brand-greenleaf">
-        <svg viewBox="0 0 36 36" fill="none"><path d="M7 29c2-9 9-16 22-19-1 13-8 20-17 22-2 .4-4-.8-5-3z" stroke="#22c55e" stroke-width="2.5" fill="rgba(34,197,94,0.1)"/><path d="M10 26c5-6 10-10 16-13" stroke="#84cc16" stroke-width="2"/></svg>
-        <span>GreenLeaf Organics</span>
-      </div>
-      <div class="ticker-badge brand-edura">
-        <svg viewBox="0 0 36 36" fill="none"><path d="M18 6l13 7-13 7-13-7 13-7z" stroke="#38bdf8" stroke-width="2.5" fill="rgba(56,189,248,0.1)"/><path d="M9 16v9c0 3.5 4 6 9 6s9-2.5 9-6v-9" stroke="#0284c7" stroke-width="2.5"/></svg>
-        <span>Edura Academy</span>
-      </div>
-      <div class="ticker-badge brand-primetrade">
-        <svg viewBox="0 0 36 36" fill="none"><path d="M8 12h18m0 0l-5-5m5 5l-5 5" stroke="#14b8a6" stroke-width="2.5"/><path d="M28 24H10m0 0l5-5m-5 5l5 5" stroke="#f97316" stroke-width="2.5"/></svg>
-        <span>PrimeTrade Hub</span>
-      </div>
-      <div class="ticker-badge brand-craftedge">
-        <svg viewBox="0 0 36 36" fill="none"><path d="M18 5l12 7-12 7-12-7 12-7z" stroke="#ec4899" stroke-width="2.5" fill="rgba(236,72,153,0.1)"/><path d="M6 12v12l12 7v-12L6 12z" stroke="#fb7185" stroke-width="2.2"/><path d="M30 12v12l-12 7v-12l12-7z" stroke="#ec4899" stroke-width="2.2"/></svg>
-        <span>CraftEdge Studio</span>
-      </div>
-      <div class="ticker-badge brand-swifthire">
-        <svg viewBox="0 0 36 36" fill="none"><circle cx="18" cy="11" r="5" stroke="#6366f1" stroke-width="2.5" fill="rgba(99,102,241,0.1)"/><path d="M9 28c0-5 4-8 9-8s9 3 9 8" stroke="#6366f1" stroke-width="2.5"/><circle cx="7" cy="16" r="3" stroke="#38bdf8" stroke-width="2"/><circle cx="29" cy="16" r="3" stroke="#38bdf8" stroke-width="2"/></svg>
-        <span>SwiftHire HR</span>
       </div>
     </div>
   </div>
@@ -593,7 +385,7 @@
 
   <div class="proj-grid" id="projGrid">
 
-    <!-- WEB & SOFTWARE -->
+    <!-- 1. Web & Software -->
     <div class="proj-card" data-cat="web">
       <div class="proj-icon"><i data-lucide="monitor"></i></div>
       <div class="proj-badge web">Web & Software</div>
@@ -602,6 +394,7 @@
       <div class="proj-tech"><em>Node.js</em><em>SQLite</em><em>Express</em><em>Vanilla JS</em></div>
     </div>
 
+    <!-- 2. Web & Software -->
     <div class="proj-card" data-cat="web">
       <div class="proj-icon"><i data-lucide="shopping-bag"></i></div>
       <div class="proj-badge web">Web & Software</div>
@@ -610,96 +403,40 @@
       <div class="proj-tech"><em>React</em><em>Node.js</em><em>MongoDB</em><em>Stripe</em></div>
     </div>
 
-    <div class="proj-card" data-cat="web">
-      <div class="proj-icon"><i data-lucide="bar-chart-2"></i></div>
-      <div class="proj-badge web">Web & Software</div>
-      <h3>Business Analytics Dashboard</h3>
-      <p>Real-time analytics dashboard for operations teams to monitor KPIs, generate reports, and visualize business performance data.</p>
-      <div class="proj-tech"><em>React</em><em>Chart.js</em><em>PostgreSQL</em><em>REST API</em></div>
-    </div>
-
-    <!-- DATA ANNOTATION -->
+    <!-- 3. Data Annotation -->
     <div class="proj-card" data-cat="data-annotation">
       <div class="proj-icon"><i data-lucide="tag"></i></div>
       <div class="proj-badge annotation">Data Annotation</div>
       <h3>Image Labeling for Computer Vision</h3>
-      <p>Large-scale image annotation project for object detection models — bounding boxes, segmentation masks, and multi-class labeling across 100K+ images.</p>
-      <div class="proj-tech"><em>CVAT</em><em>LabelImg</em><em>Python</em><em>JSON Export</em></div>
+      <p>Large-scale image annotation for object detection models — bounding boxes, segmentation masks, and multi-class labeling across 100K+ images.</p>
+      <div class="proj-tech"><em>CVAT</em><em>LabelImg</em><em>Python</em><em>JSON</em></div>
     </div>
 
-    <div class="proj-card" data-cat="data-annotation">
-      <div class="proj-icon"><i data-lucide="mic"></i></div>
-      <div class="proj-badge annotation">Data Annotation</div>
-      <h3>Audio Transcription & NLP Tagging</h3>
-      <p>Transcribed and annotated thousands of audio samples for speech recognition model training — including intent labels, sentiment, and entity tags.</p>
-      <div class="proj-tech"><em>NLP Tagging</em><em>Doccano</em><em>Python</em><em>CSV/JSON</em></div>
-    </div>
-
-    <div class="proj-card" data-cat="data-annotation">
-      <div class="proj-icon"><i data-lucide="file-text"></i></div>
-      <div class="proj-badge annotation">Data Annotation</div>
-      <h3>Document & Text Classification</h3>
-      <p>Annotated structured and unstructured text datasets for NLP pipelines — category labeling, named entity recognition (NER), and POS tagging.</p>
-      <div class="proj-tech"><em>NER</em><em>POS Tagging</em><em>Label Studio</em><em>spaCy</em></div>
-    </div>
-
-    <!-- DATA SCIENCE -->
+    <!-- 4. Data Science -->
     <div class="proj-card" data-cat="data-science">
       <div class="proj-icon"><i data-lucide="trending-up"></i></div>
       <div class="proj-badge science">Data Science</div>
       <h3>Sales Forecasting Model</h3>
-      <p>Built a time-series forecasting model to predict monthly sales for a retail client — achieving 92% accuracy using XGBoost and feature engineering.</p>
-      <div class="proj-tech"><em>Python</em><em>XGBoost</em><em>Pandas</em><em>Matplotlib</em></div>
+      <p>Time-series forecasting model to predict monthly sales for retail clients — achieving 92% accuracy using XGBoost and feature engineering.</p>
+      <div class="proj-tech"><em>Python</em><em>XGBoost</em><em>Pandas</em><em>Scikit</em></div>
     </div>
 
-    <div class="proj-card" data-cat="data-science">
-      <div class="proj-icon"><i data-lucide="brain"></i></div>
-      <div class="proj-badge science">Data Science</div>
-      <h3>Customer Churn Prediction</h3>
-      <p>Developed an ML classification model to identify at-risk customers, enabling targeted retention strategies that reduced churn by 30%.</p>
-      <div class="proj-tech"><em>scikit-learn</em><em>Python</em><em>Jupyter</em><em>Random Forest</em></div>
-    </div>
-
-    <div class="proj-card" data-cat="data-science">
-      <div class="proj-icon"><i data-lucide="database"></i></div>
-      <div class="proj-badge science">Data Science</div>
-      <h3>Data Pipeline & ETL Automation</h3>
-      <p>Designed and built an automated ETL pipeline to extract, clean, transform and load data from multiple sources into a central data warehouse.</p>
-      <div class="proj-tech"><em>Python</em><em>Apache Airflow</em><em>SQL</em><em>Pandas</em></div>
-    </div>
-
-    <!-- AUTOMATION -->
+    <!-- 5. Automation -->
     <div class="proj-card" data-cat="automation">
       <div class="proj-icon"><i data-lucide="settings-2"></i></div>
       <div class="proj-badge automation">Automation</div>
       <h3>HR Workflow Automation</h3>
-      <p>Automated employee onboarding, leave approval, and payroll processing workflows — reducing manual effort by 80% across HR operations.</p>
-      <div class="proj-tech"><em>Python</em><em>Zapier</em><em>REST APIs</em><em>Webhooks</em></div>
+      <p>Automated employee onboarding, leave approval, and payroll processing workflows — reducing manual effort by 80% across operations.</p>
+      <div class="proj-tech"><em>Python</em><em>REST APIs</em><em>Webhooks</em><em>Node</em></div>
     </div>
 
-    <div class="proj-card" data-cat="automation">
-      <div class="proj-icon"><i data-lucide="bot"></i></div>
-      <div class="proj-badge automation">Automation</div>
-      <h3>Web Scraping & Data Collection</h3>
-      <p>Built scalable web scrapers to collect, structure, and deliver real-time data from multiple public sources for competitive intelligence.</p>
-      <div class="proj-tech"><em>Playwright</em><em>BeautifulSoup</em><em>Python</em><em>MongoDB</em></div>
-    </div>
-
-    <!-- AI / ML -->
+    <!-- 6. AI / ML -->
     <div class="proj-card" data-cat="ai">
       <div class="proj-icon"><i data-lucide="message-square"></i></div>
       <div class="proj-badge ai">AI / ML</div>
-      <h3>AI Customer Support Chatbot</h3>
-      <p>Deployed an LLM-powered chatbot for a SaaS company that handles 70% of support queries autonomously — integrated with their helpdesk system.</p>
-      <div class="proj-tech"><em>OpenAI API</em><em>LangChain</em><em>Node.js</em><em>Pinecone</em></div>
-    </div>
-
-    <div class="proj-card" data-cat="ai">
-      <div class="proj-icon"><i data-lucide="image"></i></div>
-      <div class="proj-badge ai">AI / ML</div>
-      <h3>Image Classification API</h3>
-      <p>Trained and deployed a CNN-based image classification model as a REST API — used in a quality-control pipeline for a manufacturing client.</p>
-      <div class="proj-tech"><em>TensorFlow</em><em>FastAPI</em><em>Python</em><em>Docker</em></div>
+      <h3>AI Customer Support Assistant</h3>
+      <p>Deployed an LLM-powered chatbot for a SaaS company that handles 70% of support queries autonomously — integrated with helpdesk APIs.</p>
+      <div class="proj-tech"><em>OpenAI API</em><em>LangChain</em><em>Node.js</em><em>Vector DB</em></div>
     </div>
 
   </div>
@@ -749,39 +486,9 @@
       <p>From authentication to data storage, security is never an afterthought. We follow industry best practices from day one.</p>
     </div>
     <div class="why-card">
-      <div class="why-icon"><i data-lucide="zap"></i></div>
-      <h3>Fast Turnaround</h3>
-      <p>We move quickly without cutting corners. Our streamlined process means you get working software in your hands faster.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-icon"><i data-lucide="eye"></i></div>
-      <h3>Full Transparency</h3>
-      <p>Regular updates, clear milestones, and open communication. You always know exactly where your project stands.</p>
-    </div>
-    <div class="why-card">
       <div class="why-icon"><i data-lucide="trending-up"></i></div>
       <h3>Built to Scale</h3>
-      <p>We architect solutions that grow with your business — from 10 users to 10 million, your product stays solid.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-icon"><i data-lucide="handshake"></i></div>
-      <h3>Long-Term Partner</h3>
-      <p>We don't disappear after launch. Our clients stay with us for years because we treat their success as our own.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ===== MID-PAGE CTA ===== -->
-<section class="cta-banner">
-  <div class="cta-inner">
-    <div>
-      <div class="eyebrow" style="color:#a5c8ff">READY TO START?</div>
-      <h2>Turn your idea into a <span>live product.</span></h2>
-      <p>Whether you have a detailed plan or just a rough idea — we'll help you figure out the next step.</p>
-    </div>
-    <div class="cta-actions">
-      <a class="btn primary" href="#contact">Start a Project ↗</a>
-      <a class="btn ghost" href="mailto:contact.kodevex@gmail.com">Email Us Directly</a>
+      <p>We architect solutions that grow with your business — from 10 users to 10 million, your product stays rock solid.</p>
     </div>
   </div>
 </section>
@@ -1028,9 +735,6 @@ scrollReveal('.process > div', { opacity: 0, y: 35, x: -15 }, { opacity: 1, y: 0
 // Testimonials
 scrollReveal('.testimonial-card', { opacity: 0, y: 40, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.6 }, 0.12, '.testimonials-grid');
 
-// CTA Banner
-scrollReveal('.cta-inner > div', { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.7 }, 0, '.cta-banner');
-scrollReveal('.cta-actions', { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.7 }, 0, '.cta-banner');
 
 // Contact
 scrollReveal('.contact-left > *', { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.6 }, 0.1, '.contact-section-v2');
