@@ -142,7 +142,7 @@ function publicUser(user) {
     department: user.department, avatarUrl: user.avatar_url, status: user.status
   };
 }
-
+app.set("trust proxy", 1);
 app.use(helmet({
   contentSecurityPolicy: false
 }));
