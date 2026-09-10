@@ -108,7 +108,89 @@ CREATE TABLE IF NOT EXISTS password_resets (
   used_at TEXT,
   FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+CREATE TABLE IF NOT EXISTS jobs (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT NOT NULL,
+  department TEXT NOT NULL,
+  location TEXT NOT NULL DEFAULT 'Remote',
+  type TEXT NOT NULL DEFAULT 'Full-Time' CHECK(type IN ('Full-Time','Part-Time','Contract','Internship','Remote')),
+  experience TEXT DEFAULT '1-3 years',
+  salary TEXT DEFAULT 'Competitive',
+  description TEXT NOT NULL,
+  requirements TEXT DEFAULT '',
+  status TEXT NOT NULL DEFAULT 'active' CHECK(status IN ('active','closed')),
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS job_applications (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  job_id INTEGER NOT NULL,
+  candidate_name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  phone TEXT DEFAULT '',
+  resume_url TEXT NOT NULL,
+  cover_note TEXT DEFAULT '',
+  status TEXT NOT NULL DEFAULT 'new' CHECK(status IN ('new','reviewed','shortlisted','rejected','hired')),
+  created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY(job_id) REFERENCES jobs(id) ON DELETE CASCADE
+);
 `);
+
+function seedJobs() {
+  try {
+    const count = db.prepare("SELECT COUNT(*) AS c FROM jobs").get().c;
+    if (count === 0) {
+      const insert = db.prepare(`
+        INSERT INTO jobs (title, department, location, type, experience, salary, description, requirements, status)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'active')
+      `);
+      insert.run(
+        "Full Stack Engineer (Node.js / React)",
+        "Engineering",
+        "Remote",
+        "Full-Time",
+        "2-4 years",
+        "₹7 - 12 LPA",
+        "Join our engineering team building scalable SaaS web platforms, automated client portals, and resilient REST APIs. You will own features from architecture to deployment.",
+        "• Strong proficiency with JavaScript, Node.js, Express, and modern React\n• Solid understanding of relational databases (SQLite / PostgreSQL)\n• Experience with RESTful APIs, Git workflows, and deployment\n• High attention to software security and code quality"
+      );
+      insert.run(
+        "AI & Automation Developer (Python / LLMs)",
+        "AI & Automation",
+        "Remote",
+        "Full-Time",
+        "1-3 years",
+        "₹6 - 11 LPA",
+        "Build modern AI agents, document processing pipelines, and workflow automations integrating LLM models, LangChain, and third-party APIs.",
+        "• Proficiency in Python and modern API automation\n• Hands-on experience with LLMs, prompt engineering, and embeddings\n• Familiarity with Webhooks, async programming, and vector databases\n• Passion for experimenting with cutting-edge AI technologies"
+      );
+      insert.run(
+        "UI / UX Product Designer",
+        "Design",
+        "Remote",
+        "Full-Time",
+        "2+ years",
+        "₹5 - 9 LPA",
+        "Design clean, intuitive, and modern digital interfaces for our web platforms, mobile experiences, and client products.",
+        "• Deep mastery of Figma, wireframing, and interactive design systems\n• Strong grasp of modern web aesthetics, typography, and micro-interactions\n• Proven portfolio of responsive web applications and dashboards\n• Clear communication and collaboration skills with engineering"
+      );
+      insert.run(
+        "Frontend Web Developer (React / Next.js)",
+        "Engineering",
+        "Remote",
+        "Full-Time",
+        "1-3 years",
+        "₹5 - 8 LPA",
+        "Build fluid, accessible, high-performance web applications using modern React, CSS animations, and TypeScript.",
+        "• Strong proficiency in modern JavaScript, React, CSS3, and HTML5\n• Experience crafting responsive user interfaces with attention to detail\n• Familiarity with state management, API integration, and performance optimization"
+      );
+    }
+  } catch (err) {
+    console.error("Jobs seed error:", err);
+  }
+}
+seedJobs();
 
 function seedAdmin() {
   const email = (process.env.ADMIN_EMAIL || "admin@kodevex.local").trim().toLowerCase();
@@ -614,6 +696,142 @@ app.get("/api/admin/employees/:id/tasks", requireAdmin, (req, res) => {
   res.json({ tasks });
 });
 
+// ---- CAREERS & JOBS (PUBLIC) ----
+app.get("/api/jobs", (req, res) => {
+  const dept = clean(req.query.dept, 50);
+  const type = clean(req.query.type, 50);
+  let query = "SELECT * FROM jobs WHERE status='active'";
+  const params = [];
+  if (dept && dept !== "all") {
+    query += " AND department = ?";
+    params.push(dept);
+  }
+  if (type && type !== "all") {
+    query += " AND type = ?";
+    params.push(type);
+  }
+  query += " ORDER BY id DESC";
+  const jobs = db.prepare(query).all(...params);
+  res.json({ jobs });
+});
+
+app.get("/api/jobs/:id", (req, res) => {
+  const job = db.prepare("SELECT * FROM jobs WHERE id=? AND status='active'").get(Number(req.params.id));
+  if (!job) return res.status(404).json({ error: "Job opening not found." });
+  res.json({ job });
+});
+
+app.post("/api/jobs/:id/apply", (req, res) => {
+  const jobId = Number(req.params.id);
+  const job = db.prepare("SELECT * FROM jobs WHERE id=?").get(jobId);
+  if (!job || job.status !== "active") {
+    return res.status(400).json({ error: "This job position is no longer accepting applications." });
+  }
+
+  const name = clean(req.body.name, 120);
+  const email = clean(req.body.email, 120).toLowerCase();
+  const phone = clean(req.body.phone, 30);
+  const resumeUrl = clean(req.body.resumeUrl, 1000);
+  const coverNote = clean(req.body.coverNote, 3000);
+
+  if (!name || !email || !resumeUrl) {
+    return res.status(400).json({ error: "Please provide your name, email, and resume/portfolio link." });
+  }
+
+  const result = db.prepare(`
+    INSERT INTO job_applications (job_id, candidate_name, email, phone, resume_url, cover_note, status)
+    VALUES (?, ?, ?, ?, ?, ?, 'new')
+  `).run(jobId, name, email, phone, resumeUrl, coverNote);
+
+  // Notify admins
+  const admins = db.prepare("SELECT id FROM users WHERE role='admin'").all();
+  admins.forEach(a => {
+    notify(a.id, "New Job Application", `${name} applied for "${job.title}".`);
+  });
+
+  res.status(201).json({ ok: true, applicationId: result.lastInsertRowid });
+});
+
+// ---- CAREERS & JOBS (ADMIN) ----
+app.get("/api/admin/jobs", requireAdmin, (req, res) => {
+  const jobs = db.prepare(`
+    SELECT j.*, COUNT(ja.id) AS applicant_count
+    FROM jobs j
+    LEFT JOIN job_applications ja ON ja.job_id=j.id
+    GROUP BY j.id
+    ORDER BY j.id DESC
+  `).all();
+  res.json({ jobs });
+});
+
+app.post("/api/admin/jobs", requireAdmin, (req, res) => {
+  const title = clean(req.body.title, 180);
+  const department = clean(req.body.department, 80) || "Engineering";
+  const location = clean(req.body.location, 80) || "Remote";
+  const type = clean(req.body.type, 40) || "Full-Time";
+  const experience = clean(req.body.experience, 60) || "1-3 years";
+  const salary = clean(req.body.salary, 80) || "Competitive";
+  const description = clean(req.body.description, 5000);
+  const requirements = clean(req.body.requirements, 5000);
+  const status = clean(req.body.status, 20) || "active";
+
+  if (!title || !description) return res.status(400).json({ error: "Job title and description are required." });
+
+  const result = db.prepare(`
+    INSERT INTO jobs (title, department, location, type, experience, salary, description, requirements, status)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+  `).run(title, department, location, type, experience, salary, description, requirements, status);
+
+  res.status(201).json({ id: result.lastInsertRowid });
+});
+
+app.patch("/api/admin/jobs/:id", requireAdmin, (req, res) => {
+  const id = Number(req.params.id);
+  const title = clean(req.body.title, 180);
+  const department = clean(req.body.department, 80);
+  const location = clean(req.body.location, 80);
+  const type = clean(req.body.type, 40);
+  const experience = clean(req.body.experience, 60);
+  const salary = clean(req.body.salary, 80);
+  const description = clean(req.body.description, 5000);
+  const requirements = clean(req.body.requirements, 5000);
+  const status = clean(req.body.status, 20);
+
+  db.prepare(`
+    UPDATE jobs SET title=?, department=?, location=?, type=?, experience=?, salary=?, description=?, requirements=?, status=?
+    WHERE id=?
+  `).run(title, department, location, type, experience, salary, description, requirements, status, id);
+
+  res.json({ ok: true });
+});
+
+app.delete("/api/admin/jobs/:id", requireAdmin, (req, res) => {
+  db.prepare("DELETE FROM jobs WHERE id=?").run(Number(req.params.id));
+  res.json({ ok: true });
+});
+
+app.get("/api/admin/job-applications", requireAdmin, (req, res) => {
+  const applications = db.prepare(`
+    SELECT ja.*, j.title AS job_title, j.department AS job_department
+    FROM job_applications ja
+    JOIN jobs j ON j.id=ja.job_id
+    ORDER BY ja.id DESC
+  `).all();
+  res.json({ applications });
+});
+
+app.patch("/api/admin/job-applications/:id", requireAdmin, (req, res) => {
+  const id = Number(req.params.id);
+  const status = clean(req.body.status, 30);
+  if (!["new", "reviewed", "shortlisted", "rejected", "hired"].includes(status)) {
+    return res.status(400).json({ error: "Invalid application status." });
+  }
+  db.prepare("UPDATE job_applications SET status=? WHERE id=?").run(status, id);
+  res.json({ ok: true });
+});
+
+app.get("/careers", (req, res) => res.sendFile(path.join(ROOT, "public", "careers.html")));
+app.get("/careers.html", (req, res) => res.sendFile(path.join(ROOT, "public", "careers.html")));
 app.get("/employee", (req, res) => res.sendFile(path.join(ROOT, "public", "employee.html")));
 app.get("/admin", (req, res) => res.sendFile(path.join(ROOT, "public", "admin.html")));
 app.get("*", (req, res) => res.sendFile(path.join(ROOT, "public", "index.html")));

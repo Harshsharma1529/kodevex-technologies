@@ -19,7 +19,7 @@
 <header class="site-header">
   <a class="brand" href="/"><img src="/assets/kodevex-logo.png" alt="KODEVEX logo"><span>KODEVEX <small>TECHNOLOGIES</small></span></a>
   <nav>
-    <a href="#about">About</a><a href="#services">Services</a><a href="#projects">Projects</a><a href="#work">Process</a><a href="#contact">Contact</a>
+    <a href="#about">About</a><a href="#services">Services</a><a href="#work">Process</a><a href="/careers.html">Careers</a><a href="#contact">Contact</a>
     <a class="nav-login" href="/login.html">Employee Login</a>
   </nav>
   <button class="menu-btn" onclick="document.body.classList.toggle('nav-open')">☰</button>
@@ -192,89 +192,6 @@
   </div>
 </section>
 
-<!-- ===== PROJECTS SHOWCASE ===== -->
-<section id="projects" class="section projects-section">
-  <div class="section-head" style="margin-bottom:52px">
-    <div>
-      <div class="eyebrow">OUR WORK</div>
-      <h2>Projects We've <span>Built & Delivered.</span></h2>
-    </div>
-    <p>From data pipelines to full-stack platforms — here's a look at the kinds of projects we take on and deliver with excellence.</p>
-  </div>
-
-  <!-- Category Tabs -->
-  <div class="proj-tabs" id="projTabs">
-    <button class="proj-tab active" onclick="filterProj('all', this)">All Projects</button>
-    <button class="proj-tab" onclick="filterProj('web', this)">Web & Software</button>
-    <button class="proj-tab" onclick="filterProj('data-annotation', this)">Data Annotation</button>
-    <button class="proj-tab" onclick="filterProj('data-science', this)">Data Science</button>
-    <button class="proj-tab" onclick="filterProj('automation', this)">Automation</button>
-    <button class="proj-tab" onclick="filterProj('ai', this)">AI / ML</button>
-  </div>
-
-  <div class="proj-grid" id="projGrid">
-
-    <!-- 1. Web & Software -->
-    <div class="proj-card" data-cat="web">
-      <div class="proj-icon"><i data-lucide="monitor"></i></div>
-      <div class="proj-badge web">Web & Software</div>
-      <h3>Employee Management Platform</h3>
-      <p>A full-stack internal portal with role-based access, task management, project tracking, submissions, and real-time notifications.</p>
-      <div class="proj-tech"><em>Node.js</em><em>SQLite</em><em>Express</em><em>Vanilla JS</em></div>
-    </div>
-
-    <!-- 2. Web & Software -->
-    <div class="proj-card" data-cat="web">
-      <div class="proj-icon"><i data-lucide="shopping-bag"></i></div>
-      <div class="proj-badge web">Web & Software</div>
-      <h3>E-Commerce Web Application</h3>
-      <p>Fully responsive online store with product catalog, cart, payment gateway integration, and admin dashboard for inventory management.</p>
-      <div class="proj-tech"><em>React</em><em>Node.js</em><em>MongoDB</em><em>Stripe</em></div>
-    </div>
-
-    <!-- 3. Data Annotation -->
-    <div class="proj-card" data-cat="data-annotation">
-      <div class="proj-icon"><i data-lucide="tag"></i></div>
-      <div class="proj-badge annotation">Data Annotation</div>
-      <h3>Image Labeling for Computer Vision</h3>
-      <p>Large-scale image annotation for object detection models — bounding boxes, segmentation masks, and multi-class labeling across 100K+ images.</p>
-      <div class="proj-tech"><em>CVAT</em><em>LabelImg</em><em>Python</em><em>JSON</em></div>
-    </div>
-
-    <!-- 4. Data Science -->
-    <div class="proj-card" data-cat="data-science">
-      <div class="proj-icon"><i data-lucide="trending-up"></i></div>
-      <div class="proj-badge science">Data Science</div>
-      <h3>Sales Forecasting Model</h3>
-      <p>Time-series forecasting model to predict monthly sales for retail clients — achieving 92% accuracy using XGBoost and feature engineering.</p>
-      <div class="proj-tech"><em>Python</em><em>XGBoost</em><em>Pandas</em><em>Scikit</em></div>
-    </div>
-
-    <!-- 5. Automation -->
-    <div class="proj-card" data-cat="automation">
-      <div class="proj-icon"><i data-lucide="settings-2"></i></div>
-      <div class="proj-badge automation">Automation</div>
-      <h3>HR Workflow Automation</h3>
-      <p>Automated employee onboarding, leave approval, and payroll processing workflows — reducing manual effort by 80% across operations.</p>
-      <div class="proj-tech"><em>Python</em><em>REST APIs</em><em>Webhooks</em><em>Node</em></div>
-    </div>
-
-    <!-- 6. AI / ML -->
-    <div class="proj-card" data-cat="ai">
-      <div class="proj-icon"><i data-lucide="message-square"></i></div>
-      <div class="proj-badge ai">AI / ML</div>
-      <h3>AI Customer Support Assistant</h3>
-      <p>Deployed an LLM-powered chatbot for a SaaS company that handles 70% of support queries autonomously — integrated with helpdesk APIs.</p>
-      <div class="proj-tech"><em>OpenAI API</em><em>LangChain</em><em>Node.js</em><em>Vector DB</em></div>
-    </div>
-
-  </div>
-
-  <div style="text-align:center;margin-top:44px">
-    <a class="btn ghost" href="#contact">Start Your Project ↗</a>
-  </div>
-</section>
-
 
 <!-- ===== HOW WE WORK ===== -->
 <section id="work" class="section work-section">
@@ -400,7 +317,7 @@
         <h4>Company</h4>
         <a href="#about">About</a>
         <a href="#services">Services</a>
-        <a href="#projects">Projects</a>
+        <a href="/careers.html">Careers</a>
         <a href="#work">Process</a>
       </div>
       <div>
@@ -501,11 +418,6 @@ scrollReveal('#about > div:last-child p, #about .btn', { opacity: 0, x: 40 }, { 
 scrollReveal('#services .section-head', { opacity: 0, y: 30 }, { opacity: 1, y: 0 }, 0, '#services');
 scrollReveal('.service-grid article', { opacity: 0, y: 50, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.6 }, 0.08, '.service-grid');
 
-// Projects
-scrollReveal('#projects .section-head', { opacity: 0, y: 30 }, { opacity: 1, y: 0 }, 0, '#projects');
-scrollReveal('.proj-tabs', { opacity: 0, y: 20 }, { opacity: 1, y: 0 }, 0, '.proj-tabs');
-scrollReveal('.proj-card:not(.hidden)', { opacity: 0, y: 40, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.55 }, 0.06, '.proj-grid');
-
 // Process steps
 scrollReveal('.process > div', { opacity: 0, y: 35, x: -15 }, { opacity: 1, y: 0, x: 0, duration: 0.6 }, 0.12, '.process');
 
@@ -553,34 +465,6 @@ function handleContact(e) {
       result.style.display = 'none';
     }, 4000);
   }, 1200);
-}
-
-// ---- Project filter ----
-function filterProj(cat, btn) {
-  document.querySelectorAll('.proj-tab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  const cards = document.querySelectorAll('.proj-card');
-  const visible = [];
-  cards.forEach(card => {
-    const match = cat === 'all' || card.dataset.cat === cat;
-    if (match) { card.classList.remove('hidden'); visible.push(card); }
-    else card.classList.add('hidden');
-  });
-  gsap.fromTo(visible, { opacity: 0, y: 20, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, stagger: 0.05, ease: 'power2.out' });
-}
-
-// ---- Client filter ----
-function filterClients(cat, btn) {
-  document.querySelectorAll('.client-tab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-  const cards = document.querySelectorAll('.client-card');
-  const visible = [];
-  cards.forEach(card => {
-    const match = cat === 'all' || card.dataset.cat === cat;
-    if (match) { card.classList.remove('hidden'); visible.push(card); }
-    else card.classList.add('hidden');
-  });
-  gsap.fromTo(visible, { opacity: 0, y: 18, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, stagger: 0.04, ease: 'power2.out' });
 }
 
 // Initialize Lucide Icons

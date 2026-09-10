@@ -439,8 +439,8 @@
 
 /* ===== TESTIMONIALS ===== */
 .testimonials-section {
-  background: #f2f4f7;
-  border-bottom: 1px solid #e2e8f0;
+  background: #eaedf2;
+  border-bottom: 1px solid #dbe2ea;
 }
 .testimonials-grid {
   display: grid;
@@ -619,8 +619,8 @@
 
 /* ===== FOOTER V2 ===== */
 .site-footer-main {
-  background: #f2f4f7;
-  border-top: 1px solid #e2e8f0;
+  background: #eaedf2;
+  border-top: 1px solid #dbe2ea;
 }
 .footer-top {
   display: grid;
@@ -884,9 +884,9 @@
 /* ===== CLIENTS & PARTNERS SHOWCASE SECTION ===== */
 .clients-section {
   padding: 56px 6.5vw;
-  background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.05) 0%, transparent 65%), #f2f4f7;
-  border-top: 1px solid #e2e8f0;
-  border-bottom: 1px solid #e2e8f0;
+  background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.05) 0%, transparent 65%), #eaedf2;
+  border-top: 1px solid #dbe2ea;
+  border-bottom: 1px solid #dbe2ea;
   position: relative;
   overflow: hidden;
 }

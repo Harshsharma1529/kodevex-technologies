@@ -3,18 +3,18 @@
 :root {
   --ink: #0f172a;
   --dark: #ffffff;
-  --dark2: #f2f4f7;
+  --dark2: #eaedf2;
   --panel: #ffffff;
   --blue: #2563eb;
   --blue2: #eff6ff;
   --purple: #7c3aed;
   --pink: #ec4899;
   --muted: #64748b;
-  --line: #e2e8f0;
+  --line: #dbe2ea;
   --white: #ffffff;
   --shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.06), 0 0 1px rgba(15, 23, 42, 0.1);
   --shadow-lg: 0 20px 45px -10px rgba(15, 23, 42, 0.1), 0 0 1px rgba(15, 23, 42, 0.12);
-  --surface: #f2f4f7;
+  --surface: #eaedf2;
   --danger: #ef4444;
 }
 

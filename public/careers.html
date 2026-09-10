@@ -1,0 +1,693 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Careers & Opportunities — KODEVEX TECHNOLOGIES</title>
+  <meta name="description" content="Explore open engineering, AI automation, design, and operations roles at KODEVEX TECHNOLOGIES. Apply online to build what's next.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/home-extra.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Careers specific modern styling */
+    .careers-hero {
+      padding: 70px 6vw 50px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.09) 0%, transparent 65%), var(--dark2);
+      border-bottom: 1px solid var(--line);
+    }
+    .careers-hero-inner {
+      max-width: 840px;
+      margin: 0 auto;
+    }
+    .careers-hero h1 {
+      font-size: clamp(34px, 4.5vw, 56px);
+      letter-spacing: -.04em;
+      line-height: 1.12;
+      margin: 14px 0 18px;
+      color: var(--ink);
+    }
+    .careers-hero h1 span {
+      background: linear-gradient(115deg, #2563eb, #7c3aed, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .careers-hero p {
+      font-size: 16px;
+      line-height: 1.8;
+      color: #475569;
+      margin: 0 auto 30px;
+      max-width: 680px;
+    }
+    .perks-row {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      margin-top: 24px;
+    }
+    .perk-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #334155;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+    }
+    .perk-pill svg {
+      width: 16px;
+      height: 16px;
+      color: var(--blue);
+    }
+
+    /* Filters section */
+    .careers-container {
+      max-width: 1200px;
+      margin: 40px auto 80px;
+      padding: 0 6vw;
+    }
+    .career-controls {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 22px 26px;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      margin-bottom: 34px;
+    }
+    .career-search-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--dark2);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 10px 16px;
+    }
+    .career-search-bar svg {
+      width: 18px;
+      height: 18px;
+      color: #64748b;
+    }
+    .career-search-bar input {
+      border: 0;
+      background: transparent;
+      outline: none;
+      width: 100%;
+      font-size: 14.5px;
+      color: var(--ink);
+    }
+    .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+    .filter-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: #64748b;
+      margin-right: 6px;
+    }
+    .career-chip {
+      background: var(--dark2);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 16px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: #475569;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .career-chip:hover {
+      background: #ffffff;
+      color: var(--ink);
+      border-color: #cbd5e1;
+    }
+    .career-chip.active {
+      background: linear-gradient(100deg, var(--blue), var(--purple));
+      color: #ffffff;
+      border-color: transparent;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+    }
+
+    /* Jobs grid */
+    .jobs-list {
+      display: grid;
+      gap: 20px;
+    }
+    .job-card {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      padding: 28px 30px;
+      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+    }
+    .job-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(37, 99, 235, 0.35);
+      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+    }
+    .job-main {
+      flex: 1;
+      min-width: 0;
+    }
+    .job-top-meta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+    .job-badge {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .job-badge.dept {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border: 1px solid #bfdbfe;
+    }
+    .job-badge.type {
+      background: #fdf4ff;
+      color: #a21caf;
+      border: 1px solid #f0abfc;
+    }
+    .job-badge.loc {
+      background: #ecfdf5;
+      color: #047857;
+      border: 1px solid #a7f3d0;
+    }
+    .job-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--ink);
+      margin: 0 0 8px;
+      letter-spacing: -.02em;
+    }
+    .job-desc {
+      font-size: 13.5px;
+      color: #475569;
+      line-height: 1.65;
+      margin: 0 0 14px;
+      max-width: 720px;
+    }
+    .job-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-size: 12.5px;
+      color: #64748b;
+      font-weight: 600;
+      flex-wrap: wrap;
+    }
+    .job-meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .job-meta-item svg {
+      width: 15px;
+      height: 15px;
+      color: var(--blue);
+    }
+    .job-side-action {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .job-side-action .btn {
+      white-space: nowrap;
+      min-width: 140px;
+      justify-content: center;
+    }
+
+    /* Modal for Job Application */
+    .apply-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      backdrop-filter: blur(6px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 1000;
+    }
+    .apply-modal-card {
+      background: #ffffff;
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      width: min(680px, 100%);
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 32px;
+      box-shadow: 0 25px 60px rgba(15, 23, 42, 0.18);
+      position: relative;
+    }
+    .apply-close-btn {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      background: var(--dark2);
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      font-size: 16px;
+      color: #64748b;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .apply-close-btn:hover {
+      background: #ef4444;
+      color: #ffffff;
+      border-color: #ef4444;
+    }
+
+    @media (max-width: 768px) {
+      .job-card {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .job-side-action {
+        width: 100%;
+        flex-direction: row;
+      }
+      .job-side-action .btn {
+        flex: 1;
+      }
+      .apply-modal-card {
+        padding: 24px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="/"><img src="/assets/kodevex-logo.png" alt="KODEVEX logo"><span>KODEVEX <small>CAREERS</small></span></a>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/#about">About</a>
+    <a href="/#services">Services</a>
+    <a href="/#work">Process</a>
+    <a href="/#contact">Contact</a>
+    <a class="nav-login" href="/login.html">Employee Login</a>
+  </nav>
+  <button class="menu-btn" onclick="document.body.classList.toggle('nav-open')">☰</button>
+</header>
+
+<main>
+
+<!-- ===== HERO ===== -->
+<section class="careers-hero">
+  <div class="careers-hero-inner">
+    <div class="hero-tagline"><span>INNOVATE</span><span class="tl-dot">.</span><span>COLLABORATE</span><span class="tl-dot">.</span><span>GROW</span></div>
+    <h1>Build What's Next. <span>Join KODEVEX.</span></h1>
+    <p>We're building reliable digital platforms, cloud architectures, and automation systems for growing businesses worldwide. Explore our open positions and take your career to the next level.</p>
+    
+    <div class="perks-row">
+      <div class="perk-pill"><i data-lucide="globe"></i> Remote-First Culture</div>
+      <div class="perk-pill"><i data-lucide="zap"></i> Modern Tech & AI Tools</div>
+      <div class="perk-pill"><i data-lucide="trending-up"></i> Rapid Career Progression</div>
+      <div class="perk-pill"><i data-lucide="award"></i> Competitive Compensation</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== JOBS EXPLORER ===== -->
+<section class="careers-container">
+  
+  <div class="career-controls">
+    <div class="career-search-bar">
+      <i data-lucide="search"></i>
+      <input type="text" id="roleSearch" placeholder="Search positions by keyword, title, or skills..." oninput="filterJobs()">
+    </div>
+
+    <div class="filter-group">
+      <span class="filter-label">Department:</span>
+      <button class="career-chip active" data-filter-dept="all" onclick="setDeptFilter('all', this)">All</button>
+      <button class="career-chip" data-filter-dept="Engineering" onclick="setDeptFilter('Engineering', this)">Engineering</button>
+      <button class="career-chip" data-filter-dept="AI & Automation" onclick="setDeptFilter('AI & Automation', this)">AI & Automation</button>
+      <button class="career-chip" data-filter-dept="Design" onclick="setDeptFilter('Design', this)">Design</button>
+      <button class="career-chip" data-filter-dept="Marketing" onclick="setDeptFilter('Marketing', this)">Marketing</button>
+      <button class="career-chip" data-filter-dept="Operations" onclick="setDeptFilter('Operations', this)">Operations</button>
+    </div>
+
+    <div class="filter-group">
+      <span class="filter-label">Job Type:</span>
+      <button class="career-chip active" data-filter-type="all" onclick="setTypeFilter('all', this)">All Types</button>
+      <button class="career-chip" data-filter-type="Full-Time" onclick="setTypeFilter('Full-Time', this)">Full-Time</button>
+      <button class="career-chip" data-filter-type="Remote" onclick="setTypeFilter('Remote', this)">Remote</button>
+      <button class="career-chip" data-filter-type="Internship" onclick="setTypeFilter('Internship', this)">Internship</button>
+      <button class="career-chip" data-filter-type="Contract" onclick="setTypeFilter('Contract', this)">Contract</button>
+    </div>
+  </div>
+
+  <div id="jobsList" class="jobs-list">
+    <!-- Populated by JavaScript -->
+    <div style="text-align:center;padding:50px;color:#64748b;font-weight:600">Loading open positions…</div>
+  </div>
+
+</section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer-main">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a class="brand" href="/"><img src="/assets/kodevex-logo.png" alt="KODEVEX logo"><span>KODEVEX <small>TECHNOLOGIES</small></span></a>
+      <p>Building secure, scalable digital solutions for modern businesses worldwide.</p>
+    </div>
+    <div class="footer-links">
+      <div>
+        <h4>Explore</h4>
+        <a href="/">Home</a>
+        <a href="/#about">About Us</a>
+        <a href="/#services">Services</a>
+        <a href="/careers.html">Careers</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="/#work">Our Process</a>
+        <a href="/#clients">Clients</a>
+        <a href="/#contact">Get In Touch</a>
+      </div>
+      <div>
+        <h4>Connect</h4>
+        <a href="mailto:contact.kodevex@gmail.com">Email HR</a>
+        <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+        <a href="/login.html">Team Portal</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 KODEVEX TECHNOLOGIES. All rights reserved.</span>
+    <span>Equal Opportunity Employer</span>
+  </div>
+</footer>
+
+<!-- Application & Details Modal Container -->
+<div id="modalSlot"></div>
+
+<script>
+let allJobs = [];
+let activeDept = 'all';
+let activeType = 'all';
+
+async function fetchJobs() {
+  try {
+    const res = await fetch('/api/jobs');
+    const data = await res.json();
+    allJobs = data.jobs || [];
+    renderJobs();
+  } catch (err) {
+    document.getElementById('jobsList').innerHTML = `
+      <div style="text-align:center;padding:40px;color:#ef4444;background:#fff;border-radius:16px;border:1px solid #fee2e2">
+        <b>Unable to load job positions. Please try refreshing.</b>
+      </div>
+    `;
+  }
+}
+
+function setDeptFilter(dept, el) {
+  document.querySelectorAll('[data-filter-dept]').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  activeDept = dept;
+  renderJobs();
+}
+
+function setTypeFilter(type, el) {
+  document.querySelectorAll('[data-filter-type]').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  activeType = type;
+  renderJobs();
+}
+
+function filterJobs() {
+  renderJobs();
+}
+
+function renderJobs() {
+  const container = document.getElementById('jobsList');
+  const query = (document.getElementById('roleSearch').value || '').toLowerCase().trim();
+
+  const filtered = allJobs.filter(j => {
+    const matchDept = activeDept === 'all' || j.department === activeDept;
+    const matchType = activeType === 'all' || j.type === activeType;
+    const matchQuery = !query || 
+      j.title.toLowerCase().includes(query) || 
+      j.department.toLowerCase().includes(query) || 
+      (j.description && j.description.toLowerCase().includes(query)) ||
+      (j.requirements && j.requirements.toLowerCase().includes(query));
+    return matchDept && matchType && matchQuery;
+  });
+
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div style="text-align:center;padding:60px 20px;background:#ffffff;border:1px solid var(--line);border-radius:18px">
+        <h3 style="margin:0 0 8px;font-size:20px;color:var(--ink)">No matching openings found</h3>
+        <p style="color:#64748b;font-size:14px;margin:0 0 20px">Try adjusting your keyword search or filter selection.</p>
+        <button class="btn ghost" onclick="resetFilters()">Reset All Filters</button>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = filtered.map(job => `
+    <div class="job-card">
+      <div class="job-main">
+        <div class="job-top-meta">
+          <span class="job-badge dept">${escapeHtml(job.department)}</span>
+          <span class="job-badge type">${escapeHtml(job.type)}</span>
+          <span class="job-badge loc">${escapeHtml(job.location || 'Remote')}</span>
+        </div>
+        <h3 class="job-title">${escapeHtml(job.title)}</h3>
+        <p class="job-desc">${escapeHtml(job.description)}</p>
+        <div class="job-meta-row">
+          <span class="job-meta-item"><i data-lucide="briefcase"></i> Experience: ${escapeHtml(job.experience || '1-3 years')}</span>
+          <span class="job-meta-item"><i data-lucide="wallet"></i> ${escapeHtml(job.salary || 'Competitive')}</span>
+          <span class="job-meta-item"><i data-lucide="clock"></i> Recently Posted</span>
+        </div>
+      </div>
+      <div class="job-side-action">
+        <button class="btn primary" onclick="openApplyModal(${job.id})">Apply Now ↗</button>
+        <button class="btn ghost" onclick="openDetailsModal(${job.id})">View Details</button>
+      </div>
+    </div>
+  `).join('');
+
+  if (window.lucide) {
+    lucide.createIcons();
+  }
+}
+
+function resetFilters() {
+  document.getElementById('roleSearch').value = '';
+  document.querySelectorAll('[data-filter-dept]').forEach(b => b.classList.remove('active'));
+  document.querySelector('[data-filter-dept="all"]').classList.add('active');
+  document.querySelectorAll('[data-filter-type]').forEach(b => b.classList.remove('active'));
+  document.querySelector('[data-filter-type="all"]').classList.add('active');
+  activeDept = 'all';
+  activeType = 'all';
+  renderJobs();
+}
+
+function openDetailsModal(id) {
+  const job = allJobs.find(x => x.id === id);
+  if (!job) return;
+
+  const reqHtml = (job.requirements || '')
+    .split('\n')
+    .filter(line => line.trim())
+    .map(line => `<li style="margin-bottom:8px;color:#334155;line-height:1.6">${escapeHtml(line.replace(/^[•\-\*]\s*/, ''))}</li>`)
+    .join('');
+
+  const modalSlot = document.getElementById('modalSlot');
+  modalSlot.innerHTML = `
+    <div class="apply-modal" onclick="closeModal(event)">
+      <div class="apply-modal-card" onclick="event.stopPropagation()">
+        <button class="apply-close-btn" onclick="closeModalDirect()">✕</button>
+        
+        <div class="job-top-meta" style="margin-bottom:12px">
+          <span class="job-badge dept">${escapeHtml(job.department)}</span>
+          <span class="job-badge type">${escapeHtml(job.type)}</span>
+          <span class="job-badge loc">${escapeHtml(job.location || 'Remote')}</span>
+        </div>
+
+        <h2 style="font-size:26px;color:var(--ink);letter-spacing:-.03em;margin:0 0 10px">${escapeHtml(job.title)}</h2>
+        
+        <div class="job-meta-row" style="margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--line)">
+          <span class="job-meta-item"><i data-lucide="briefcase"></i> Experience: ${escapeHtml(job.experience || '1-3 years')}</span>
+          <span class="job-meta-item"><i data-lucide="wallet"></i> ${escapeHtml(job.salary || 'Competitive')}</span>
+        </div>
+
+        <h4 style="font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:#64748b;margin:0 0 8px">About the Role</h4>
+        <p style="font-size:14.5px;line-height:1.75;color:#334155;margin:0 0 24px">${escapeHtml(job.description)}</p>
+
+        ${reqHtml ? `
+          <h4 style="font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:#64748b;margin:0 0 10px">Requirements & Qualifications</h4>
+          <ul style="padding-left:20px;margin:0 0 30px">${reqHtml}</ul>
+        ` : ''}
+
+        <div style="display:flex;gap:12px;margin-top:20px">
+          <button class="btn primary" style="flex:1;justify-content:center" onclick="openApplyModal(${job.id})">Apply for this Role ↗</button>
+          <button class="btn ghost" onclick="closeModalDirect()">Close</button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  if (window.lucide) {
+    lucide.createIcons();
+  }
+}
+
+function openApplyModal(id) {
+  const job = allJobs.find(x => x.id === id);
+  if (!job) return;
+
+  const modalSlot = document.getElementById('modalSlot');
+  modalSlot.innerHTML = `
+    <div class="apply-modal" onclick="closeModal(event)">
+      <div class="apply-modal-card" onclick="event.stopPropagation()">
+        <button class="apply-close-btn" onclick="closeModalDirect()">✕</button>
+
+        <div style="margin-bottom:20px">
+          <span class="job-badge dept" style="margin-bottom:8px;display:inline-block">${escapeHtml(job.department)}</span>
+          <h2 style="font-size:24px;color:var(--ink);letter-spacing:-.03em;margin:0 0 6px">Apply for ${escapeHtml(job.title)}</h2>
+          <p style="font-size:13.5px;color:#64748b;margin:0">Fill in your details below and our talent acquisition team will review your application.</p>
+        </div>
+
+        <form id="candidateApplyForm" onsubmit="submitApplication(event, ${job.id})" class="auth-form" style="gap:16px">
+          <label>
+            Full Name *
+            <input type="text" name="name" placeholder="e.g. Rahul Verma" required>
+          </label>
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+            <label>
+              Email Address *
+              <input type="email" name="email" placeholder="rahul@example.com" required>
+            </label>
+            <label>
+              Phone / WhatsApp Number
+              <input type="tel" name="phone" placeholder="+91 98765 43210">
+            </label>
+          </div>
+
+          <label>
+            Resume / Portfolio Link (Google Drive, Dropbox, LinkedIn, or GitHub) *
+            <input type="url" name="resumeUrl" placeholder="https://drive.google.com/file/... or https://linkedin.com/in/..." required>
+          </label>
+
+          <label>
+            Cover Note / Key Highlights
+            <textarea name="coverNote" rows="3" placeholder="Tell us why you're a great fit for this role..."></textarea>
+          </label>
+
+          <div id="applyFeedback" style="display:none;font-size:13.5px;font-weight:600;padding:12px;border-radius:10px;text-align:center"></div>
+
+          <button type="submit" id="applySubmitBtn" class="btn primary" style="width:100%;justify-content:center;margin-top:8px">Submit Application ↗</button>
+        </form>
+      </div>
+    </div>
+  `;
+}
+
+async function submitApplication(e, jobId) {
+  e.preventDefault();
+  const form = e.target;
+  const btn = document.getElementById('applySubmitBtn');
+  const feedback = document.getElementById('applyFeedback');
+
+  btn.disabled = true;
+  btn.textContent = 'Submitting Application…';
+  feedback.style.display = 'none';
+
+  const payload = {
+    name: form.name.value,
+    email: form.email.value,
+    phone: form.phone.value,
+    resumeUrl: form.resumeUrl.value,
+    coverNote: form.coverNote.value,
+  };
+
+  try {
+    const res = await fetch(`/api/jobs/${jobId}/apply`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Failed to submit application.');
+
+    feedback.style.display = 'block';
+    feedback.style.background = '#ecfdf5';
+    feedback.style.color = '#065f46';
+    feedback.style.border = '1px solid #a7f3d0';
+    feedback.innerHTML = '✓ Application submitted successfully! We will get in touch shortly.';
+
+    form.reset();
+    btn.textContent = '✓ Submitted!';
+    setTimeout(() => {
+      closeModalDirect();
+    }, 2500);
+
+  } catch (err) {
+    feedback.style.display = 'block';
+    feedback.style.background = '#fef2f2';
+    feedback.style.color = '#991b1b';
+    feedback.style.border = '1px solid #fecaca';
+    feedback.textContent = err.message;
+    btn.disabled = false;
+    btn.textContent = 'Submit Application ↗';
+  }
+}
+
+function closeModal(e) {
+  if (e.target.classList.contains('apply-modal')) {
+    closeModalDirect();
+  }
+}
+
+function closeModalDirect() {
+  document.getElementById('modalSlot').innerHTML = '';
+}
+
+function escapeHtml(str) {
+  return String(str ?? '').replace(/[&<>"']/g, m => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+  }[m]));
+}
+
+fetchJobs();
+</script>
+</body>
+</html>
