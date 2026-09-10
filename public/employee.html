@@ -1,0 +1,1558 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Employee Workspace — KODEVEX TECHNOLOGIES</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <!-- GSAP Animation Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    :root {
+      --bg: #f8fafc;
+      --bg-alt: #f1f5f9;
+      --panel: #ffffff;
+      --panel-hover: #f8fafc;
+      --border: #e2e8f0;
+      --border-light: #f1f5f9;
+      --border-focus: #3b82f6;
+      --text: #0f172a;
+      --text-dim: #334155;
+      --muted: #64748b;
+      --blue: #2563eb;
+      --blue-glow: rgba(37, 99, 235, 0.15);
+      --purple: #7c3aed;
+      --pink: #ec4899;
+      --green: #10b981;
+      --amber: #f59e0b;
+      --red: #ef4444;
+      --sidebar-w: 260px;
+    }
+    
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4, .brand-text, .kpi-val, .btn, .eyebrow, .nav-btn, .emp-tag {
+      font-family: 'Outfit', sans-serif;
+      color: #0f172a;
+    }
+
+    /* ===== SIDEBAR ===== */
+    .sidebar {
+      position: fixed;
+      inset: 0 auto 0 0;
+      width: var(--sidebar-w);
+      background: #ffffff;
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      padding: 24px 16px 20px;
+      z-index: 100;
+      box-shadow: 2px 0 12px rgba(0, 0, 0, 0.03);
+    }
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 0 10px;
+      margin-bottom: 32px;
+      text-decoration: none;
+    }
+    .brand-logo-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(124, 58, 237, 0.08));
+      border: 1px solid rgba(37, 99, 235, 0.22);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(37, 99, 235, 0.1);
+      transition: all .35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      animation: logoBadgeFloat 4s ease-in-out infinite alternate;
+    }
+    .brand-logo-wrap::after {
+      content: '';
+      position: absolute;
+      top: -60%;
+      left: -60%;
+      width: 220%;
+      height: 220%;
+      background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, 0.45) 50%, transparent 60%);
+      transform: rotate(35deg);
+      animation: badgeShine 4.5s ease-in-out infinite;
+      pointer-events: none;
+    }
+    .sidebar-brand:hover .brand-logo-wrap {
+      transform: scale(1.12) rotate(6deg);
+      border-color: rgba(37, 99, 235, 0.55);
+      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+    }
+    .brand-logo-wrap img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+      transition: transform .35s ease, filter .35s ease;
+      filter: drop-shadow(0 2px 6px rgba(37, 99, 235, 0.2));
+    }
+    .sidebar-brand:hover .brand-logo-wrap img {
+      transform: scale(1.1);
+      filter: drop-shadow(0 4px 12px rgba(37, 99, 235, 0.45));
+    }
+    .brand-text span {
+      font-size: 15px;
+      font-weight: 800;
+      color: #0f172a;
+      letter-spacing: -.02em;
+      display: block;
+      line-height: 1.1;
+      transition: color .25s ease;
+    }
+    .sidebar-brand:hover .brand-text span {
+      color: #2563eb;
+    }
+    .brand-text small {
+      display: block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: .16em;
+      color: #64748b;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    @keyframes logoBadgeFloat {
+      0% {
+        transform: translateY(0);
+        box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+      }
+      100% {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(37, 99, 235, 0.2);
+      }
+    }
+    @keyframes badgeShine {
+      0%, 65% { transform: translateY(-160%) rotate(35deg); opacity: 0; }
+      75% { opacity: 1; }
+      90%, 100% { transform: translateY(160%) rotate(35deg); opacity: 0; }
+    }
+
+    /* Sidebar Navigation */
+    .nav-label {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: #94a3b8;
+      padding: 12px 12px 6px;
+    }
+    .sidebar nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+    }
+    .sidebar nav button {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: #475569;
+      text-align: left;
+      padding: 11px 14px;
+      border-radius: 12px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s ease;
+      width: 100%;
+      position: relative;
+    }
+    .sidebar nav button .nav-icon {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #64748b;
+      transition: color .2s ease, transform .2s ease;
+    }
+    .sidebar nav button .nav-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 2px;
+    }
+    .sidebar nav button:hover {
+      background: #f1f5f9;
+      color: #0f172a;
+    }
+    .sidebar nav button:hover .nav-icon {
+      color: var(--blue);
+      transform: scale(1.1);
+    }
+    .sidebar nav button.active {
+      background: #eff6ff;
+      color: #1d4ed8;
+      border-color: #bfdbfe;
+      box-shadow: 0 1px 3px rgba(37, 99, 235, 0.08);
+    }
+    .sidebar nav button.active .nav-icon {
+      color: var(--blue);
+    }
+    .sidebar nav button .nav-badge {
+      margin-left: auto;
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      color: #fff;
+      font-size: 10px;
+      font-weight: 800;
+      border-radius: 999px;
+      padding: 2px 8px;
+      min-width: 20px;
+      text-align: center;
+    }
+
+    /* Sidebar User Card */
+    .sidebar-user {
+      margin-top: auto;
+      background: #f8fafc;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: border-color .2s;
+    }
+    .sidebar-user:hover {
+      border-color: #cbd5e1;
+    }
+    .user-ava {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+      border: 2px solid #ffffff;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+    }
+    .user-info { flex: 1; min-width: 0; }
+    .user-info strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f172a;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .user-info span {
+      font-size: 11px;
+      color: #64748b;
+      font-weight: 600;
+      letter-spacing: .02em;
+    }
+    .logout-btn {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      color: #64748b;
+      cursor: pointer;
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      transition: all .2s;
+      flex-shrink: 0;
+    }
+    .logout-btn svg { width: 16px; height: 16px; }
+    .logout-btn:hover {
+      color: #dc2626;
+      background: #fee2e2;
+      border-color: #fca5a5;
+      transform: translateX(2px);
+    }
+
+    /* ===== MAIN CONTENT ===== */
+    .app-main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: radial-gradient(circle at 90% 10%, rgba(37, 99, 235, 0.04), transparent 40%),
+                  radial-gradient(circle at 10% 80%, rgba(124, 58, 237, 0.03), transparent 35%),
+                  var(--bg);
+    }
+
+    /* Topbar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .topbar-left h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      color: #0f172a;
+    }
+    .topbar-left .tb-sub {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 3px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .emp-chip {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 999px;
+      padding: 6px 14px;
+      font-size: 11px;
+      font-weight: 800;
+      color: #1d4ed8;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .emp-chip .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 6px rgba(16, 185, 129, 0.6);
+    }
+
+    /* Content Area */
+    .content {
+      padding: 32px 36px;
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+    }
+
+    /* ===== KPI CARDS ===== */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 28px;
+    }
+    .kpi-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 24px;
+      position: relative;
+      overflow: hidden;
+      transition: all .25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+    .kpi-card:hover {
+      transform: translateY(-3px);
+      border-color: #cbd5e1;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.07);
+    }
+    .kpi-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .kpi-card.blue::after  { background: linear-gradient(90deg, #2563eb, #7c3aed); }
+    .kpi-card.amber::after { background: linear-gradient(90deg, #f59e0b, #ea580c); }
+    .kpi-card.green::after { background: linear-gradient(90deg, #10b981, #059669); }
+    .kpi-card.pink::after  { background: linear-gradient(90deg, #ec4899, #f43f5e); }
+
+    .kpi-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .kpi-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: #64748b;
+    }
+    .kpi-icon-box {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+    }
+    .kpi-icon-box svg { width: 18px; height: 18px; stroke-width: 2.2px; }
+    .kpi-card.blue .kpi-icon-box  { background: #eff6ff; color: #2563eb; border: 1px solid #dbeafe; }
+    .kpi-card.amber .kpi-icon-box { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
+    .kpi-card.green .kpi-icon-box { background: #ecfdf5; color: #059669; border: 1px solid #a7f3d0; }
+    .kpi-card.pink .kpi-icon-box  { background: #fff1f2; color: #e11d48; border: 1px solid #fecdd3; }
+
+    .kpi-val {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -.04em;
+      color: #0f172a;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .kpi-footer {
+      font-size: 11.5px;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ===== TWO COLUMN GRID ===== */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 22px;
+    }
+
+    /* ===== PANELS ===== */
+    .panel {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px 26px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+    .panel-head h3 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -.02em;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .panel-head .view-all {
+      font-size: 12px;
+      color: #2563eb;
+      font-weight: 700;
+      cursor: pointer;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: color .2s, transform .2s;
+    }
+    .panel-head .view-all:hover {
+      color: #1d4ed8;
+      transform: translateX(2px);
+    }
+
+    /* ===== TASK ITEMS ===== */
+    .task-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 16px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: #ffffff;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: all .2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .task-item:last-child { margin-bottom: 0; }
+    .task-item:hover {
+      background: #f8fafc;
+      border-color: #cbd5e1;
+      transform: translateX(4px);
+    }
+    .task-left {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      flex: 1;
+      min-width: 0;
+    }
+    .task-priority-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 6px;
+    }
+    .priority-urgent { background: var(--red); box-shadow: 0 0 6px rgba(239,68,68,0.5); }
+    .priority-high   { background: var(--amber); box-shadow: 0 0 6px rgba(245,158,11,0.5); }
+    .priority-medium { background: var(--blue); box-shadow: 0 0 6px rgba(37,99,235,0.5); }
+    .priority-low    { background: #94a3b8; }
+
+    .task-info { flex: 1; min-width: 0; }
+    .task-info h4 {
+      margin: 0 0 4px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #0f172a;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .task-meta {
+      font-size: 11.5px;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .task-meta span { display: inline-flex; align-items: center; gap: 4px; }
+    .task-meta svg { width: 12px; height: 12px; }
+
+    .task-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    /* Badges & Pills */
+    .pill {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      padding: 4px 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .pill-urgent { background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5; }
+    .pill-high   { background: #fef3c7; color: #b45309; border: 1px solid #fcd34d; }
+    .pill-medium { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    .pill-low    { background: #f1f5f9; color: #475569; border: 1px solid #cbd5e1; }
+
+    .pill-pending     { background: #fef3c7; color: #b45309; border: 1px solid #fcd34d; }
+    .pill-in-progress, .pill-in_progress { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+    .pill-submitted   { background: #f3e8ff; color: #7e22ce; border: 1px solid #e9d5ff; }
+    .pill-completed   { background: #dcfce7; color: #15803d; border: 1px solid #86efac; }
+
+    .update-btn {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      color: #1d4ed8;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 6px 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all .2s;
+    }
+    .update-btn:hover {
+      background: #2563eb;
+      border-color: #2563eb;
+      color: #ffffff;
+    }
+
+    /* ===== NOTIFICATIONS LIST ===== */
+    .notif-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      margin-bottom: 8px;
+      transition: background .2s;
+    }
+    .notif-item:last-child { margin-bottom: 0; }
+    .notif-item.unread {
+      background: #f0f7ff;
+      border-color: #bfdbfe;
+    }
+    .notif-icon-box {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      background: #f1f5f9;
+      color: #64748b;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+    .notif-item.unread .notif-icon-box {
+      background: #dbeafe;
+      color: #2563eb;
+    }
+    .notif-icon-box svg { width: 16px; height: 16px; }
+    .notif-body { flex: 1; min-width: 0; }
+    .notif-body b {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 2px;
+    }
+    .notif-body small {
+      display: block;
+      font-size: 11.5px;
+      color: #64748b;
+      line-height: 1.5;
+    }
+    .notif-unread-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--blue);
+      box-shadow: 0 0 8px rgba(37, 99, 235, 0.5);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    /* ===== PROJECTS GRID ===== */
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .proj-card-dash {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: all .25s ease;
+      position: relative;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+    .proj-card-dash:hover {
+      transform: translateY(-3px);
+      border-color: #cbd5e1;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.07);
+    }
+    .proj-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .proj-card-dash h3 {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .proj-card-dash p {
+      font-size: 13px;
+      color: #475569;
+      line-height: 1.6;
+      margin: 0;
+      flex: 1;
+    }
+    .progress-wrap { margin-top: 8px; }
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11.5px;
+      color: #64748b;
+      font-weight: 600;
+      margin-bottom: 7px;
+    }
+    .progress-bar {
+      height: 6px;
+      background: #e2e8f0;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--blue), var(--purple));
+      border-radius: 999px;
+      transition: width .5s ease;
+    }
+
+    /* ===== PROFILE VIEW ===== */
+    .profile-wrap { max-width: 720px; }
+    .profile-hero {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      background: linear-gradient(135deg, #eff6ff 0%, #f5f3ff 100%);
+      border: 1px solid #dbeafe;
+      border-radius: 18px;
+      padding: 26px;
+      margin-bottom: 24px;
+      box-shadow: 0 2px 10px rgba(37, 99, 235, 0.05);
+    }
+    .profile-ava {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      display: grid;
+      place-items: center;
+      font-size: 26px;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+      border: 3px solid #ffffff;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.2);
+    }
+    .profile-meta strong {
+      display: block;
+      font-size: 20px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 4px;
+    }
+    .profile-meta span { font-size: 13px; color: #475569; }
+    .form-card {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .form-field label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #64748b;
+    }
+    .form-field input {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: #0f172a;
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: all .2s;
+    }
+    .form-field input:focus {
+      border-color: var(--blue);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+    .form-field input:disabled {
+      opacity: .7;
+      cursor: not-allowed;
+      background: #f8fafc;
+      color: #64748b;
+    }
+    .form-actions { display: flex; gap: 12px; margin-top: 10px; }
+
+    /* ===== BUTTONS ===== */
+    .btn-primary {
+      background: linear-gradient(100deg, #2563eb, #7c3aed);
+      border: 0;
+      border-radius: 999px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 12px 26px;
+      cursor: pointer;
+      transition: all .2s;
+      font-family: 'Outfit', sans-serif;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary:hover {
+      filter: brightness(1.08);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.35);
+    }
+    .btn-ghost {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 999px;
+      color: #334155;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 12px 24px;
+      cursor: pointer;
+      font-family: 'Outfit', sans-serif;
+      transition: all .2s;
+    }
+    .btn-ghost:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    /* ===== MODAL ===== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      z-index: 200;
+      animation: fadeInModal .2s ease;
+    }
+    @keyframes fadeInModal {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    .modal-box {
+      width: min(560px, 100%);
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 30px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+      position: relative;
+      animation: slideUpModal .25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes slideUpModal {
+      from { transform: translateY(20px) scale(0.97); opacity: 0; }
+      to   { transform: translateY(0) scale(1); opacity: 1; }
+    }
+    .modal-close {
+      position: absolute;
+      top: 18px; right: 20px;
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 32px; height: 32px;
+      color: #64748b;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: all .2s;
+    }
+    .modal-close svg { width: 16px; height: 16px; }
+    .modal-close:hover {
+      color: #0f172a;
+      background: #e2e8f0;
+      transform: scale(1.08);
+    }
+    .modal-box h3 {
+      margin: 4px 0 6px;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      color: #0f172a;
+    }
+    .modal-sub {
+      font-size: 12px;
+      color: #64748b;
+      margin-bottom: 18px;
+    }
+    .modal-field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .modal-field label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #64748b;
+    }
+    .modal-field select, .modal-field textarea {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: #0f172a;
+      font-size: 13.5px;
+      font-family: inherit;
+      outline: none;
+      transition: border .2s, box-shadow .2s;
+    }
+    .modal-field select option { background: #ffffff; color: #0f172a; }
+    .modal-field select:focus, .modal-field textarea:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+    .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 14px; }
+
+    /* ===== EMPTY STATE ===== */
+    .empty-state {
+      text-align: center;
+      padding: 55px 20px;
+      color: #64748b;
+    }
+    .empty-icon-box {
+      width: 60px;
+      height: 60px;
+      border-radius: 18px;
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      margin: 0 auto 16px;
+      display: grid;
+      place-items: center;
+      color: #94a3b8;
+    }
+    .empty-icon-box svg { width: 26px; height: 26px; }
+    .empty-state p { font-size: 13.5px; margin: 0; color: #475569; }
+
+    /* ===== PAGE HEADER ===== */
+    .page-head { margin-bottom: 26px; }
+    .page-head .eyebrow {
+      font-size: 11px;
+      letter-spacing: .16em;
+      font-weight: 800;
+      color: #2563eb;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .page-head h2 {
+      margin: 0;
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      color: #0f172a;
+    }
+
+    /* ===== SUCCESS MESSAGE ===== */
+    .success-msg {
+      font-size: 13px;
+      color: #047857;
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin-top: 16px;
+      display: none;
+      animation: fadeInModal .25s ease;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .two-col { grid-template-columns: 1fr; }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 900px) {
+      :root { --sidebar-w: 74px; }
+      .sidebar-brand div, .nav-label,
+      .sidebar nav button span:not(.nav-icon), .sidebar nav button .nav-badge,
+      .user-info, .logout-btn { display: none; }
+      .sidebar nav button { justify-content: center; padding: 14px; }
+      .sidebar-user { justify-content: center; padding: 10px; }
+      .content { padding: 24px 20px; }
+      .topbar { padding: 14px 20px; }
+    }
+    @media (max-width: 600px) {
+      .kpi-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      .topbar-left h1 { font-size: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== SIDEBAR ===== -->
+<aside class="sidebar" id="sidebar">
+  <a class="sidebar-brand" href="/">
+    <div class="brand-logo-wrap">
+      <img src="/assets/kodevex-logo.png" alt="KODEVEX logo">
+    </div>
+    <div class="brand-text">
+      <span>KODEVEX</span>
+      <small>WORKSPACE</small>
+    </div>
+  </a>
+
+  <div class="nav-label">Workspace</div>
+  <nav id="sideNav">
+    <button data-view="overview" class="active">
+      <span class="nav-icon"><i data-lucide="layout-dashboard"></i></span>
+      <span>Overview</span>
+    </button>
+    <button data-view="projects">
+      <span class="nav-icon"><i data-lucide="folder-kanban"></i></span>
+      <span>My Projects</span>
+    </button>
+    <button data-view="tasks">
+      <span class="nav-icon"><i data-lucide="check-square"></i></span>
+      <span>My Tasks</span>
+    </button>
+    <button data-view="completed">
+      <span class="nav-icon"><i data-lucide="award"></i></span>
+      <span>Completed</span>
+    </button>
+
+    <div class="nav-label" style="margin-top:12px">Account</div>
+    <button data-view="notifications" id="notifNavBtn">
+      <span class="nav-icon"><i data-lucide="bell"></i></span>
+      <span>Notifications</span>
+      <span class="nav-badge hidden" id="notifBadge">0</span>
+    </button>
+    <button data-view="profile">
+      <span class="nav-icon"><i data-lucide="user"></i></span>
+      <span>Profile</span>
+    </button>
+  </nav>
+
+  <div class="sidebar-user" id="sidebarUser">
+    <div class="user-ava" id="sidebarAva">?</div>
+    <div class="user-info">
+      <strong id="sidebarName">Loading…</strong>
+      <span id="sidebarId">—</span>
+    </div>
+    <button class="logout-btn" onclick="logout()" title="Sign out">
+      <i data-lucide="log-out"></i>
+    </button>
+  </div>
+</aside>
+
+<!-- ===== MAIN CONTAINER ===== -->
+<div class="app-main">
+  <!-- Sticky Topbar -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <h1 id="pageTitle">Overview</h1>
+      <div class="tb-sub" id="pageSubtitle">Welcome back</div>
+    </div>
+    <div class="topbar-right">
+      <div class="emp-chip" id="empChip">
+        <span class="pulse-dot"></span>
+        <span id="empChipText">EMPLOYEE</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Dynamic Content Area -->
+  <div class="content" id="app"></div>
+</div>
+
+<script>
+let state = { user: null, projects: [], tasks: [], notifications: [] };
+const app = document.getElementById('app');
+
+async function api(url, opt = {}) {
+  const r = await fetch(url, opt);
+  const d = await r.json();
+  if (r.status === 401) { location.href = '/login.html'; throw new Error('Session expired'); }
+  if (!r.ok) throw new Error(d.error || 'Request failed');
+  return d;
+}
+
+function esc(s) {
+  return String(s ?? '').replace(/[&<>"']/g, m => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;' }[m]));
+}
+
+function setupNav() {
+  document.querySelectorAll('#sideNav button[data-view]').forEach(btn => {
+    btn.onclick = () => {
+      document.querySelectorAll('#sideNav button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const view = btn.dataset.view;
+      const titles = {
+        overview: 'Overview',
+        projects: 'My Projects',
+        tasks: 'My Tasks',
+        completed: 'Completed Tasks',
+        notifications: 'Notifications',
+        profile: 'My Profile'
+      };
+      document.getElementById('pageTitle').textContent = titles[view] || view;
+      render(view);
+    };
+  });
+}
+
+async function init() {
+  try {
+    state = await api('/api/employee/dashboard');
+    const u = state.user;
+    
+    // Sidebar user information
+    document.getElementById('sidebarName').textContent = u.name;
+    document.getElementById('sidebarId').textContent = u.employeeId || 'EMPLOYEE';
+    document.getElementById('empChipText').textContent = u.employeeId || 'EMPLOYEE';
+    
+    const initials = u.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+    document.getElementById('sidebarAva').textContent = initials;
+    
+    // Dynamic greeting
+    const hr = new Date().getHours();
+    const greet = hr < 12 ? 'Good morning' : hr < 17 ? 'Good afternoon' : 'Good evening';
+    const firstName = u.name.split(' ')[0];
+    const today = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', weekday: 'short' });
+    document.getElementById('pageSubtitle').innerHTML = `${greet}, ${firstName} &nbsp;·&nbsp; ${today}`;
+    
+    updateNotifBadge();
+    setupNav();
+    render('overview');
+  } catch(e) {
+    location.href = '/login.html';
+  }
+}
+
+function updateNotifBadge() {
+  const unread = state.notifications.filter(n => !n.read_at).length;
+  const badge = document.getElementById('notifBadge');
+  if (unread > 0) {
+    badge.textContent = unread;
+    badge.classList.remove('hidden');
+  } else {
+    badge.classList.add('hidden');
+  }
+}
+
+function render(view) {
+  if (view === 'overview')      app.innerHTML = viewOverview();
+  if (view === 'projects')      app.innerHTML = viewProjects();
+  if (view === 'tasks')         app.innerHTML = viewTasks(false);
+  if (view === 'completed')     app.innerHTML = viewTasks(true);
+  if (view === 'notifications') app.innerHTML = viewNotifications();
+  if (view === 'profile')       app.innerHTML = viewProfile();
+  
+  // Re-generate Lucide icons for injected HTML
+  if (window.lucide) {
+    lucide.createIcons();
+  }
+
+  // Smooth entrance animation
+  if (window.gsap) {
+    gsap.fromTo('#app > *', 
+      { opacity: 0, y: 14 }, 
+      { opacity: 1, y: 0, duration: 0.35, stagger: 0.06, ease: 'power2.out' }
+    );
+  }
+
+  bind();
+}
+
+// ===== VIEWS =====
+
+function viewOverview() {
+  const pending   = state.tasks.filter(t => t.status !== 'completed').length;
+  const done      = state.tasks.filter(t => t.status === 'completed').length;
+  const submitted = state.tasks.filter(t => t.status === 'submitted').length;
+  const unread    = state.notifications.filter(n => !n.read_at).length;
+
+  return `
+    <div class="kpi-grid">
+      <div class="kpi-card blue">
+        <div class="kpi-header">
+          <div class="kpi-label">Active Projects</div>
+          <div class="kpi-icon-box"><i data-lucide="folder-kanban"></i></div>
+        </div>
+        <div class="kpi-val">${state.projects.length}</div>
+        <div class="kpi-footer">Assigned workspaces</div>
+      </div>
+      <div class="kpi-card amber">
+        <div class="kpi-header">
+          <div class="kpi-label">Pending Tasks</div>
+          <div class="kpi-icon-box"><i data-lucide="clock"></i></div>
+        </div>
+        <div class="kpi-val">${pending}</div>
+        <div class="kpi-footer">${submitted} submitted for review</div>
+      </div>
+      <div class="kpi-card green">
+        <div class="kpi-header">
+          <div class="kpi-label">Completed</div>
+          <div class="kpi-icon-box"><i data-lucide="check-circle-2"></i></div>
+        </div>
+        <div class="kpi-val">${done}</div>
+        <div class="kpi-footer">Tasks finished</div>
+      </div>
+      <div class="kpi-card pink">
+        <div class="kpi-header">
+          <div class="kpi-label">Notifications</div>
+          <div class="kpi-icon-box"><i data-lucide="bell"></i></div>
+        </div>
+        <div class="kpi-val">${unread}</div>
+        <div class="kpi-footer">Unread updates</div>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="panel">
+        <div class="panel-head">
+          <h3><i data-lucide="list-todo" style="width:18px;height:18px;color:#2563eb"></i> Priority Tasks</h3>
+          <button class="view-all" onclick="document.querySelector('[data-view=tasks]').click()">View all →</button>
+        </div>
+        <div class="task-list-wrap">
+          ${state.tasks.filter(t => t.status !== 'completed').slice(0, 5).map(taskItem).join('') || emptyState('check-circle', "You're all caught up! No pending tasks.")}
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-head">
+          <h3><i data-lucide="bell-ring" style="width:18px;height:18px;color:#7c3aed"></i> Recent Notifications</h3>
+          <button class="view-all" onclick="document.querySelector('[data-view=notifications]').click()">View all →</button>
+        </div>
+        <div class="notif-list-wrap">
+          ${state.notifications.slice(0, 5).map(n => `
+            <div class="notif-item ${n.read_at ? '' : 'unread'}">
+              <div class="notif-icon-box"><i data-lucide="${n.read_at ? 'bell' : 'bell-ring'}"></i></div>
+              <div class="notif-body">
+                <b>${esc(n.title)}</b>
+                <small>${esc(n.message)}</small>
+              </div>
+              ${!n.read_at ? '<div class="notif-unread-dot"></div>' : ''}
+            </div>
+          `).join('') || emptyState('bell-off', "No new notifications.")}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function viewProjects() {
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Workspaces</div>
+      <h2>My Projects</h2>
+    </div>
+    <div class="project-grid">
+      ${state.projects.map(p => {
+        const pct = p.task_count > 0 ? Math.round((p.completed_count || 0) / p.task_count * 100) : 0;
+        return `
+          <div class="proj-card-dash">
+            <div class="proj-top">
+              <span class="pill pill-in-progress">${esc(p.status || 'Active')}</span>
+              <span style="font-size:12px;color:var(--muted);font-weight:600">${p.completed_count || 0}/${p.task_count || 0} tasks</span>
+            </div>
+            <h3>${esc(p.name)}</h3>
+            <p>${esc(p.description || 'Dedicated project workspace.')}</p>
+            <div class="progress-wrap">
+              <div class="progress-label">
+                <span>Progress</span>
+                <span>${pct}%</span>
+              </div>
+              <div class="progress-bar"><div class="progress-fill" style="width:${pct}%"></div></div>
+            </div>
+          </div>
+        `;
+      }).join('') || emptyState('folder-closed', 'No projects assigned yet.')}
+    </div>
+  `;
+}
+
+function viewTasks(completed) {
+  const list = state.tasks.filter(t => completed ? t.status === 'completed' : t.status !== 'completed');
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Task Management</div>
+      <h2>${completed ? 'Completed Tasks' : 'My Tasks'}</h2>
+    </div>
+    <div class="panel">
+      ${list.map(taskItem).join('') || emptyState(completed ? 'award' : 'check-circle', completed ? 'No completed tasks yet.' : 'No pending tasks!')}
+    </div>
+  `;
+}
+
+function taskItem(t) {
+  const pri = (t.priority || 'medium').toLowerCase();
+  const status = (t.status || 'pending').toLowerCase();
+  return `
+    <div class="task-item" data-task="${t.id}">
+      <div class="task-left">
+        <div class="task-priority-indicator priority-${pri}"></div>
+        <div class="task-info">
+          <h4>${esc(t.title)}</h4>
+          <div class="task-meta">
+            <span><i data-lucide="folder"></i> ${esc(t.project_name || 'General')}</span>
+            <span><i data-lucide="calendar"></i> ${t.deadline ? 'Due ' + esc(t.deadline) : 'No deadline'}</span>
+          </div>
+        </div>
+      </div>
+      <div class="task-right">
+        <span class="pill pill-${pri}">${pri}</span>
+        <span class="pill pill-${status}">${status.replace('_', ' ')}</span>
+        ${status !== 'completed' ? `<button class="update-btn" data-task="${t.id}"><i data-lucide="external-link" style="width:12px;height:12px"></i> Update</button>` : ''}
+      </div>
+    </div>
+  `;
+}
+
+function viewNotifications() {
+  return `
+    <div class="page-head">
+      <div class="eyebrow">Updates & Alerts</div>
+      <h2>Notifications</h2>
+    </div>
+    <div class="panel notif-list">
+      ${state.notifications.map(n => `
+        <div class="notif-item ${n.read_at ? '' : 'unread'}">
+          <div class="notif-icon-box"><i data-lucide="${n.read_at ? 'bell' : 'bell-ring'}"></i></div>
+          <div class="notif-body">
+            <b>${esc(n.title)}</b>
+            <small>${esc(n.message)}</small>
+          </div>
+          ${!n.read_at ? `<div class="notif-unread-dot" title="Mark as read" data-read="${n.id}" style="cursor:pointer"></div>` : ''}
+        </div>
+      `).join('') || emptyState('bell-off', "No notifications yet.")}
+    </div>
+  `;
+}
+
+function viewProfile() {
+  const u = state.user;
+  const initials = u.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+  return `
+    <div class="profile-wrap">
+      <div class="profile-hero">
+        <div class="profile-ava">${initials}</div>
+        <div class="profile-meta">
+          <strong>${esc(u.name)}</strong>
+          <span>${esc(u.jobTitle || 'Employee')} &nbsp;·&nbsp; ${esc(u.department || 'General')}</span>
+          <span style="margin-top:6px;display:block;color:#64748b;font-size:12px">${esc(u.email)}</span>
+        </div>
+      </div>
+      <div class="form-card">
+        <form id="profile-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label>Employee ID</label>
+              <input value="${esc(u.employeeId || '')}" disabled>
+            </div>
+            <div class="form-field">
+              <label>Email Address</label>
+              <input value="${esc(u.email)}" disabled>
+            </div>
+          </div>
+          <div class="form-field">
+            <label>Full Name</label>
+            <input name="name" value="${esc(u.name)}" required placeholder="Your full name">
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label>Job Title</label>
+              <input name="jobTitle" value="${esc(u.jobTitle || '')}" placeholder="e.g. Frontend Developer">
+            </div>
+            <div class="form-field">
+              <label>Department</label>
+              <input name="department" value="${esc(u.department || '')}" placeholder="e.g. Engineering">
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn-primary"><i data-lucide="save" style="width:15px;height:15px"></i> Save Changes</button>
+          </div>
+        </form>
+        <div class="success-msg" id="profile-msg">✓ Profile updated successfully!</div>
+      </div>
+    </div>
+  `;
+}
+
+function emptyState(icon, msg) {
+  return `
+    <div class="empty-state">
+      <div class="empty-icon-box"><i data-lucide="${icon}"></i></div>
+      <p>${msg}</p>
+    </div>
+  `;
+}
+
+// ===== BIND EVENTS =====
+function bind() {
+  // Task click (row or update btn)
+  document.querySelectorAll('[data-task]').forEach(el => {
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      openTaskModal(Number(el.dataset.task));
+    });
+  });
+
+  // Mark notification as read
+  document.querySelectorAll('[data-read]').forEach(el => {
+    el.addEventListener('click', async e => {
+      e.stopPropagation();
+      await api('/api/employee/notifications/' + el.dataset.read + '/read', { method: 'PATCH' });
+      state = await api('/api/employee/dashboard');
+      updateNotifBadge();
+      render('notifications');
+    });
+  });
+
+  // Profile form
+  const pf = document.getElementById('profile-form');
+  if (pf) {
+    pf.onsubmit = async e => {
+      e.preventDefault();
+      const btn = pf.querySelector('button[type=submit]');
+      btn.innerHTML = 'Saving…'; btn.disabled = true;
+      try {
+        const data = Object.fromEntries(new FormData(pf));
+        state.user = (await api('/api/employee/profile', {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        })).user;
+        const msg = document.getElementById('profile-msg');
+        msg.style.display = 'block';
+        setTimeout(() => msg.style.display = 'none', 3500);
+        
+        // Update sidebar
+        document.getElementById('sidebarName').textContent = state.user.name;
+        const initials = state.user.name.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+        document.getElementById('sidebarAva').textContent = initials;
+      } catch(x) {
+        alert(x.message);
+      }
+      btn.innerHTML = '<i data-lucide="save" style="width:15px;height:15px"></i> Save Changes';
+      btn.disabled = false;
+      if (window.lucide) lucide.createIcons();
+    };
+  }
+}
+
+// ===== TASK MODAL =====
+function openTaskModal(id) {
+  const t = state.tasks.find(x => x.id === id);
+  if (!t) return;
+
+  const pri = (t.priority || 'medium').toLowerCase();
+  const status = (t.status || 'pending').toLowerCase();
+
+  const overlay = document.createElement('div');
+  overlay.className = 'modal-overlay';
+  overlay.innerHTML = `
+    <div class="modal-box">
+      <button class="modal-close" onclick="this.closest('.modal-overlay').remove()">
+        <i data-lucide="x"></i>
+      </button>
+      <div style="font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#2563eb;margin-bottom:6px">TASK DETAILS</div>
+      <h3>${esc(t.title)}</h3>
+      <div class="modal-sub">Project: <b>${esc(t.project_name || 'General')}</b> &nbsp;·&nbsp; Due: ${t.deadline ? esc(t.deadline) : 'Not set'}</div>
+      
+      ${t.description ? `<p style="font-size:13.5px;color:#334155;line-height:1.7;margin:0 0 20px;background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:14px 16px">${esc(t.description)}</p>` : ''}
+      
+      <div style="display:flex;gap:10px;margin-bottom:20px">
+        <span class="pill pill-${pri}">${pri}</span>
+        <span class="pill pill-${status}">${status.replace('_',' ')}</span>
+      </div>
+
+      <div class="modal-field">
+        <label>Update Status</label>
+        <select id="task-status">
+          <option value="pending"      ${status==='pending'?'selected':''}>Pending</option>
+          <option value="in_progress"  ${status==='in_progress'?'selected':''}>In Progress</option>
+          <option value="submitted"    ${status==='submitted'?'selected':''}>Submitted for Review</option>
+          <option value="completed"    ${status==='completed'?'selected':''}>Completed</option>
+        </select>
+      </div>
+
+      <div class="modal-field">
+        <label>Work Submission / Notes</label>
+        <textarea id="task-note" rows="5" placeholder="Describe what you completed, progress made, or updates for your lead…"></textarea>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-ghost" onclick="this.closest('.modal-overlay').remove()">Cancel</button>
+        <button class="btn-primary" id="save-task-btn">
+          <i data-lucide="check" style="width:15px;height:15px"></i> Save Update
+        </button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  if (window.lucide) lucide.createIcons();
+
+  overlay.addEventListener('click', e => { if (e.target === overlay) overlay.remove(); });
+
+  document.getElementById('save-task-btn').onclick = async () => {
+    const saveBtn = document.getElementById('save-task-btn');
+    saveBtn.textContent = 'Saving…'; saveBtn.disabled = true;
+    try {
+      const newStatus = document.getElementById('task-status').value;
+      const note = document.getElementById('task-note').value.trim();
+      
+      await api('/api/employee/tasks/' + id, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: newStatus })
+      });
+
+      if (note) {
+        await api('/api/employee/tasks/' + id + '/submissions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ note })
+        });
+      }
+
+      state = await api('/api/employee/dashboard');
+      overlay.remove();
+      render(document.querySelector('#sideNav button.active')?.dataset.view || 'tasks');
+    } catch(e) {
+      alert(e.message);
+      saveBtn.textContent = 'Save Update'; saveBtn.disabled = false;
+    }
+  };
+}
+
+async function logout() {
+  await api('/api/auth/signout', { method: 'POST' });
+  location.href = '/login.html';
+}
+
+init();
+</script>
+</body>
+</html>

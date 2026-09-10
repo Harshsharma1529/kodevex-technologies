@@ -1,0 +1,9 @@
+<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Employee Login — KODEVEX</title><link rel="stylesheet" href="/styles.css"></head>
+<body class="auth-page"><a class="back-home" href="/">← KODEVEX</a>
+<div class="auth-wrap"><div class="auth-brand"><img src="/assets/kodevex-logo.png" alt=""><h1>Employee Portal</h1><p>Secure workspace for the KODEVEX team.</p></div>
+<div class="auth-card"><div class="tabs"><button class="active" data-tab="signin">Sign In</button><button data-tab="signup">Sign Up</button></div>
+<form id="signin" class="auth-form"><h2>Welcome back.</h2><label>Email<input type="email" name="email" required></label><label>Password<input type="password" name="password" required></label><button class="btn primary full">Sign In</button><button type="button" class="text-btn" onclick="showForgot()">Forgot password?</button></form>
+<form id="signup" class="auth-form hidden"><h2>Create employee account.</h2><label>Full name<input name="name" required></label><label>Company Email<input type="email" name="email" required></label><label>Employee ID<input name="employeeId" placeholder="e.g. KDX-001" required></label><label>Password<input type="password" name="password" minlength="8" required></label><button class="btn primary full">Create Account</button></form>
+<form id="forgot" class="auth-form hidden"><h2>Reset password.</h2><p class="muted">Enter your company email. We’ll generate a secure reset link.</p><label>Email<input type="email" name="email" required></label><button class="btn primary full">Send Reset Link</button><button type="button" class="text-btn" onclick="showTab('signin')">Back to sign in</button></form>
+<div id="auth-msg" class="form-msg"></div></div></div>
+<script src="/auth.js"></script></body></html>
