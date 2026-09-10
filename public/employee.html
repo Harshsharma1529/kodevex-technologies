@@ -1687,7 +1687,6 @@ async function openTaskModal(id) {
         state = await api('/api/employee/dashboard');
         overlay.remove();
         render(document.querySelector('#sideNav button.active')?.dataset.view || 'tasks');
-        // Reopen to show updated state
         openTaskModal(id);
       } catch(e) {
         alert(e.message);
@@ -1731,6 +1730,7 @@ async function openTaskModal(id) {
         state = await api('/api/employee/dashboard');
         overlay.remove();
         render(document.querySelector('#sideNav button.active')?.dataset.view || 'tasks');
+        alert('Task marked as completed!');
       } catch(e) {
         alert(e.message);
         compBtn.disabled = false;

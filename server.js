@@ -382,22 +382,42 @@ app.post("/api/auth/reset-password", (req, res) => {
 });
 
 app.get("/api/employee/dashboard", requireEmployee, (req, res) => {
-  const projects = db.prepare(`
-    SELECT p.*, COUNT(DISTINCT t.id) AS task_count,
-      SUM(CASE WHEN t.status='completed' THEN 1 ELSE 0 END) AS completed_count
-    FROM projects p
-    JOIN project_members pm ON pm.project_id=p.id AND pm.user_id=?
-    LEFT JOIN tasks t ON t.project_id=p.id
-    GROUP BY p.id ORDER BY p.id DESC
-  `).all(req.user.id);
+  const isAdmin = req.user.role === 'admin';
+  const projects = isAdmin
+    ? db.prepare(`
+        SELECT p.*, COUNT(DISTINCT t.id) AS task_count,
+          SUM(CASE WHEN t.status='completed' THEN 1 ELSE 0 END) AS completed_count
+        FROM projects p
+        LEFT JOIN tasks t ON t.project_id=p.id
+        GROUP BY p.id ORDER BY p.id DESC
+      `).all()
+    : db.prepare(`
+        SELECT p.*, COUNT(DISTINCT t.id) AS task_count,
+          SUM(CASE WHEN t.status='completed' THEN 1 ELSE 0 END) AS completed_count
+        FROM projects p
+        JOIN project_members pm ON pm.project_id=p.id AND pm.user_id=?
+        LEFT JOIN tasks t ON t.project_id=p.id
+        GROUP BY p.id ORDER BY p.id DESC
+      `).all(req.user.id);
 
-  const tasks = db.prepare(`
+  // If assignedTo is current user, or if admin testing and no tasks are assigned to current admin, show all tasks
+  let tasks = db.prepare(`
     SELECT t.*, p.name AS project_name
     FROM tasks t LEFT JOIN projects p ON p.id=t.project_id
     WHERE t.assigned_to=? ORDER BY
       CASE t.priority WHEN 'urgent' THEN 1 WHEN 'high' THEN 2 WHEN 'medium' THEN 3 ELSE 4 END,
       CASE WHEN t.deadline IS NULL THEN 1 ELSE 0 END, t.deadline ASC
   `).all(req.user.id);
+
+  if (isAdmin && tasks.length === 0) {
+    tasks = db.prepare(`
+      SELECT t.*, p.name AS project_name
+      FROM tasks t LEFT JOIN projects p ON p.id=t.project_id
+      ORDER BY
+        CASE t.priority WHEN 'urgent' THEN 1 WHEN 'high' THEN 2 WHEN 'medium' THEN 3 ELSE 4 END,
+        CASE WHEN t.deadline IS NULL THEN 1 ELSE 0 END, t.deadline ASC
+    `).all();
+  }
 
   const notifications = db.prepare(`
     SELECT * FROM notifications WHERE user_id=? ORDER BY id DESC LIMIT 10
@@ -422,19 +442,25 @@ app.patch("/api/employee/tasks/:id", requireEmployee, (req, res) => {
   if (!["pending", "in_progress", "submitted", "completed"].includes(status))
     return res.status(400).json({ error: "Invalid status." });
 
-  const task = db.prepare("SELECT * FROM tasks WHERE id=? AND assigned_to=?").get(id, req.user.id);
-  if (!task) return res.status(404).json({ error: "Task not found." });
+  const task = req.user.role === 'admin'
+    ? db.prepare("SELECT * FROM tasks WHERE id=?").get(id)
+    : db.prepare("SELECT * FROM tasks WHERE id=? AND assigned_to=?").get(id, req.user.id);
+  if (!task) return res.status(404).json({ error: "Task not found or not assigned to you." });
 
   db.prepare("UPDATE tasks SET status=? WHERE id=?").run(status, id);
-  notify(req.user.id, "Task updated", `Task "${task.title}" is now ${status.replace("_", " ")}.`);
+  if (task.assigned_to) {
+    notify(task.assigned_to, "Task updated", `Task "${task.title}" is now ${status.replace("_", " ")}.`);
+  }
   res.json({ ok: true });
 });
 
 app.post("/api/employee/tasks/:id/submissions", requireEmployee, (req, res) => {
   const id = Number(req.params.id);
   const note = clean(req.body.note, 3000);
-  const task = db.prepare("SELECT * FROM tasks WHERE id=? AND assigned_to=?").get(id, req.user.id);
-  if (!task) return res.status(404).json({ error: "Task not found." });
+  const task = req.user.role === 'admin'
+    ? db.prepare("SELECT * FROM tasks WHERE id=?").get(id)
+    : db.prepare("SELECT * FROM tasks WHERE id=? AND assigned_to=?").get(id, req.user.id);
+  if (!task) return res.status(404).json({ error: "Task not found or not assigned to you." });
   if (!note) return res.status(400).json({ error: "Submission note is required." });
 
   db.prepare("INSERT INTO submissions (task_id,user_id,note) VALUES (?,?,?)").run(id, req.user.id, note);
@@ -446,7 +472,9 @@ app.post("/api/employee/tasks/:id/submissions", requireEmployee, (req, res) => {
 
 app.get("/api/employee/tasks/:id/submissions", requireEmployee, (req, res) => {
   const id = Number(req.params.id);
-  const submissions = db.prepare("SELECT * FROM submissions WHERE task_id=? AND user_id=? ORDER BY id DESC").all(id, req.user.id);
+  const submissions = req.user.role === 'admin'
+    ? db.prepare("SELECT * FROM submissions WHERE task_id=? ORDER BY id DESC").all(id)
+    : db.prepare("SELECT * FROM submissions WHERE task_id=? AND user_id=? ORDER BY id DESC").all(id, req.user.id);
   res.json({ submissions });
 });
 
@@ -484,9 +512,8 @@ app.get("/api/admin/employees", requireAdmin, (req, res) => {
     FROM users u
     LEFT JOIN project_members pm ON pm.user_id=u.id
     LEFT JOIN tasks t ON t.assigned_to=u.id
-    WHERE u.id != ?
     GROUP BY u.id ORDER BY u.id DESC
-  `).all(req.user.id);
+  `).all();
   const employeeIds = db.prepare("SELECT * FROM employee_ids ORDER BY id DESC").all();
   res.json({ employees, employeeIds });
 });
@@ -593,7 +620,7 @@ app.get("/api/admin/projects/:id/members", requireAdmin, (req, res) => {
   const members = db.prepare(`
     SELECT u.id,u.employee_id,u.name,u.email FROM users u
     JOIN project_members pm ON pm.user_id=u.id
-    WHERE pm.project_id=? AND u.role='employee'
+    WHERE pm.project_id=? AND u.status='active'
   `).all(Number(req.params.id));
   res.json({ members });
 });
@@ -601,7 +628,7 @@ app.get("/api/admin/projects/:id/members", requireAdmin, (req, res) => {
 app.post("/api/admin/projects/:id/members", requireAdmin, (req, res) => {
   const projectId = Number(req.params.id);
   const userId = Number(req.body.userId);
-  const employee = db.prepare("SELECT * FROM users WHERE id=? AND role='employee' AND status='active'").get(userId);
+  const employee = db.prepare("SELECT * FROM users WHERE id=? AND status='active'").get(userId);
   if (!employee) return res.status(400).json({ error: "Employee not found." });
   db.prepare("INSERT OR IGNORE INTO project_members (project_id,user_id) VALUES (?,?)").run(projectId, userId);
   notify(userId, "Project assigned", `You were added to project #${projectId}.`);
@@ -640,6 +667,10 @@ app.post("/api/admin/tasks", requireAdmin, (req, res) => {
     VALUES (?,?,?,?,?,?)
   `).run(projectId, title, description, assignedTo, priority, deadline);
 
+  if (assignedTo && projectId) {
+    db.prepare("INSERT OR IGNORE INTO project_members (project_id,user_id) VALUES (?,?)").run(projectId, assignedTo);
+  }
+
   if (assignedTo) notify(assignedTo, "New task assigned", `You have been assigned "${title}".`);
   res.status(201).json({ id: result.lastInsertRowid });
 });
@@ -662,6 +693,10 @@ app.patch("/api/admin/tasks/:id", requireAdmin, (req, res) => {
     UPDATE tasks SET project_id=?,title=?,description=?,assigned_to=?,priority=?,status=?,deadline=?
     WHERE id=?
   `).run(projectId, title, description, assignedTo, priority, status, deadline, id);
+
+  if (assignedTo && projectId) {
+    db.prepare("INSERT OR IGNORE INTO project_members (project_id,user_id) VALUES (?,?)").run(projectId, assignedTo);
+  }
 
   if (assignedTo && (!old || old.assigned_to !== assignedTo))
     notify(assignedTo, "Task assigned", `You have been assigned "${title}".`);
