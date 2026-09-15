@@ -9,6 +9,405 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
   <link rel="stylesheet" href="/home-extra.css">
+  <style>
+  /* ===== FLOATING SIDEBAR WIDGETS ===== */
+  .floating-sidebar {
+    position: fixed;
+    right: 22px;
+    bottom: 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    z-index: 9999;
+  }
+
+  /* LinkedIn Button */
+  .sidebar-linkedin {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #0077b5, #005582);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(0,119,181,0.45);
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    text-decoration: none;
+    border: 2px solid rgba(0,180,255,0.3);
+  }
+  .sidebar-linkedin:hover {
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 0 8px 28px rgba(0,119,181,0.65);
+  }
+  .sidebar-linkedin svg {
+    width: 24px;
+    height: 24px;
+    fill: #fff;
+  }
+
+  /* Chat Toggle Button */
+  .sidebar-chat-btn {
+    position: relative;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00e5ff, #0051ff);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 24px rgba(0,229,255,0.45);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    outline: none;
+  }
+  .sidebar-chat-btn:hover {
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 0 8px 32px rgba(0,229,255,0.65);
+  }
+  .sidebar-chat-btn svg {
+    width: 26px;
+    height: 26px;
+    stroke: #fff;
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: opacity 0.2s;
+  }
+  .sidebar-chat-btn .chat-pulse {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #22c55e;
+    border: 2px solid #000;
+    animation: pulse-green 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse-green {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.7); }
+    50% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+  }
+  .sidebar-chat-label {
+    position: absolute;
+    right: 62px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(10,12,30,0.92);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0,229,255,0.2);
+    color: #e0e8ff;
+    font-size: 12px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    padding: 6px 11px;
+    border-radius: 8px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .sidebar-chat-btn:hover .sidebar-chat-label {
+    opacity: 1;
+  }
+
+  /* Chat Popup Panel */
+  .quick-chat-panel {
+    position: fixed;
+    bottom: 100px;
+    right: 22px;
+    width: 340px;
+    max-height: 500px;
+    background: rgba(8, 12, 32, 0.97);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0,229,255,0.2);
+    border-radius: 20px;
+    box-shadow: 0 16px 60px rgba(0,0,0,0.6), 0 0 40px rgba(0,229,255,0.08);
+    display: flex;
+    flex-direction: column;
+    z-index: 9998;
+    overflow: hidden;
+    transform: translateY(20px) scale(0.95);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), opacity 0.25s ease;
+  }
+  .quick-chat-panel.open {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  /* Chat Header */
+  .qcp-header {
+    padding: 16px 18px 14px;
+    background: linear-gradient(135deg, rgba(0,229,255,0.1), rgba(0,81,255,0.12));
+    border-bottom: 1px solid rgba(0,229,255,0.12);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .qcp-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00e5ff, #0051ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 18px;
+  }
+  .qcp-header-info {
+    flex: 1;
+  }
+  .qcp-header-info strong {
+    display: block;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #e0e8ff;
+    letter-spacing: 0.02em;
+  }
+  .qcp-header-info span {
+    font-size: 11px;
+    color: #22c55e;
+    font-family: 'Outfit', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2px;
+  }
+  .qcp-header-info span::before {
+    content: '';
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #22c55e;
+    animation: pulse-green 1.8s ease-in-out infinite;
+  }
+  .qcp-close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: rgba(200,210,255,0.5);
+    font-size: 20px;
+    line-height: 1;
+    padding: 4px;
+    border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+    font-family: 'Outfit', sans-serif;
+  }
+  .qcp-close:hover {
+    color: #e0e8ff;
+    background: rgba(255,255,255,0.08);
+  }
+
+  /* Messages Area */
+  .qcp-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 200px;
+    max-height: 280px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0,229,255,0.2) transparent;
+  }
+  .qcp-messages::-webkit-scrollbar { width: 4px; }
+  .qcp-messages::-webkit-scrollbar-track { background: transparent; }
+  .qcp-messages::-webkit-scrollbar-thumb { background: rgba(0,229,255,0.2); border-radius: 4px; }
+
+  .qcp-msg {
+    display: flex;
+    gap: 8px;
+    align-items: flex-end;
+    animation: msgSlideIn 0.3s ease;
+  }
+  @keyframes msgSlideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .qcp-msg.user { flex-direction: row-reverse; }
+  .qcp-msg-bubble {
+    max-width: 78%;
+    padding: 9px 13px;
+    border-radius: 14px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    line-height: 1.5;
+    color: #e0e8ff;
+  }
+  .qcp-msg.bot .qcp-msg-bubble {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(0,229,255,0.12);
+    border-bottom-left-radius: 4px;
+  }
+  .qcp-msg.user .qcp-msg-bubble {
+    background: linear-gradient(135deg, rgba(0,229,255,0.2), rgba(0,81,255,0.25));
+    border: 1px solid rgba(0,229,255,0.2);
+    border-bottom-right-radius: 4px;
+    color: #c8f0ff;
+  }
+  .qcp-msg-avatar {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00e5ff, #0051ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+  }
+  .qcp-typing {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(0,229,255,0.1);
+    border-radius: 14px;
+    border-bottom-left-radius: 4px;
+    width: fit-content;
+  }
+  .qcp-typing span {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(0,229,255,0.6);
+    animation: typingDot 1.2s ease-in-out infinite;
+  }
+  .qcp-typing span:nth-child(2) { animation-delay: 0.2s; }
+  .qcp-typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typingDot {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+    30% { transform: translateY(-5px); opacity: 1; }
+  }
+
+  /* Quick Prompts */
+  .qcp-prompts {
+    padding: 0 14px 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .qcp-prompt-chip {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    padding: 5px 10px;
+    border: 1px solid rgba(0,229,255,0.2);
+    border-radius: 20px;
+    background: rgba(0,229,255,0.07);
+    color: #a0c8ff;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .qcp-prompt-chip:hover {
+    background: rgba(0,229,255,0.16);
+    color: #00e5ff;
+    border-color: rgba(0,229,255,0.4);
+  }
+
+  /* Input Area */
+  .qcp-input-row {
+    padding: 12px 14px;
+    border-top: 1px solid rgba(0,229,255,0.1);
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    background: rgba(255,255,255,0.02);
+  }
+  .qcp-input {
+    flex: 1;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(0,229,255,0.15);
+    border-radius: 10px;
+    padding: 9px 12px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    color: #e0e8ff;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .qcp-input::placeholder { color: rgba(200,210,255,0.4); }
+  .qcp-input:focus { border-color: rgba(0,229,255,0.4); }
+  .qcp-send {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #00e5ff, #0051ff);
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+    flex-shrink: 0;
+  }
+  .qcp-send:hover {
+    transform: scale(1.08);
+    box-shadow: 0 4px 16px rgba(0,229,255,0.4);
+  }
+  .qcp-send svg {
+    width: 16px;
+    height: 16px;
+    stroke: #fff;
+    fill: none;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* LinkedIn tooltip */
+  .sidebar-linkedin-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .sidebar-linkedin-label {
+    position: absolute;
+    right: 58px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(10,12,30,0.92);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0,119,181,0.3);
+    color: #e0e8ff;
+    font-size: 12px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    padding: 6px 11px;
+    border-radius: 8px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .sidebar-linkedin-wrap:hover .sidebar-linkedin-label {
+    opacity: 1;
+  }
+
+  @media (max-width: 480px) {
+    .quick-chat-panel {
+      width: calc(100vw - 32px);
+      right: 16px;
+      bottom: 90px;
+    }
+    .floating-sidebar {
+      right: 16px;
+      bottom: 24px;
+    }
+  }
+  </style>
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <!-- GSAP Animation Library -->
@@ -306,6 +705,98 @@
 
 </main>
 
+<!-- ===== FLOATING SIDEBAR WIDGETS ===== -->
+<div class="floating-sidebar" id="floatingSidebar">
+
+  <!-- LinkedIn Button -->
+  <div class="sidebar-linkedin-wrap">
+    <span class="sidebar-linkedin-label">Follow us on LinkedIn</span>
+    <a
+      id="sidebarLinkedin"
+      class="sidebar-linkedin"
+      href="https://www.linkedin.com/company/kodevex-technologies/"
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Kodevex Technologies on LinkedIn"
+    >
+      <!-- LinkedIn Icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Quick Chat Button -->
+  <button
+    id="sidebarChatBtn"
+    class="sidebar-chat-btn"
+    onclick="toggleQuickChat()"
+    aria-label="Quick chat with AI Assistant"
+  >
+    <span class="sidebar-chat-label">Chat with AI Assistant</span>
+    <span class="chat-pulse"></span>
+    <!-- Chat bubble icon -->
+    <svg id="chatIconOpen" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+    <!-- Close X icon (hidden by default) -->
+    <svg id="chatIconClose" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display:none">
+      <line x1="18" y1="6" x2="6" y2="18"/>
+      <line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+
+</div>
+
+<!-- ===== QUICK CHAT PANEL ===== -->
+<div class="quick-chat-panel" id="quickChatPanel" role="dialog" aria-label="Quick Chat with AI Assistant">
+
+  <!-- Header -->
+  <div class="qcp-header">
+    <div class="qcp-avatar">🤖</div>
+    <div class="qcp-header-info">
+      <strong>KODEVEX AI Assistant</strong>
+      <span>Online · Ready to help</span>
+    </div>
+    <button class="qcp-close" onclick="toggleQuickChat()" aria-label="Close chat">✕</button>
+  </div>
+
+  <!-- Messages -->
+  <div class="qcp-messages" id="qcpMessages">
+    <div class="qcp-msg bot">
+      <div class="qcp-msg-avatar">🤖</div>
+      <div class="qcp-msg-bubble">👋 Hi there! I'm KODEVEX's AI assistant. I can help you with questions about our services, pricing, or how to get started. What's on your mind?</div>
+    </div>
+  </div>
+
+  <!-- Quick Prompt Chips -->
+  <div class="qcp-prompts" id="qcpPrompts">
+    <button class="qcp-prompt-chip" onclick="sendQuickPrompt('What services do you offer?')">🚀 Services</button>
+    <button class="qcp-prompt-chip" onclick="sendQuickPrompt('How do I start a project?')">📋 Start a Project</button>
+    <button class="qcp-prompt-chip" onclick="sendQuickPrompt('What are your rates?')">💰 Pricing</button>
+    <button class="qcp-prompt-chip" onclick="sendQuickPrompt('How to contact you?')">📞 Contact</button>
+  </div>
+
+  <!-- Input Row -->
+  <div class="qcp-input-row">
+    <input
+      type="text"
+      id="qcpInput"
+      class="qcp-input"
+      placeholder="Ask anything…"
+      onkeydown="if(event.key==='Enter') sendChatMessage()"
+      autocomplete="off"
+    />
+    <button class="qcp-send" onclick="sendChatMessage()" aria-label="Send message">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <line x1="22" y1="2" x2="11" y2="13"/>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+      </svg>
+    </button>
+  </div>
+
+</div>
+
 <footer class="site-footer-main">
   <div class="footer-top">
     <div class="footer-brand">
@@ -342,6 +833,100 @@
 </footer>
 
 <script>
+// ===== QUICK CHAT WIDGET =====
+const AI_RESPONSES = {
+  'what services do you offer': "We offer 6 core services: Web Development, Custom Software, UI/UX Design, Automation, Mobile Apps, and AI Integration. Each is tailored to your business needs! 🚀",
+  'how do i start a project': "Easy! You can fill out the contact form below, or email us at contact.kodevex@gmail.com. We'll get back to you within 24 hours to discuss your idea. 💡",
+  'what are your rates': "Our rates depend on the scope and complexity of your project. We offer flexible pricing for startups and enterprises alike. Contact us for a free estimate! 💬",
+  'how to contact you': "You can reach us at contact.kodevex@gmail.com, or scroll down to use our contact form. We respond within 24 hours. ⚡",
+  'default': "Great question! For detailed information, please reach out to us at contact.kodevex@gmail.com or use our contact form below. Our team is happy to help! 😊"
+};
+
+function getAIResponse(msg) {
+  const lower = msg.toLowerCase();
+  for (const [key, val] of Object.entries(AI_RESPONSES)) {
+    if (key !== 'default' && lower.includes(key)) return val;
+  }
+  if (lower.includes('hello') || lower.includes('hi') || lower.includes('hey'))
+    return "Hello! 👋 Great to hear from you. How can KODEVEX help you today?";
+  if (lower.includes('web') || lower.includes('website'))
+    return "We build fast, responsive, conversion-focused websites using React, Node.js, and Next.js. Let's build something amazing together! 🌐";
+  if (lower.includes('mobile') || lower.includes('app'))
+    return "We develop cross-platform mobile apps for iOS and Android using React Native. Native-like experience, half the cost! 📱";
+  if (lower.includes('ai') || lower.includes('automation'))
+    return "We integrate AI features like chatbots, recommendations, and smart automation directly into your product using OpenAI and LLMs. 🤖";
+  if (lower.includes('design') || lower.includes('ui') || lower.includes('ux'))
+    return "Our UI/UX team crafts clean, modern interfaces from wireframe to final pixel — all in Figma. 🎨";
+  return AI_RESPONSES['default'];
+}
+
+function toggleQuickChat() {
+  const panel = document.getElementById('quickChatPanel');
+  const iconOpen = document.getElementById('chatIconOpen');
+  const iconClose = document.getElementById('chatIconClose');
+  const isOpen = panel.classList.contains('open');
+  if (isOpen) {
+    panel.classList.remove('open');
+    iconOpen.style.display = '';
+    iconClose.style.display = 'none';
+  } else {
+    panel.classList.add('open');
+    iconOpen.style.display = 'none';
+    iconClose.style.display = '';
+    document.getElementById('qcpInput').focus();
+  }
+}
+
+function addChatMessage(text, sender) {
+  const msgs = document.getElementById('qcpMessages');
+  const wrap = document.createElement('div');
+  wrap.className = 'qcp-msg ' + sender;
+  if (sender === 'bot') {
+    wrap.innerHTML = '<div class="qcp-msg-avatar">🤖</div><div class="qcp-msg-bubble">' + text + '</div>';
+  } else {
+    wrap.innerHTML = '<div class="qcp-msg-bubble">' + text + '</div>';
+  }
+  msgs.appendChild(wrap);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function showTypingIndicator() {
+  const msgs = document.getElementById('qcpMessages');
+  const typing = document.createElement('div');
+  typing.className = 'qcp-msg bot';
+  typing.id = 'qcpTyping';
+  typing.innerHTML = '<div class="qcp-msg-avatar">🤖</div><div class="qcp-typing"><span></span><span></span><span></span></div>';
+  msgs.appendChild(typing);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function removeTypingIndicator() {
+  const t = document.getElementById('qcpTyping');
+  if (t) t.remove();
+}
+
+function sendChatMessage() {
+  const input = document.getElementById('qcpInput');
+  const text = input.value.trim();
+  if (!text) return;
+  // Hide prompt chips after first message
+  const chips = document.getElementById('qcpPrompts');
+  if (chips) chips.style.display = 'none';
+  addChatMessage(text, 'user');
+  input.value = '';
+  showTypingIndicator();
+  setTimeout(() => {
+    removeTypingIndicator();
+    addChatMessage(getAIResponse(text), 'bot');
+  }, 900 + Math.random() * 500);
+}
+
+function sendQuickPrompt(prompt) {
+  document.getElementById('qcpInput').value = prompt;
+  sendChatMessage();
+}
+// ===== END QUICK CHAT =====
+
 // ======== GSAP SETUP ========
 gsap.registerPlugin(ScrollTrigger);
 
