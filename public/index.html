@@ -13,45 +13,90 @@
   /* ===== FLOATING SIDEBAR WIDGETS ===== */
   .floating-sidebar {
     position: fixed;
-    right: 22px;
-    bottom: 32px;
+    right: 20px;
+    bottom: 28px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     z-index: 9999;
+  }
+
+  /* Shared icon button base */
+  .sidebar-icon-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    flex-shrink: 0;
+  }
+  .sidebar-icon-btn:hover {
+    transform: translateY(-3px) scale(1.1);
   }
 
   /* LinkedIn Button */
   .sidebar-linkedin {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background: linear-gradient(135deg, #0077b5, #005582);
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 20px rgba(0,119,181,0.45);
+    box-shadow: 0 4px 16px rgba(0,119,181,0.45);
     cursor: pointer;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     text-decoration: none;
-    border: 2px solid rgba(0,180,255,0.3);
+    border: 2px solid rgba(0,180,255,0.25);
   }
   .sidebar-linkedin:hover {
-    transform: translateY(-3px) scale(1.08);
-    box-shadow: 0 8px 28px rgba(0,119,181,0.65);
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 8px 24px rgba(0,119,181,0.65);
   }
   .sidebar-linkedin svg {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     fill: #fff;
+  }
+
+  /* Instagram Button */
+  .sidebar-instagram {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 16px rgba(225,48,108,0.45);
+    cursor: pointer;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    text-decoration: none;
+    border: 2px solid rgba(255,120,160,0.25);
+  }
+  .sidebar-instagram:hover {
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 8px 24px rgba(225,48,108,0.65);
+  }
+  .sidebar-instagram svg {
+    width: 20px;
+    height: 20px;
+    stroke: #fff;
+    fill: none;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
   }
 
   /* Chat Toggle Button */
   .sidebar-chat-btn {
     position: relative;
-    width: 54px;
-    height: 54px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     background: linear-gradient(135deg, #00e5ff, #0051ff);
     border: none;
@@ -59,17 +104,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 4px 24px rgba(0,229,255,0.45);
+    box-shadow: 0 4px 20px rgba(0,229,255,0.45);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     outline: none;
   }
   .sidebar-chat-btn:hover {
-    transform: translateY(-3px) scale(1.08);
-    box-shadow: 0 8px 32px rgba(0,229,255,0.65);
+    transform: translateY(-3px) scale(1.1);
+    box-shadow: 0 8px 28px rgba(0,229,255,0.65);
   }
   .sidebar-chat-btn svg {
-    width: 26px;
-    height: 26px;
+    width: 22px;
+    height: 22px;
     stroke: #fff;
     fill: none;
     stroke-width: 2;
@@ -79,10 +124,10 @@
   }
   .sidebar-chat-btn .chat-pulse {
     position: absolute;
-    top: 5px;
-    right: 5px;
-    width: 10px;
-    height: 10px;
+    top: 4px;
+    right: 4px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
     background: #22c55e;
     border: 2px solid #000;
@@ -90,11 +135,11 @@
   }
   @keyframes pulse-green {
     0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.7); }
-    50% { box-shadow: 0 0 0 6px rgba(34,197,94,0); }
+    50% { box-shadow: 0 0 0 5px rgba(34,197,94,0); }
   }
   .sidebar-chat-label {
     position: absolute;
-    right: 62px;
+    right: 54px;
     top: 50%;
     transform: translateY(-50%);
     background: rgba(10,12,30,0.92);
@@ -115,13 +160,13 @@
     opacity: 1;
   }
 
-  /* Chat Popup Panel */
+  /* Chat Popup Panel — positioned well above all sidebar icons */
   .quick-chat-panel {
     position: fixed;
-    bottom: 100px;
-    right: 22px;
+    bottom: 180px;
+    right: 20px;
     width: 340px;
-    max-height: 500px;
+    max-height: 480px;
     background: rgba(8, 12, 32, 0.97);
     backdrop-filter: blur(20px);
     border: 1px solid rgba(0,229,255,0.2);
@@ -216,8 +261,8 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    min-height: 200px;
-    max-height: 280px;
+    min-height: 180px;
+    max-height: 260px;
     scrollbar-width: thin;
     scrollbar-color: rgba(0,229,255,0.2) transparent;
   }
@@ -367,6 +412,35 @@
     stroke-linejoin: round;
   }
 
+  /* Shared tooltip wrapper */
+  .sidebar-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .sidebar-tip {
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(10,12,30,0.92);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(200,200,255,0.2);
+    color: #e0e8ff;
+    font-size: 12px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 8px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  .sidebar-wrap:hover .sidebar-tip {
+    opacity: 1;
+  }
+
   /* LinkedIn tooltip */
   .sidebar-linkedin-wrap {
     position: relative;
@@ -375,7 +449,7 @@
   }
   .sidebar-linkedin-label {
     position: absolute;
-    right: 58px;
+    right: 50px;
     top: 50%;
     transform: translateY(-50%);
     background: rgba(10,12,30,0.92);
@@ -385,7 +459,7 @@
     font-size: 12px;
     font-family: 'Outfit', sans-serif;
     font-weight: 500;
-    padding: 6px 11px;
+    padding: 5px 10px;
     border-radius: 8px;
     white-space: nowrap;
     opacity: 0;
@@ -400,11 +474,11 @@
     .quick-chat-panel {
       width: calc(100vw - 32px);
       right: 16px;
-      bottom: 90px;
+      bottom: 175px;
     }
     .floating-sidebar {
-      right: 16px;
-      bottom: 24px;
+      right: 14px;
+      bottom: 22px;
     }
   }
   </style>
@@ -726,6 +800,26 @@
     </a>
   </div>
 
+  <!-- Instagram Button -->
+  <div class="sidebar-wrap">
+    <span class="sidebar-tip">Follow on Instagram</span>
+    <a
+      id="sidebarInstagram"
+      class="sidebar-instagram"
+      href="https://www.instagram.com/kodevex_technologies?stkn=amFtaWhsa3FsMzlv&utm_source=qr"
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Kodevex Technologies on Instagram"
+    >
+      <!-- Instagram Icon -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+      </svg>
+    </a>
+  </div>
+
   <!-- Quick Chat Button -->
   <button
     id="sidebarChatBtn"
@@ -834,30 +928,63 @@
 
 <script>
 // ===== QUICK CHAT WIDGET =====
-const AI_RESPONSES = {
-  'what services do you offer': "We offer 6 core services: Web Development, Custom Software, UI/UX Design, Automation, Mobile Apps, and AI Integration. Each is tailored to your business needs! 🚀",
-  'how do i start a project': "Easy! You can fill out the contact form below, or email us at contact.kodevex@gmail.com. We'll get back to you within 24 hours to discuss your idea. 💡",
-  'what are your rates': "Our rates depend on the scope and complexity of your project. We offer flexible pricing for startups and enterprises alike. Contact us for a free estimate! 💬",
-  'how to contact you': "You can reach us at contact.kodevex@gmail.com, or scroll down to use our contact form. We respond within 24 hours. ⚡",
-  'default': "Great question! For detailed information, please reach out to us at contact.kodevex@gmail.com or use our contact form below. Our team is happy to help! 😊"
-};
-
 function getAIResponse(msg) {
-  const lower = msg.toLowerCase();
-  for (const [key, val] of Object.entries(AI_RESPONSES)) {
-    if (key !== 'default' && lower.includes(key)) return val;
-  }
-  if (lower.includes('hello') || lower.includes('hi') || lower.includes('hey'))
-    return "Hello! 👋 Great to hear from you. How can KODEVEX help you today?";
-  if (lower.includes('web') || lower.includes('website'))
-    return "We build fast, responsive, conversion-focused websites using React, Node.js, and Next.js. Let's build something amazing together! 🌐";
-  if (lower.includes('mobile') || lower.includes('app'))
-    return "We develop cross-platform mobile apps for iOS and Android using React Native. Native-like experience, half the cost! 📱";
-  if (lower.includes('ai') || lower.includes('automation'))
-    return "We integrate AI features like chatbots, recommendations, and smart automation directly into your product using OpenAI and LLMs. 🤖";
-  if (lower.includes('design') || lower.includes('ui') || lower.includes('ux'))
-    return "Our UI/UX team crafts clean, modern interfaces from wireframe to final pixel — all in Figma. 🎨";
-  return AI_RESPONSES['default'];
+  const lower = msg.toLowerCase().trim();
+
+  // Greetings
+  if (/\b(hi|hello|hey|howdy|sup|what'?s up)\b/.test(lower))
+    return "Hello! 👋 Great to connect with you. I'm KODEVEX's AI assistant — how can I help you today?";
+
+  // Services overview
+  if (/\b(service|offer|provide|do you do|what do|capabilities|speciali[sz])/.test(lower))
+    return "We offer 6 core services: 🌐 Web Development, 💻 Custom Software, 🎨 UI/UX Design, ⚙️ Automation, 📱 Mobile Apps, and 🤖 AI Integration — all tailored to your business needs!";
+
+  // Starting a project
+  if (/\b(start|begin|how (to|do i|can i)|project|work with|hire|get started|quote|proposal)/.test(lower))
+    return "Getting started is easy! 💡 Fill out the contact form on this page or email us at contact.kodevex@gmail.com. We'll respond within 24 hours with a personalised plan.";
+
+  // Pricing / rates
+  if (/\b(price|pricing|cost|rate|charge|fee|budget|afford|cheap|expensive|how much)/.test(lower))
+    return "💬 Our pricing is flexible and depends on the project scope. We work with both startups and enterprises. Drop us a message at contact.kodevex@gmail.com for a free estimate!";
+
+  // Contact / location
+  if (/\b(contact|reach|email|phone|location|where|address|talk to someone|speak)/.test(lower))
+    return "📧 You can reach us at contact.kodevex@gmail.com or use the contact form below. We're also on LinkedIn and Instagram! We reply within 24 hours. ⚡";
+
+  // Web development
+  if (/\b(web(site)?|landing page|e-?commerce|next\.?js|react|front.?end|back.?end|full.?stack)/.test(lower))
+    return "🌐 We build fast, responsive, and conversion-focused websites & web apps using React, Next.js, and Node.js. Let's build something amazing together!";
+
+  // Mobile apps
+  if (/\b(mobile|app|android|ios|react native|flutter|smartphone)/.test(lower))
+    return "📱 We develop cross-platform mobile apps for iOS & Android using React Native — native-like performance at half the cost!";
+
+  // AI / Automation
+  if (/\b(ai|artificial intelligence|automation|bot|llm|gpt|openai|chatbot|machine learning|smart)/.test(lower))
+    return "🤖 We integrate AI features like chatbots, recommendation engines, and smart automation directly into your product using OpenAI and cutting-edge LLMs!";
+
+  // UI/UX Design
+  if (/\b(design|ui|ux|figma|prototype|wireframe|interface|user experience|branding|logo)/.test(lower))
+    return "🎨 Our UI/UX team crafts clean, modern interfaces — from wireframe to pixel-perfect final design, all in Figma!";
+
+  // Custom software
+  if (/\b(custom|software|erp|crm|dashboard|saas|platform|system|tool|solution)/.test(lower))
+    return "💻 We build fully custom software solutions — dashboards, SaaS platforms, CRMs, ERPs — tailored exactly to your workflow!";
+
+  // Team / about
+  if (/\b(team|who are|about|company|founded|kodevex|experience|expertise)/.test(lower))
+    return "🏢 KODEVEX Technologies is a digital solutions company building secure, scalable products for businesses worldwide. Our expert team covers design, development, and AI!";
+
+  // Portfolio / work
+  if (/\b(portfolio|projects|work|case study|examples|showcase|clients|past work)/.test(lower))
+    return "🚀 We've delivered 50+ projects across web, mobile, and AI for 20+ happy clients globally. Contact us to see relevant case studies for your industry!";
+
+  // Timeline / delivery
+  if (/\b(timeline|deadline|delivery|how long|time|duration|weeks|months)/.test(lower))
+    return "⏱️ Project timelines vary — a simple website might take 2–3 weeks, while complex platforms can take 2–4 months. We always prioritize quality and clear communication!";
+
+  // Default fallback
+  return "🤔 Great question! For detailed or specific information, please reach out to us at contact.kodevex@gmail.com or use the contact form below. Our team will be happy to help! 😊";
 }
 
 function toggleQuickChat() {
