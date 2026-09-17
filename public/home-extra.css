@@ -668,15 +668,26 @@
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
+  .service-grid { grid-template-columns: repeat(2, 1fr); }
+  .accelerator-grid { grid-template-columns: repeat(2, 1fr); }
+  .industry-grid { grid-template-columns: repeat(2, 1fr); }
+  .case-grid { grid-template-columns: repeat(2, 1fr); }
+  .partner-alliances-grid { grid-template-columns: repeat(3, 1fr); }
   .why-grid { grid-template-columns: repeat(2, 1fr); }
   .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
   .proj-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-top { grid-template-columns: 1fr; gap: 40px; }
+  .hero { grid-template-columns: 1fr; padding-top: 50px; }
+  .hero-card { height: 420px; }
 }
 @media (max-width: 900px) {
+  .site-header nav { display: none; }
+  .menu-btn { display: grid; place-items: center; }
+  .top-utility-bar { flex-direction: column; gap: 6px; text-align: center; }
   .cta-inner { flex-direction: column; text-align: center; }
   .cta-inner p { margin: 0 auto; }
   .cta-actions { flex-direction: row; justify-content: center; }
+  .contact-section { grid-template-columns: 1fr; gap: 40px; }
   .contact-section-v2 { grid-template-columns: 1fr; padding: 80px 6vw; }
   .stats-inner { flex-wrap: wrap; gap: 30px; }
   .stat-divider { display: none; }
@@ -684,7 +695,13 @@
   .proj-tabs { gap: 8px; }
   .proj-tab { font-size: 12px; padding: 9px 15px; }
 }
-@media (max-width: 600px) {
+@media (max-width: 680px) {
+  .service-grid { grid-template-columns: 1fr; }
+  .accelerator-grid { grid-template-columns: 1fr; }
+  .industry-grid { grid-template-columns: 1fr; }
+  .case-grid { grid-template-columns: 1fr; }
+  .partner-alliances-grid { grid-template-columns: repeat(2, 1fr); }
+  .section-head { flex-direction: column; align-items: flex-start; gap: 12px; }
   .why-grid { grid-template-columns: 1fr; }
   .testimonials-grid { grid-template-columns: 1fr; }
   .proj-grid { grid-template-columns: 1fr; }
@@ -694,6 +711,7 @@
   .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
   .cta-actions { flex-direction: column; align-items: center; }
   .stats-bar { padding: 40px 22px; }
+  .contact-section { padding: 50px 22px; }
   .contact-section-v2 { padding: 70px 22px; }
   .hero-tagline { font-size: 11px; letter-spacing: .18em; gap: 7px; }
 }

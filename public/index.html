@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>KODEVEX TECHNOLOGIES — Digital Solutions & Custom Software</title>
-  <meta name="description" content="KODEVEX Technologies builds secure, scalable websites, custom software, and automation solutions for modern businesses globally.">
+  <title>KODEVEX TECHNOLOGIES — Empowering the Intelligent Enterprise™</title>
+  <meta name="description" content="KODEVEX Technologies accelerates digital transformation across Enterprise AI, Cloud Modernization, and Next-Gen Data Lakehouses with proprietary accelerators.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -489,31 +489,91 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 </head>
 <body>
+
+<!-- ===== TOP UTILITY ANNOUNCEMENT BAR ===== -->
+<div class="top-utility-bar">
+  <div class="bar-left">
+    <span class="utility-pill">Enterprise Digital & AI</span>
+    <span>Empowering the Intelligent Enterprise™ with Cloud, AI & Next-Gen Data Solutions</span>
+  </div>
+  <div class="bar-partners">
+    <span>AWS Premier Tier</span>
+    <span>•</span>
+    <span>Databricks Elite</span>
+    <span>•</span>
+    <span>Snowflake Premier</span>
+    <span>•</span>
+    <a href="/login.html" style="color:var(--site-cyan)">Portal Access →</a>
+  </div>
+</div>
+
+<!-- ===== SITE HEADER ===== -->
 <header class="site-header">
-  <a class="brand" href="/"><img src="/assets/kodevex-logo.png" alt="KODEVEX logo"><span>KODEVEX <small>TECHNOLOGIES</small></span></a>
+  <a class="brand" href="/">
+    <img src="/assets/kodevex-logo.png" alt="KODEVEX logo">
+    <div class="brand-text">
+      <span class="brand-name">KODEVEX<span class="brand-dot">.</span></span>
+      <small>TECHNOLOGIES</small>
+    </div>
+  </a>
   <nav>
-    <a href="#about">About</a><a href="#services">Services</a><a href="#work">Process</a><a href="/careers.html">Careers</a><a href="#contact">Contact</a>
-    <a class="nav-login" href="/login.html">Employee Login</a>
+    <a href="#offerings" class="active">Offerings</a>
+    <a href="#accelerators">Accelerators</a>
+    <a href="#industries">Industries</a>
+    <a href="#casestudies">Case Studies</a>
+    <a href="#partners">Partners</a>
+    <a href="/careers.html">Careers</a>
+    <a href="#contact">Contact</a>
   </nav>
-  <button class="menu-btn" onclick="document.body.classList.toggle('nav-open')">☰</button>
+  <div class="nav-actions">
+    <a class="btn-header-cta" href="#contact">Schedule Consultation ↗</a>
+    <a class="nav-login" href="/login.html">Employee Login</a>
+    <button class="menu-btn" onclick="document.body.classList.toggle('nav-open')">☰</button>
+  </div>
 </header>
 
 <main>
 
-<!-- ===== HERO ===== -->
+<!-- ===== HERO (Impetus Style) ===== -->
 <section class="hero">
   <div class="hero-copy" id="heroCopy">
-    <div class="hero-tagline" id="heroTagline"><span>CODE</span><span class="tl-dot">.</span><span>INNOVATE</span><span class="tl-dot">.</span><span>ELEVATE</span></div>
-    <h1 id="heroH1">Building <span>What's Next.</span></h1>
-    <p id="heroP">We design and develop secure, scalable digital solutions that help businesses grow, streamline operations and stay ahead in an AI-driven world.</p>
-    <div class="hero-actions" id="heroActions"><a class="btn primary" href="#contact">Talk to an Expert <b>↗</b></a><a class="btn ghost" href="#services">Our Services</a></div>
-    <div class="trust-row" id="heroTrust"><span>50+<br>Projects Delivered</span><span>20+<br>Happy Clients</span><span>100%<br>Commitment to Quality</span></div>
+    <div class="eyebrow-pill" id="heroTagline">
+      <span class="dot"></span>
+      EMPOWERING THE INTELLIGENT ENTERPRISE™
+    </div>
+    <h1 id="heroH1">Accelerating <span>Cloud, AI & Data</span> Transformation.</h1>
+    <p id="heroP">We architect enterprise cloud ecosystems, generative AI platforms, and unified lakehouses that drive high-velocity business outcomes with battle-tested architectures and zero operational downtime.</p>
+    <div class="hero-actions" id="heroActions">
+      <a class="btn primary" href="#offerings">Explore Offerings ↗</a>
+      <a class="btn ghost" href="#contact">Schedule Architecture Review ↗</a>
+    </div>
+
+    <!-- Strategic Cloud Alliances Strip in Hero -->
+    <div class="hero-partner-strip" id="heroTrust">
+      <span class="partner-label">Strategic Cloud & Data Ecosystem Alliances</span>
+      <div class="partner-pills">
+        <span class="partner-badge-pill">☁️ AWS Premier Partner</span>
+        <span class="partner-badge-pill">⚡ Databricks Elite</span>
+        <span class="partner-badge-pill">❄️ Snowflake Premier</span>
+        <span class="partner-badge-pill">🌐 Google Cloud</span>
+        <span class="partner-badge-pill">🔷 Microsoft Azure</span>
+      </div>
+    </div>
   </div>
+
   <div class="hero-card" id="heroCard">
     <div class="orb"></div>
-    <div class="floating-card fc1"><b>Digital</b><small>Solutions</small></div>
-    <div class="floating-card fc2"><b>Technology</b><small>That works.</small></div>
-    <div class="hero-mark"><img src="/assets/kodevex-logo.png" alt=""></div>
+    <div class="floating-card fc1">
+      <b>Enterprise AI</b>
+      <small>Autonomous GenAI & Agents</small>
+    </div>
+    <div class="floating-card fc2">
+      <b>Cloud Velocity</b>
+      <small>85% Automated Migration</small>
+    </div>
+    <div class="hero-mark">
+      <img src="/assets/kodevex-logo.png" alt="Kodevex Technologies">
+    </div>
   </div>
 </section>
 
@@ -521,258 +581,476 @@
 <section class="stats-bar">
   <div class="stats-inner">
     <div class="stat-item">
-      <span class="stat-num" data-target="50">0</span><span class="stat-plus">+</span>
-      <p>Projects Delivered</p>
+      <span class="stat-num" data-target="500">0</span><span class="stat-plus">+</span>
+      <p>Enterprise Deployments</p>
     </div>
     <div class="stat-divider"></div>
     <div class="stat-item">
-      <span class="stat-num" data-target="20">0</span><span class="stat-plus">+</span>
-      <p>Happy Clients</p>
+      <span class="stat-num" data-target="85">0</span><span class="stat-plus">%</span>
+      <p>Automated Migration Velocity</p>
     </div>
     <div class="stat-divider"></div>
     <div class="stat-item">
-      <span class="stat-num" data-target="5">0</span><span class="stat-plus">+</span>
-      <p>Years of Experience</p>
+      <span class="stat-num" data-target="45">0</span><span class="stat-plus">%</span>
+      <p>Average Cloud TCO Saved</p>
     </div>
     <div class="stat-divider"></div>
     <div class="stat-item">
       <span class="stat-num" data-target="100">0</span><span class="stat-plus">%</span>
-      <p>Client Satisfaction</p>
+      <p>Commitment to Excellence</p>
     </div>
   </div>
 </section>
 
-<!-- ===== CLIENTS TICKER STRIP ===== -->
+<!-- ===== CLIENTS / BRANDS TICKER STRIP ===== -->
 <section class="clients-ticker-strip" id="clients">
   <div class="clients-ticker-inner">
-    <span class="clients-ticker-label">TRUSTED BY AMBITIOUS BRANDS & GROWING ENTERPRISES</span>
+    <span class="clients-ticker-label">TRUSTED BY GLOBAL LEADERS & HIGH-GROWTH ENTERPRISES</span>
     <div class="marquee-stream-wrapper">
       <div class="marquee-row marquee-row-left">
         <div class="ticker-badge brand-apex">
           <svg viewBox="0 0 36 36" fill="none"><polygon points="18,3 31,10.5 31,25.5 18,33 5,25.5 5,10.5" stroke="#00e5ff" stroke-width="2.5" fill="rgba(0,229,255,0.1)"/><polyline points="11,18 18,12 25,18" stroke="#00e5ff" stroke-width="2.5"/><polyline points="11,24 18,18 25,24" stroke="#0088ff" stroke-width="2.5"/></svg>
-          <span>Apex Logistics</span>
+          <span>Apex Global Logistics</span>
         </div>
         <div class="ticker-badge brand-novamart">
           <svg viewBox="0 0 36 36" fill="none"><rect x="7" y="12" width="22" height="20" rx="4" stroke="#ff6b4a" stroke-width="2.5" fill="rgba(255,107,74,0.1)"/><path d="M13 12V9a5 5 0 0 1 10 0v3" stroke="#ffa033" stroke-width="2.5"/></svg>
-          <span>NovaMart Retail</span>
+          <span>Nova Retail Holdings</span>
         </div>
         <div class="ticker-badge brand-zenith">
           <svg viewBox="0 0 36 36" fill="none"><path d="M18 4L6 9v9c0 8 5.2 13.8 12 15 6.8-1.2 12-7 12-15V9L18 4z" stroke="#10b981" stroke-width="2.5" fill="rgba(16,185,129,0.1)"/><path d="M11 18h3.5l2-4.5 3 9 2-4.5h3.5" stroke="#34d399" stroke-width="2.2"/></svg>
-          <span>Zenith Health</span>
+          <span>Zenith Life Sciences</span>
         </div>
         <div class="ticker-badge brand-nexaflow">
           <svg viewBox="0 0 36 36" fill="none"><path d="M11 14c-3 0-5 2-5 4s2 4 5 4c3.5 0 5-4 7-4s3.5 4 7 4c3 0 5-2 5-4s-2-4-5-4c-3.5 0-5 4-7 4s-3.5-4-7-4z" stroke="#3b82f6" stroke-width="2.5"/></svg>
-          <span>NexaFlow Systems</span>
+          <span>NexaFlow Banking Systems</span>
         </div>
         <div class="ticker-badge brand-aura">
           <svg viewBox="0 0 36 36" fill="none"><polygon points="12,7 24,7 30,15 18,31 6,15" stroke="#f59e0b" stroke-width="2.5" fill="rgba(245,158,11,0.1)"/><line x1="6" y1="15" x2="30" y2="15" stroke="#fbbf24" stroke-width="1.8"/></svg>
-          <span>Aura Jewels</span>
+          <span>Aura Financial Capital</span>
         </div>
         <div class="ticker-badge brand-veloce">
           <svg viewBox="0 0 36 36" fill="none"><path d="M21 4l-11 16h8l-2 12 12-17h-8l3-11z" stroke="#06b6d4" stroke-width="2.5" fill="rgba(6,182,212,0.1)"/><path d="M6 14h4M4 19h6M7 24h4" stroke="#eab308" stroke-width="2"/></svg>
-          <span>Veloce Mobility</span>
+          <span>Veloce Mobility Cloud</span>
         </div>
-        <!-- Duplicate for seamless loop -->
+        <!-- Loop duplicates -->
         <div class="ticker-badge brand-apex">
           <svg viewBox="0 0 36 36" fill="none"><polygon points="18,3 31,10.5 31,25.5 18,33 5,25.5 5,10.5" stroke="#00e5ff" stroke-width="2.5" fill="rgba(0,229,255,0.1)"/><polyline points="11,18 18,12 25,18" stroke="#00e5ff" stroke-width="2.5"/><polyline points="11,24 18,18 25,24" stroke="#0088ff" stroke-width="2.5"/></svg>
-          <span>Apex Logistics</span>
+          <span>Apex Global Logistics</span>
         </div>
         <div class="ticker-badge brand-novamart">
           <svg viewBox="0 0 36 36" fill="none"><rect x="7" y="12" width="22" height="20" rx="4" stroke="#ff6b4a" stroke-width="2.5" fill="rgba(255,107,74,0.1)"/><path d="M13 12V9a5 5 0 0 1 10 0v3" stroke="#ffa033" stroke-width="2.5"/></svg>
-          <span>NovaMart Retail</span>
+          <span>Nova Retail Holdings</span>
         </div>
         <div class="ticker-badge brand-zenith">
           <svg viewBox="0 0 36 36" fill="none"><path d="M18 4L6 9v9c0 8 5.2 13.8 12 15 6.8-1.2 12-7 12-15V9L18 4z" stroke="#10b981" stroke-width="2.5" fill="rgba(16,185,129,0.1)"/><path d="M11 18h3.5l2-4.5 3 9 2-4.5h3.5" stroke="#34d399" stroke-width="2.2"/></svg>
-          <span>Zenith Health</span>
+          <span>Zenith Life Sciences</span>
         </div>
         <div class="ticker-badge brand-nexaflow">
           <svg viewBox="0 0 36 36" fill="none"><path d="M11 14c-3 0-5 2-5 4s2 4 5 4c3.5 0 5-4 7-4s3.5 4 7 4c3 0 5-2 5-4s-2-4-5-4c-3.5 0-5 4-7 4s-3.5-4-7-4z" stroke="#3b82f6" stroke-width="2.5"/></svg>
-          <span>NexaFlow Systems</span>
-        </div>
-        <div class="ticker-badge brand-aura">
-          <svg viewBox="0 0 36 36" fill="none"><polygon points="12,7 24,7 30,15 18,31 6,15" stroke="#f59e0b" stroke-width="2.5" fill="rgba(245,158,11,0.1)"/><line x1="6" y1="15" x2="30" y2="15" stroke="#fbbf24" stroke-width="1.8"/></svg>
-          <span>Aura Jewels</span>
-        </div>
-        <div class="ticker-badge brand-veloce">
-          <svg viewBox="0 0 36 36" fill="none"><path d="M21 4l-11 16h8l-2 12 12-17h-8l3-11z" stroke="#06b6d4" stroke-width="2.5" fill="rgba(6,182,212,0.1)"/><path d="M6 14h4M4 19h6M7 24h4" stroke="#eab308" stroke-width="2"/></svg>
-          <span>Veloce Mobility</span>
+          <span>NexaFlow Banking Systems</span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== ABOUT ===== -->
-<section id="about" class="section split">
-  <div>
-    <div class="eyebrow">ABOUT KODEVEX</div>
-    <h2>Technology with a clear purpose.</h2>
-    <ul class="about-list">
-      <li>✦ Serving clients worldwide with cutting-edge digital solutions</li>
-      <li>✦ Product-first thinking, not just code delivery</li>
-      <li>✦ End-to-end ownership from idea to launch</li>
-      <li>✦ Transparent communication at every stage</li>
-    </ul>
+<!-- ===== STRATEGIC OFFERINGS (Impetus Blueprint) ===== -->
+<section id="offerings" class="section">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">STRATEGIC OFFERINGS</div>
+      <h2>End-to-End Capabilities for the <span>Intelligent Enterprise.</span></h2>
+    </div>
+    <p>We deliver comprehensive digital engineering across Cloud, AI, and Next-Gen Data platforms to drive modern enterprise agility.</p>
   </div>
-  <div>
-    <p>At KODEVEX TECHNOLOGIES, we focus on turning ideas into dependable digital solutions. Our approach is simple: understand the problem, build the right technology, and keep the experience clean.</p>
-    <p>From websites and software platforms to automation and custom development, we help teams build, launch and improve faster than ever.</p>
-    <p>We believe that great technology should be invisible — it should just work, every time, for every user.</p>
-    <a class="btn ghost" href="#contact" style="margin-top:12px;display:inline-flex">Get In Touch ↗</a>
-  </div>
-</section>
 
-<!-- ===== SERVICES ===== -->
-<section id="services" class="section">
-  <div class="section-head"><div><div class="eyebrow">OUR SERVICES</div><h2>Expert Solutions for <span>Modern Businesses.</span></h2></div><p>We offer end-to-end technology services to help businesses build, scale and innovate in a digital-first world.</p></div>
   <div class="service-grid">
+    <!-- Offering 01 -->
     <article>
-      <span>01</span>
-      <h3>Web Development</h3>
-      <p>Fast, responsive and conversion-focused websites and web applications built with modern frameworks.</p>
-      <div class="service-tags"><em>React</em><em>Node.js</em><em>Next.js</em></div>
+      <div class="offering-header">
+        <span class="service-num">01</span>
+        <span class="service-badge">Flagship</span>
+      </div>
+      <h3>Enterprise AI & GenAI</h3>
+      <p>Transform enterprise operations with autonomous AI agent workflows, private fine-tuned LLMs, and enterprise-grade RAG architecture with built-in guardrails.</p>
+      <ul class="offering-bullets">
+        <li>Agentic Workflow Automation</li>
+        <li>Context Engineering & Enterprise RAG</li>
+        <li>Private LLM Deployment & Fine-Tuning</li>
+        <li>AI Governance, Privacy & Guardrails</li>
+      </ul>
+      <div class="service-tags"><em>OpenAI</em><em>Llama 3</em><em>LangChain</em><em>Pinecone</em></div>
     </article>
+
+    <!-- Offering 02 -->
     <article>
-      <span>02</span>
-      <h3>Custom Software</h3>
-      <p>Business platforms and internal tools designed around your workflow, not a generic template.</p>
-      <div class="service-tags"><em>SaaS</em><em>ERPs</em><em>Portals</em></div>
+      <div class="offering-header">
+        <span class="service-num">02</span>
+        <span class="service-badge">Core Pillar</span>
+      </div>
+      <h3>Cloud Modernization</h3>
+      <p>Accelerate cloud transformation with automated workload translation, zero-downtime database migrations, microservices re-architecture, and FinOps governance.</p>
+      <ul class="offering-bullets">
+        <li>Automated Legacy-to-Cloud Migration</li>
+        <li>Multi-Cloud & Hybrid Architecture</li>
+        <li>Cloud-Native Microservices Re-platforming</li>
+        <li>FinOps Cost Governance & Optimization</li>
+      </ul>
+      <div class="service-tags"><em>AWS</em><em>Azure</em><em>GCP</em><em>Terraform</em></div>
     </article>
+
+    <!-- Offering 03 -->
     <article>
-      <span>03</span>
-      <h3>UI / UX Design</h3>
-      <p>Simple interfaces that feel modern, useful and easy to navigate — from wireframe to final pixel.</p>
-      <div class="service-tags"><em>Figma</em><em>Prototyping</em><em>Research</em></div>
+      <div class="offering-header">
+        <span class="service-num">03</span>
+        <span class="service-badge">Lakehouse</span>
+      </div>
+      <h3>Data Engineering & Lakehouses</h3>
+      <p>Unify batch and real-time streaming architectures into scalable, performant data platforms on Databricks and Snowflake with complete DataOps automation.</p>
+      <ul class="offering-bullets">
+        <li>Modern Databricks & Snowflake Lakehouses</li>
+        <li>Real-Time Streaming & Event Driven Ingestion</li>
+        <li>Enterprise Data Mesh Architecture</li>
+        <li>Continuous Data Quality & Automated CI/CD</li>
+      </ul>
+      <div class="service-tags"><em>Databricks</em><em>Snowflake</em><em>Kafka</em><em>dbt</em></div>
     </article>
+
+    <!-- Offering 04 -->
     <article>
-      <span>04</span>
-      <h3>Automation</h3>
-      <p>Technology that removes repetitive work, integrates your tools, and keeps operations moving.</p>
-      <div class="service-tags"><em>APIs</em><em>Workflows</em><em>Scripts</em></div>
+      <div class="offering-header">
+        <span class="service-num">04</span>
+        <span class="service-badge">Custom Apps</span>
+      </div>
+      <h3>Digital Product Engineering</h3>
+      <p>Design, build, and deploy mission-critical software products, high-throughput APIs, and scalable customer-facing SaaS platforms with modern technology stacks.</p>
+      <ul class="offering-bullets">
+        <li>High-Performance SaaS & Portals</li>
+        <li>Distributed Microservices Systems</li>
+        <li>Event-Driven Scalable APIs</li>
+        <li>Design Systems & Modern UX/UI</li>
+      </ul>
+      <div class="service-tags"><em>React</em><em>Node.js</em><em>Go</em><em>GraphQL</em></div>
     </article>
+
+    <!-- Offering 05 -->
     <article>
-      <span>05</span>
-      <h3>Mobile Apps</h3>
-      <p>Cross-platform mobile applications that deliver smooth, native-like experiences on any device.</p>
-      <div class="service-tags"><em>React Native</em><em>Android</em><em>iOS</em></div>
+      <div class="offering-header">
+        <span class="service-num">05</span>
+        <span class="service-badge">DevSecOps</span>
+      </div>
+      <h3>Platform Engineering & SRE</h3>
+      <p>Build secure, resilient cloud foundations with automated Kubernetes orchestration, GitOps delivery pipelines, and zero-trust security infrastructure.</p>
+      <ul class="offering-bullets">
+        <li>Production Kubernetes Ecosystems</li>
+        <li>Automated GitOps Continuous Delivery</li>
+        <li>Zero-Trust Infrastructure & IAM Security</li>
+        <li>Site Reliability & 24/7 Observability</li>
+      </ul>
+      <div class="service-tags"><em>Kubernetes</em><em>Docker</em><em>ArgoCD</em><em>Prometheus</em></div>
     </article>
+
+    <!-- Offering 06 -->
     <article>
-      <span>06</span>
-      <h3>AI Integration</h3>
-      <p>Embed intelligent features — chatbots, recommendations, and smart automation — into your product.</p>
-      <div class="service-tags"><em>OpenAI</em><em>LLMs</em><em>ML APIs</em></div>
+      <div class="offering-header">
+        <span class="service-num">06</span>
+        <span class="service-badge">Automation</span>
+      </div>
+      <h3>Intelligent Automation & RPA</h3>
+      <p>Eliminate manual operational bottlenecks with AI-assisted workflow engines, automated reconciliation pipelines, and legacy modernization frameworks.</p>
+      <ul class="offering-bullets">
+        <li>Legacy Mainframe & ETL Re-platforming</li>
+        <li>Automated Data Reconciliation Engines</li>
+        <li>Self-Healing Infrastructure Automation</li>
+        <li>Custom Enterprise Integration Connectors</li>
+      </ul>
+      <div class="service-tags"><em>Python</em><em>Airflow</em><em>Zapier</em><em>REST APIs</em></div>
     </article>
   </div>
 </section>
 
+<!-- ===== PROPRIETARY ACCELERATORS (Mirroring LeapLogic & Prism AI) ===== -->
+<section id="accelerators" class="accelerators-section">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">SPEED & AUTOMATION</div>
+      <h2>Proprietary Accelerators for <span>De-Risked Velocity.</span></h2>
+    </div>
+    <p>Our battle-tested IP engines eliminate manual refactoring, enforce enterprise governance, and accelerate cloud adoption by up to 85%.</p>
+  </div>
 
-<!-- ===== HOW WE WORK ===== -->
-<section id="work" class="section work-section">
-  <div class="eyebrow">HOW WE WORK</div><h2>A Simple Process. <span>Real Results.</span></h2>
-  <div class="process">
-    <div>
-      <b>01</b><h3>Discover</h3>
-      <p>We start by deeply understanding your goals, your users, and the real problem you're solving. No assumptions.</p>
+  <div class="accelerator-grid">
+    <!-- Accelerator 1 -->
+    <div class="accelerator-card">
+      <div class="accel-icon-wrap">
+        <i data-lucide="zap"></i>
+      </div>
+      <span class="accel-metric-badge">Up to 85% Automation</span>
+      <h3>Kodevex LeapEngine™</h3>
+      <p>Automated workload assessment, code translation, and validation engine that migrates legacy ETL pipelines, stored procedures, and EDWs (Teradata, Hadoop, Oracle) to modern cloud lakehouses.</p>
+      <ul class="offering-bullets">
+        <li>Automated semantic code transformation</li>
+        <li>100% data validation with zero discrepancies</li>
+        <li>Zero business disruption during transition</li>
+      </ul>
     </div>
-    <div>
-      <b>02</b><h3>Design</h3>
-      <p>We create a clear experience architecture and technical blueprint before writing a single line of code.</p>
+
+    <!-- Accelerator 2 -->
+    <div class="accelerator-card">
+      <div class="accel-icon-wrap">
+        <i data-lucide="cpu"></i>
+      </div>
+      <span class="accel-metric-badge">Enterprise GenAI Platform</span>
+      <h3>Kodevex PrismAI™</h3>
+      <p>Enterprise Generative AI platform providing contextual intelligence orchestration, model benchmarking, automated prompt engineering, and strict enterprise security guardrails.</p>
+      <ul class="offering-bullets">
+        <li>SOC2 & HIPAA compliant model sandboxing</li>
+        <li>Multi-model routing & cost optimization</li>
+        <li>Private enterprise knowledge graph ingestion</li>
+      </ul>
     </div>
-    <div>
-      <b>03</b><h3>Build</h3>
-      <p>Our team develops, tests and refines the product iteratively — shipping working software in short sprints.</p>
-    </div>
-    <div>
-      <b>04</b><h3>Deliver</h3>
-      <p>We launch with care, handle deployment, and ensure you have a solid foundation that's ready to scale.</p>
+
+    <!-- Accelerator 3 -->
+    <div class="accelerator-card">
+      <div class="accel-icon-wrap">
+        <i data-lucide="layers"></i>
+      </div>
+      <span class="accel-metric-badge">Sub-Second Streaming</span>
+      <h3>Kodevex DataStreamFlow™</h3>
+      <p>Unified real-time data ingestion and transformation accelerator that guarantees sub-second event streaming, automated schema evolution, and continuous zero-loss validation into Snowflake & Databricks.</p>
+      <ul class="offering-bullets">
+        <li>Automated Change Data Capture (CDC)</li>
+        <li>Built-in data lineage & governance audit</li>
+        <li>Pre-built connectors for 80+ enterprise sources</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- ===== TESTIMONIALS ===== -->
+<!-- ===== INDUSTRY VERTICALS ===== -->
+<section id="industries" class="industries-section">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">DOMAINS WE SERVE</div>
+      <h2>Tailored Architectures for <span>Critical Industries.</span></h2>
+    </div>
+    <p>Deep vertical domain expertise ensuring rigorous regulatory compliance, security standards, and high-performance scalability.</p>
+  </div>
+
+  <div class="industry-grid">
+    <div class="industry-card">
+      <div class="ind-icon">🏦</div>
+      <h4>Banking & Financial Services</h4>
+      <p>High-frequency risk analytics, automated real-time fraud detection pipelines, and compliant regulatory reporting across global financial infrastructure.</p>
+    </div>
+    <div class="industry-card">
+      <div class="ind-icon">🧬</div>
+      <h4>Healthcare & Life Sciences</h4>
+      <p>HIPAA-compliant genomics data lakehouses, AI-driven diagnostic anomaly workflows, and real-time patient telemetry analytics platforms.</p>
+    </div>
+    <div class="industry-card">
+      <div class="ind-icon">🛒</div>
+      <h4>Retail, CPG & Commerce</h4>
+      <p>Omnichannel Customer 360 data engines, automated predictive inventory optimization, and dynamic pricing intelligence at global scale.</p>
+    </div>
+    <div class="industry-card">
+      <div class="ind-icon">📡</div>
+      <h4>Telecom & High-Tech Media</h4>
+      <p>5G network telemetry streaming, automated customer churn predictive models, and ultra-low latency edge content delivery networks.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FEATURED ENTERPRISE CASE STUDIES ===== -->
+<section id="casestudies" class="case-studies-section">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">PROVEN IMPACT</div>
+      <h2>Measurable ROI for <span>Global Enterprise Leaders.</span></h2>
+    </div>
+    <p>Discover how our digital engineering and proprietary accelerators deliver transformative speed and cost efficiencies.</p>
+  </div>
+
+  <div class="case-grid">
+    <!-- Case 1 -->
+    <div class="case-card">
+      <div class="case-client">Tier-1 Global Financial Institution</div>
+      <div class="case-stat">48% <span>Reduction</span></div>
+      <div class="case-stat-label">In Annual Cloud TCO</div>
+      <p>Automated the end-to-end migration of 600+ legacy Teradata ETL pipelines to Snowflake with zero data downtime and 4x faster analytics reporting cycles.</p>
+      <div class="case-tags">
+        <span>Snowflake</span>
+        <span>AWS</span>
+        <span>LeapEngine™</span>
+        <span>FinOps</span>
+      </div>
+    </div>
+
+    <!-- Case 2 -->
+    <div class="case-card">
+      <div class="case-client">Premier Healthcare & Diagnostic Network</div>
+      <div class="case-stat">15M+ <span>Records</span></div>
+      <div class="case-stat-label">Analyzed Daily in Real-Time</div>
+      <p>Architected a HIPAA-compliant unified lakehouse on Databricks with autonomous AI anomaly detection, enabling clinical doctors to detect patient warning indicators 6 hours sooner.</p>
+      <div class="case-tags">
+        <span>Databricks</span>
+        <span>AWS</span>
+        <span>PrismAI™</span>
+        <span>HIPAA</span>
+      </div>
+    </div>
+
+    <!-- Case 3 -->
+    <div class="case-card">
+      <div class="case-client">Global Logistics & Freight Conglomerate</div>
+      <div class="case-stat">25,000+ <span>Hours</span></div>
+      <div class="case-stat-label">Driver Time Saved Annually</div>
+      <p>Built a real-time event streaming predictive routing engine across 40,000 transport vehicles, slashing dispatch latency by 70% and saving $4.8M in yearly fuel logistics.</p>
+      <div class="case-tags">
+        <span>Kafka</span>
+        <span>Kubernetes</span>
+        <span>DataStreamFlow™</span>
+        <span>AI Routing</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STRATEGIC PARTNER ALLIANCES ===== -->
+<section id="partners" class="partners-section">
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">PARTNERSHIP ECOSYSTEM</div>
+      <h2>Premier Cloud & Data <span>Technology Alliances.</span></h2>
+    </div>
+    <p>Certified partner credentials that validate our deep technical expertise and delivery excellence.</p>
+  </div>
+
+  <div class="partner-alliances-grid">
+    <div class="partner-card">
+      <span style="font-size:32px">☁️</span>
+      <strong>AWS</strong>
+      <span>Premier Tier Services Partner</span>
+    </div>
+    <div class="partner-card">
+      <span style="font-size:32px">⚡</span>
+      <strong>Databricks</strong>
+      <span>Elite Consulting Partner</span>
+    </div>
+    <div class="partner-card">
+      <span style="font-size:32px">❄️</span>
+      <strong>Snowflake</strong>
+      <span>Premier Services Partner</span>
+    </div>
+    <div class="partner-card">
+      <span style="font-size:32px">🌐</span>
+      <strong>Google Cloud</strong>
+      <span>Premier Cloud Partner</span>
+    </div>
+    <div class="partner-card">
+      <span style="font-size:32px">🔷</span>
+      <strong>Microsoft</strong>
+      <span>Solutions Partner for Data & AI</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMPLIANCE & TRUST BAR ===== -->
+<div class="compliance-bar">
+  <div class="compliance-item"><span class="c-icon">🛡️</span> ISO/IEC 27001 Certified</div>
+  <div class="compliance-item"><span class="c-icon">✓</span> SOC 2 Type II Audited</div>
+  <div class="compliance-item"><span class="c-icon">🔒</span> HIPAA Compliant</div>
+  <div class="compliance-item"><span class="c-icon">🌐</span> GDPR Ready</div>
+  <div class="compliance-item"><span class="c-icon">🏆</span> Great Place to Work® Certified</div>
+</div>
+
+<!-- ===== EXECUTIVE TESTIMONIALS ===== -->
 <section class="section testimonials-section">
-  <div class="section-head" style="margin-bottom:52px">
-    <div><div class="eyebrow">CLIENT FEEDBACK</div><h2>What Clients <span>Say About Us.</span></h2></div>
-    <p>Real words from real people we've worked with.</p>
+  <div class="section-head">
+    <div>
+      <div class="eyebrow">CLIENT ENDORSEMENTS</div>
+      <h2>What Enterprise Leaders <span>Say About Us.</span></h2>
+    </div>
+    <p>Tangible outcomes shared by technology executives who rely on KODEVEX.</p>
   </div>
   <div class="testimonials-grid">
     <div class="testimonial-card">
       <div class="stars">★★★★★</div>
-      <p>"KODEVEX delivered our employee management platform on time and it was exactly what we needed. The code quality and the communication throughout were excellent."</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">RK</div>
-        <div><strong>Rahul K.</strong><small>Operations Manager</small></div>
-      </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p>"We needed a fast, clean website for our brand launch. KODEVEX nailed the design and had it live in under two weeks. Highly recommend for any startup."</p>
-      <div class="testimonial-author">
-        <div class="author-avatar">SM</div>
-        <div><strong>Sneha M.</strong><small>Founder, D2C Brand</small></div>
-      </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="stars">★★★★★</div>
-      <p>"The automation workflow they built saves our team hours every single day. The ROI was visible within the first week of going live. Genuinely impressed."</p>
+      <p>"KODEVEX migrated our complex legacy data pipelines to the cloud in record time. Their LeapEngine accelerator preserved full data integrity while delivering 45% lower compute costs."</p>
       <div class="testimonial-author">
         <div class="author-avatar">AV</div>
-        <div><strong>Amit V.</strong><small>CTO, Logistics Firm</small></div>
+        <div><strong>Amit V.</strong><small>CTO, Global Logistics Firm</small></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Their enterprise AI engineering capabilities are unmatched. KODEVEX delivered our HIPAA-compliant clinical telemetry engine ahead of schedule with flawless production stability."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">RK</div>
+        <div><strong>Rahul K.</strong><small>VP of Data Architecture, HealthTech</small></div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"KODEVEX's team operates with true engineering excellence. From discovery through automated deployment, they demonstrated mastery of Databricks and modern cloud platforms."</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">SM</div>
+        <div><strong>Sneha M.</strong><small>Head of Digital Engineering, FinTech</small></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== CONTACT ===== -->
-<section id="contact" class="contact-section contact-section-v2">
+<!-- ===== CONTACT / ARCHITECTURE CONSULTATION RFP ===== -->
+<section id="contact" class="contact-section">
   <div class="contact-left">
-    <div class="eyebrow">START A PROJECT</div>
-    <h2>Have an idea?<br><span>Let's build it.</span></h2>
-    <p>Tell us what you're working on and we'll get back to you within 24 hours. No commitment needed — just a conversation.</p>
+    <div class="eyebrow">START A CONVERSATION</div>
+    <h2>Ready to Accelerate Your<br><span>Enterprise Journey?</span></h2>
+    <p>Schedule a 30-minute architecture assessment with our cloud and AI specialists. We will evaluate your workload velocity, cloud TCO, and data platform roadmap with zero commitment.</p>
     <div class="contact-details">
       <div class="contact-detail-item">
         <span class="cd-icon"><i data-lucide="mail"></i></span>
         <div>
-          <small>Email us</small>
+          <small>Corporate Inquiries</small>
           <a href="mailto:contact.kodevex@gmail.com">contact.kodevex@gmail.com</a>
         </div>
       </div>
       <div class="contact-detail-item">
         <span class="cd-icon"><i data-lucide="globe"></i></span>
         <div>
-          <small>Presence</small>
-          <span>Global / Remote Delivery</span>
+          <small>Global Presence</small>
+          <span>North America • Europe • Asia Pacific</span>
         </div>
       </div>
       <div class="contact-detail-item">
-        <span class="cd-icon"><i data-lucide="clock"></i></span>
+        <span class="cd-icon"><i data-lucide="shield-check"></i></span>
         <div>
-          <small>Response Time</small>
-          <span>Within 24 hours</span>
+          <small>Advisory SLA</small>
+          <span>Dedicated Solution Architect Response &lt; 24h</span>
         </div>
       </div>
     </div>
   </div>
   <div class="contact-right">
     <form class="contact-form" id="contactForm" onsubmit="handleContact(event)">
-      <h3>Send us a message</h3>
-      <label>Your Name<input type="text" id="cf-name" placeholder="John Doe" required></label>
-      <label>Email Address<input type="email" id="cf-email" placeholder="you@company.com" required></label>
-      <label>What are you building?
+      <h3>Request an Enterprise Consultation</h3>
+      <label>Full Name<input type="text" id="cf-name" placeholder="Alexander Wright" required></label>
+      <label>Work Email Address<input type="email" id="cf-email" placeholder="alexander@company.com" required></label>
+      <label>Area of Strategic Focus
         <select id="cf-type">
-          <option value="">Select a service...</option>
-          <option>Web Development</option>
-          <option>Custom Software</option>
-          <option>UI / UX Design</option>
-          <option>Mobile App</option>
-          <option>Automation</option>
-          <option>AI Integration</option>
-          <option>Something Else</option>
+          <option value="">Select an offering...</option>
+          <option>Enterprise AI &amp; Generative AI</option>
+          <option>Cloud Modernization &amp; Migration</option>
+          <option>Data Engineering &amp; Lakehouse (Databricks/Snowflake)</option>
+          <option>Digital Product Engineering</option>
+          <option>Platform Engineering &amp; DevSecOps</option>
+          <option>Proprietary Accelerators (LeapEngine / PrismAI)</option>
+          <option>Other Strategic Consultation</option>
         </select>
       </label>
-      <label>Tell us more<textarea id="cf-msg" rows="4" placeholder="Describe your project or idea in a few words..."></textarea></label>
-      <button type="submit" class="btn primary" style="width:100%;justify-content:center" id="cfSubmitBtn">Send Message ↗</button>
-      <p id="cf-result" style="display:none;margin-top:12px;font-size:13px;color:#16a34a;font-weight:600;text-align:center"></p>
+      <label>Project Scope or Workload Description<textarea id="cf-msg" rows="4" placeholder="Describe your current cloud infrastructure, legacy systems, or AI roadmap..."></textarea></label>
+      <button type="submit" class="btn primary" style="width:100%;justify-content:center" id="cfSubmitBtn">Submit Consultation Request ↗</button>
+      <p id="cf-result" style="display:none;margin-top:12px;font-size:13px;color:#38bdf8;font-weight:600;text-align:center"></p>
     </form>
   </div>
 </section>
@@ -793,7 +1071,6 @@
       rel="noreferrer"
       aria-label="Kodevex Technologies on LinkedIn"
     >
-      <!-- LinkedIn Icon -->
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
       </svg>
@@ -811,7 +1088,6 @@
       rel="noreferrer"
       aria-label="Kodevex Technologies on Instagram"
     >
-      <!-- Instagram Icon -->
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
@@ -825,15 +1101,13 @@
     id="sidebarChatBtn"
     class="sidebar-chat-btn"
     onclick="toggleQuickChat()"
-    aria-label="Quick chat with AI Assistant"
+    aria-label="Quick chat with AI Enterprise Specialist"
   >
-    <span class="sidebar-chat-label">Chat with AI Assistant</span>
+    <span class="sidebar-chat-label">Chat with AI Enterprise Specialist</span>
     <span class="chat-pulse"></span>
-    <!-- Chat bubble icon -->
     <svg id="chatIconOpen" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
     </svg>
-    <!-- Close X icon (hidden by default) -->
     <svg id="chatIconClose" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="display:none">
       <line x1="18" y1="6" x2="6" y2="18"/>
       <line x1="6" y1="6" x2="18" y2="18"/>
@@ -843,14 +1117,14 @@
 </div>
 
 <!-- ===== QUICK CHAT PANEL ===== -->
-<div class="quick-chat-panel" id="quickChatPanel" role="dialog" aria-label="Quick Chat with AI Assistant">
+<div class="quick-chat-panel" id="quickChatPanel" role="dialog" aria-label="Quick Chat with AI Enterprise Specialist">
 
   <!-- Header -->
   <div class="qcp-header">
-    <div class="qcp-avatar">🤖</div>
+    <div class="qcp-avatar">⚡</div>
     <div class="qcp-header-info">
-      <strong>KODEVEX AI Assistant</strong>
-      <span>Online · Ready to help</span>
+      <strong>KODEVEX Enterprise AI Specialist</strong>
+      <span>Online · Ready to assist</span>
     </div>
     <button class="qcp-close" onclick="toggleQuickChat()" aria-label="Close chat">✕</button>
   </div>
@@ -858,17 +1132,17 @@
   <!-- Messages -->
   <div class="qcp-messages" id="qcpMessages">
     <div class="qcp-msg bot">
-      <div class="qcp-msg-avatar">🤖</div>
-      <div class="qcp-msg-bubble">👋 Hi there! I'm KODEVEX's AI assistant. I can help you with questions about our services, pricing, or how to get started. What's on your mind?</div>
+      <div class="qcp-msg-avatar">⚡</div>
+      <div class="qcp-msg-bubble">👋 Hello! Welcome to KODEVEX Technologies. How can I assist your enterprise with Cloud Modernization, Enterprise AI, or Data Lakehouses today?</div>
     </div>
   </div>
 
   <!-- Quick Prompt Chips -->
   <div class="qcp-prompts" id="qcpPrompts">
-    <button class="qcp-prompt-chip" onclick="sendQuickPrompt('What services do you offer?')">🚀 Services</button>
-    <button class="qcp-prompt-chip" onclick="sendQuickPrompt('How do I start a project?')">📋 Start a Project</button>
-    <button class="qcp-prompt-chip" onclick="sendQuickPrompt('What are your rates?')">💰 Pricing</button>
-    <button class="qcp-prompt-chip" onclick="sendQuickPrompt('How to contact you?')">📞 Contact</button>
+    <button class="qcp-prompt-chip" onclick="sendQuickPrompt('What are your enterprise offerings?')">🚀 Offerings</button>
+    <button class="qcp-prompt-chip" onclick="sendQuickPrompt('Tell me about LeapEngine accelerator')">⚡ Accelerators</button>
+    <button class="qcp-prompt-chip" onclick="sendQuickPrompt('What partners do you work with?')">🤝 Partners</button>
+    <button class="qcp-prompt-chip" onclick="sendQuickPrompt('How do I schedule an architecture review?')">📋 Consultation</button>
   </div>
 
   <!-- Input Row -->
@@ -877,7 +1151,7 @@
       type="text"
       id="qcpInput"
       class="qcp-input"
-      placeholder="Ask anything…"
+      placeholder="Ask about Cloud, AI, or Lakehouse..."
       onkeydown="if(event.key==='Enter') sendChatMessage()"
       autocomplete="off"
     />
@@ -891,100 +1165,112 @@
 
 </div>
 
+<!-- ===== MULTI-COLUMN CORPORATE MEGA FOOTER ===== -->
 <footer class="site-footer-main">
   <div class="footer-top">
     <div class="footer-brand">
-      <a class="brand" href="/"><img src="/assets/kodevex-logo.png" alt="KODEVEX logo"><span>KODEVEX <small>TECHNOLOGIES</small></span></a>
-      <p>Building secure, scalable digital solutions for modern businesses worldwide.</p>
+      <a class="brand" href="/">
+        <img src="/assets/kodevex-logo.png" alt="KODEVEX logo">
+        <div class="brand-text">
+          <span class="brand-name">KODEVEX<span class="brand-dot">.</span></span>
+          <small>TECHNOLOGIES</small>
+        </div>
+      </a>
+      <p>Empowering the Intelligent Enterprise™ with cloud modernization, enterprise generative AI platforms, and unified lakehouses globally.</p>
+      <div class="footer-accreditation">
+        <span>🛡️ ISO 27001 Certified &amp; SOC 2 Type II Audited</span>
+      </div>
     </div>
     <div class="footer-links">
       <div>
+        <h4>Offerings</h4>
+        <a href="#offerings">Enterprise AI &amp; GenAI</a>
+        <a href="#offerings">Cloud Modernization</a>
+        <a href="#offerings">Data Lakehouses</a>
+        <a href="#offerings">Product Engineering</a>
+        <a href="#offerings">Platform &amp; DevSecOps</a>
+      </div>
+      <div>
+        <h4>Accelerators</h4>
+        <a href="#accelerators">Kodevex LeapEngine™</a>
+        <a href="#accelerators">Kodevex PrismAI™</a>
+        <a href="#accelerators">Kodevex DataStreamFlow™</a>
+        <a href="#accelerators">Automated Migration</a>
+      </div>
+      <div>
+        <h4>Industries</h4>
+        <a href="#industries">Financial Services</a>
+        <a href="#industries">Healthcare &amp; Life Sciences</a>
+        <a href="#industries">Retail &amp; CPG</a>
+        <a href="#industries">Telecom &amp; Media</a>
+      </div>
+      <div>
         <h4>Company</h4>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
+        <a href="#offerings">About Us</a>
         <a href="/careers.html">Careers</a>
-        <a href="#work">Process</a>
-      </div>
-      <div>
-        <h4>Services</h4>
-        <a href="#services">Web Development</a>
-        <a href="#services">Custom Software</a>
-        <a href="#services">UI / UX Design</a>
-        <a href="#services">Automation</a>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <a href="mailto:contact.kodevex@gmail.com">Email Us</a>
-        <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
-        <a href="#contact">Start a Project</a>
+        <a href="#casestudies">Case Studies</a>
+        <a href="/login.html">Employee Portal</a>
+        <a href="#contact">Contact Specialists</a>
       </div>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 KODEVEX TECHNOLOGIES. All rights reserved.</span>
-    <span>Empowering Businesses Worldwide</span>
+    <span>© 2026 KODEVEX TECHNOLOGIES. All rights reserved. Empowering the Intelligent Enterprise™.</span>
+    <span>
+      <a href="#contact">Privacy Policy</a> • 
+      <a href="#contact">Security &amp; Compliance</a> • 
+      <a href="#contact">Terms of Service</a>
+    </span>
   </div>
 </footer>
 
 <script>
-// ===== QUICK CHAT WIDGET =====
+// ===== QUICK CHAT WIDGET (Enterprise Specialist AI) =====
 function getAIResponse(msg) {
   const lower = msg.toLowerCase().trim();
 
   // Greetings
-  if (/\b(hi|hello|hey|howdy|sup|what'?s up)\b/.test(lower))
-    return "Hello! 👋 Great to connect with you. I'm KODEVEX's AI assistant — how can I help you today?";
+  if (/\b(hi|hello|hey|howdy|sup|what'?s up|greetings)\b/.test(lower))
+    return "Hello! 👋 Welcome to KODEVEX Technologies. I'm your Enterprise Solutions Specialist. How can I help you explore our Cloud, Enterprise AI, or Lakehouse engineering capabilities today?";
 
-  // Services overview
-  if (/\b(service|offer|provide|do you do|what do|capabilities|speciali[sz])/.test(lower))
-    return "We offer 6 core services: 🌐 Web Development, 💻 Custom Software, 🎨 UI/UX Design, ⚙️ Automation, 📱 Mobile Apps, and 🤖 AI Integration — all tailored to your business needs!";
+  // Offerings / Services overview
+  if (/\b(offering|offerings|service|services|provide|capabilities|what do you do|speciali[sz])/.test(lower))
+    return "We specialize in 6 core enterprise pillars: 🤖 Enterprise AI & GenAI, ☁️ Cloud Modernization, ❄️ Data Lakehouses (Databricks & Snowflake), 💻 Digital Product Engineering, 🛡️ Platform Engineering & DevSecOps, and ⚙️ Intelligent Automation!";
 
-  // Starting a project
-  if (/\b(start|begin|how (to|do i|can i)|project|work with|hire|get started|quote|proposal)/.test(lower))
-    return "Getting started is easy! 💡 Fill out the contact form on this page or email us at contact.kodevex@gmail.com. We'll respond within 24 hours with a personalised plan.";
+  // Accelerators (LeapEngine, PrismAI, DataStreamFlow)
+  if (/\b(accelerator|accelerators|leapengine|prism|prism.?ai|datastream|leaplogic|migration tool|framework)/.test(lower))
+    return "⚡ Our proprietary accelerators de-risk and speed up transformations by up to 85%:<br><br>• <b>Kodevex LeapEngine™</b>: Automated workload translation & validation for legacy ETL/EDWs to cloud.<br>• <b>Kodevex PrismAI™</b>: Enterprise GenAI orchestration with private knowledge graphs & security guardrails.<br>• <b>Kodevex DataStreamFlow™</b>: High-throughput real-time lakehouse ingestion.";
+
+  // Cloud Modernization / Migration
+  if (/\b(cloud|migration|migrate|moderni[sz]ation|aws|azure|gcp|finops|replatform)/.test(lower))
+    return "☁️ We architect zero-downtime cloud migrations and multi-cloud strategies on AWS, Microsoft Azure, and Google Cloud, coupled with automated FinOps cost governance to lower TCO by up to 45%!";
+
+  // Data Engineering / Lakehouse / Databricks / Snowflake
+  if (/\b(data|lakehouse|databricks|snowflake|kafka|pipeline|analytics|warehouse|big data|etl)/.test(lower))
+    return "❄️ As certified Databricks Elite and Snowflake Premier partners, we build unified, real-time data lakehouses with sub-second streaming, automated CDC, and robust DataOps governance.";
+
+  // Enterprise AI / GenAI / LLM
+  if (/\b(ai|artificial intelligence|genai|generative ai|llm|agent|agents|rag|gpt|openai|machine learning)/.test(lower))
+    return "🤖 Our Enterprise AI suite delivers autonomous agent workflows, secure private RAG architectures, model fine-tuning, and enterprise guardrails compliant with SOC 2 and HIPAA regulations.";
+
+  // Partnerships & Alliances
+  if (/\b(partner|partners|alliances|aws|databricks|snowflake|google|microsoft|certifi)/.test(lower))
+    return "🤝 KODEVEX holds premier tier alliances across the tech ecosystem: AWS Premier Tier Services Partner, Databricks Elite Partner, Snowflake Premier Partner, Google Cloud Partner, and Microsoft Solutions Partner for Data & AI!";
+
+  // Starting a project / Consultation / RFP
+  if (/\b(consultation|assessment|start|begin|contact|talk|hire|quote|proposal|rfp|review)/.test(lower))
+    return "📋 You can schedule a 30-minute architecture assessment using our consultation form below or email us directly at contact.kodevex@gmail.com. A dedicated Solution Architect will review your workload within 24 hours!";
+
+  // Case studies / Proof points
+  if (/\b(case study|case studies|portfolio|clients|proof|results|roi|example)/.test(lower))
+    return "📊 Highlights of our enterprise impact:<br>• <b>Tier-1 Bank</b>: 48% cloud TCO reduction migrating 600+ ETLs to Snowflake.<br>• <b>Healthcare Network</b>: 15M+ daily records analyzed in real-time with AI anomaly flags.<br>• <b>Global Logistics</b>: 25,000+ driver hours saved annually with predictive routing.";
 
   // Pricing / rates
-  if (/\b(price|pricing|cost|rate|charge|fee|budget|afford|cheap|expensive|how much)/.test(lower))
-    return "💬 Our pricing is flexible and depends on the project scope. We work with both startups and enterprises. Drop us a message at contact.kodevex@gmail.com for a free estimate!";
-
-  // Contact / location
-  if (/\b(contact|reach|email|phone|location|where|address|talk to someone|speak)/.test(lower))
-    return "📧 You can reach us at contact.kodevex@gmail.com or use the contact form below. We're also on LinkedIn and Instagram! We reply within 24 hours. ⚡";
-
-  // Web development
-  if (/\b(web(site)?|landing page|e-?commerce|next\.?js|react|front.?end|back.?end|full.?stack)/.test(lower))
-    return "🌐 We build fast, responsive, and conversion-focused websites & web apps using React, Next.js, and Node.js. Let's build something amazing together!";
-
-  // Mobile apps
-  if (/\b(mobile|app|android|ios|react native|flutter|smartphone)/.test(lower))
-    return "📱 We develop cross-platform mobile apps for iOS & Android using React Native — native-like performance at half the cost!";
-
-  // AI / Automation
-  if (/\b(ai|artificial intelligence|automation|bot|llm|gpt|openai|chatbot|machine learning|smart)/.test(lower))
-    return "🤖 We integrate AI features like chatbots, recommendation engines, and smart automation directly into your product using OpenAI and cutting-edge LLMs!";
-
-  // UI/UX Design
-  if (/\b(design|ui|ux|figma|prototype|wireframe|interface|user experience|branding|logo)/.test(lower))
-    return "🎨 Our UI/UX team crafts clean, modern interfaces — from wireframe to pixel-perfect final design, all in Figma!";
-
-  // Custom software
-  if (/\b(custom|software|erp|crm|dashboard|saas|platform|system|tool|solution)/.test(lower))
-    return "💻 We build fully custom software solutions — dashboards, SaaS platforms, CRMs, ERPs — tailored exactly to your workflow!";
-
-  // Team / about
-  if (/\b(team|who are|about|company|founded|kodevex|experience|expertise)/.test(lower))
-    return "🏢 KODEVEX Technologies is a digital solutions company building secure, scalable products for businesses worldwide. Our expert team covers design, development, and AI!";
-
-  // Portfolio / work
-  if (/\b(portfolio|projects|work|case study|examples|showcase|clients|past work)/.test(lower))
-    return "🚀 We've delivered 50+ projects across web, mobile, and AI for 20+ happy clients globally. Contact us to see relevant case studies for your industry!";
-
-  // Timeline / delivery
-  if (/\b(timeline|deadline|delivery|how long|time|duration|weeks|months)/.test(lower))
-    return "⏱️ Project timelines vary — a simple website might take 2–3 weeks, while complex platforms can take 2–4 months. We always prioritize quality and clear communication!";
+  if (/\b(price|pricing|cost|rate|rates|charge|fee|budget|how much)/.test(lower))
+    return "💼 We structure enterprise engagements around milestone-based sprints, dedicated managed pods, and automated migration fixed-scope models. Contact us at contact.kodevex@gmail.com for a customized assessment!";
 
   // Default fallback
-  return "🤔 Great question! For detailed or specific information, please reach out to us at contact.kodevex@gmail.com or use the contact form below. Our team will be happy to help! 😊";
+  return "💡 For in-depth architectural questions or tailored enterprise roadmaps, please submit the consultation form below or reach us at contact.kodevex@gmail.com. Our team is ready to assist you!";
 }
 
 function toggleQuickChat() {
@@ -1009,7 +1295,7 @@ function addChatMessage(text, sender) {
   const wrap = document.createElement('div');
   wrap.className = 'qcp-msg ' + sender;
   if (sender === 'bot') {
-    wrap.innerHTML = '<div class="qcp-msg-avatar">🤖</div><div class="qcp-msg-bubble">' + text + '</div>';
+    wrap.innerHTML = '<div class="qcp-msg-avatar">⚡</div><div class="qcp-msg-bubble">' + text + '</div>';
   } else {
     wrap.innerHTML = '<div class="qcp-msg-bubble">' + text + '</div>';
   }
@@ -1022,7 +1308,7 @@ function showTypingIndicator() {
   const typing = document.createElement('div');
   typing.className = 'qcp-msg bot';
   typing.id = 'qcpTyping';
-  typing.innerHTML = '<div class="qcp-msg-avatar">🤖</div><div class="qcp-typing"><span></span><span></span><span></span></div>';
+  typing.innerHTML = '<div class="qcp-msg-avatar">⚡</div><div class="qcp-typing"><span></span><span></span><span></span></div>';
   msgs.appendChild(typing);
   msgs.scrollTop = msgs.scrollHeight;
 }
@@ -1036,7 +1322,6 @@ function sendChatMessage() {
   const input = document.getElementById('qcpInput');
   const text = input.value.trim();
   if (!text) return;
-  // Hide prompt chips after first message
   const chips = document.getElementById('qcpPrompts');
   if (chips) chips.style.display = 'none';
   addChatMessage(text, 'user');
@@ -1045,7 +1330,7 @@ function sendChatMessage() {
   setTimeout(() => {
     removeTypingIndicator();
     addChatMessage(getAIResponse(text), 'bot');
-  }, 900 + Math.random() * 500);
+  }, 800 + Math.random() * 400);
 }
 
 function sendQuickPrompt(prompt) {
@@ -1101,7 +1386,7 @@ document.addEventListener('mousemove', e => {
   });
 });
 
-// ---- SCROLL REVEAL — generic section items ----
+// ---- SCROLL REVEAL — Impetus sections ----
 function scrollReveal(selector, fromVars, toVars, stagger = 0, triggerEl = null) {
   gsap.fromTo(selector, fromVars, {
     ...toVars,
@@ -1122,23 +1407,32 @@ gsap.fromTo('.stats-bar', { opacity: 0, y: 30 }, {
   scrollTrigger: { trigger: '.stats-bar', start: 'top 88%', onEnter: animateCounters }
 });
 
-// About section
-scrollReveal('#about .eyebrow, #about h2, .about-list li', { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.6 }, 0.08, '#about');
-scrollReveal('#about > div:last-child p, #about .btn', { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.65 }, 0.1, '#about');
+// Offerings Section
+scrollReveal('#offerings .section-head', { opacity: 0, y: 30 }, { opacity: 1, y: 0 }, 0, '#offerings');
+scrollReveal('.service-grid article', { opacity: 0, y: 45, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.6 }, 0.08, '.service-grid');
 
-// Services
-scrollReveal('#services .section-head', { opacity: 0, y: 30 }, { opacity: 1, y: 0 }, 0, '#services');
-scrollReveal('.service-grid article', { opacity: 0, y: 50, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.6 }, 0.08, '.service-grid');
+// Accelerators Section
+scrollReveal('#accelerators .section-head', { opacity: 0, y: 30 }, { opacity: 1, y: 0 }, 0, '#accelerators');
+scrollReveal('.accelerator-card', { opacity: 0, y: 40, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.6 }, 0.1, '.accelerator-grid');
 
-// Process steps
-scrollReveal('.process > div', { opacity: 0, y: 35, x: -15 }, { opacity: 1, y: 0, x: 0, duration: 0.6 }, 0.12, '.process');
+// Industries Section
+scrollReveal('#industries .section-head', { opacity: 0, y: 30 }, { opacity: 1, y: 0 }, 0, '#industries');
+scrollReveal('.industry-card', { opacity: 0, y: 35 }, { opacity: 1, y: 0, duration: 0.55 }, 0.08, '.industry-grid');
+
+// Case Studies Section
+scrollReveal('#casestudies .section-head', { opacity: 0, y: 30 }, { opacity: 1, y: 0 }, 0, '#casestudies');
+scrollReveal('.case-card', { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.6 }, 0.1, '.case-grid');
+
+// Partners Section
+scrollReveal('#partners .section-head', { opacity: 0, y: 30 }, { opacity: 1, y: 0 }, 0, '#partners');
+scrollReveal('.partner-card', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5 }, 0.08, '.partner-alliances-grid');
 
 // Testimonials
-scrollReveal('.testimonial-card', { opacity: 0, y: 40, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.6 }, 0.12, '.testimonials-grid');
+scrollReveal('.testimonial-card', { opacity: 0, y: 35, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.6 }, 0.1, '.testimonials-grid');
 
 // Contact
-scrollReveal('.contact-left > *', { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.6 }, 0.1, '.contact-section-v2');
-scrollReveal('.contact-form', { opacity: 0, x: 40, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.7 }, 0, '.contact-section-v2');
+scrollReveal('.contact-left > *', { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.6 }, 0.1, '.contact-section');
+scrollReveal('.contact-form', { opacity: 0, x: 35, scale: 0.97 }, { opacity: 1, x: 0, scale: 1, duration: 0.7 }, 0, '.contact-section');
 
 // Footer
 scrollReveal('.footer-brand, .footer-links > div', { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.55 }, 0.1, '.footer-top');
@@ -1157,25 +1451,25 @@ function animateCounters() {
   });
 }
 
-// ---- Contact form ----
+// ---- Contact consultation RFP handler ----
 function handleContact(e) {
   e.preventDefault();
   const btn = document.getElementById('cfSubmitBtn');
   const result = document.getElementById('cf-result');
   btn.disabled = true;
   gsap.to(btn, { scale: 0.97, duration: 0.1, yoyo: true, repeat: 1 });
-  btn.textContent = 'Sending…';
+  btn.textContent = 'Scheduling Architecture Review…';
   setTimeout(() => {
-    btn.textContent = '✓ Message Sent!';
+    btn.textContent = '✓ Consultation Request Received!';
     result.style.display = 'block';
-    result.textContent = "Thanks! We'll get back to you within 24 hours.";
+    result.textContent = "Thank you! A senior Solution Architect will contact you within 24 hours.";
     gsap.fromTo(result, { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.4 });
     setTimeout(() => {
       btn.disabled = false;
-      btn.textContent = 'Send Message ↗';
+      btn.textContent = 'Submit Consultation Request ↗';
       document.getElementById('contactForm').reset();
       result.style.display = 'none';
-    }, 4000);
+    }, 5000);
   }, 1200);
 }
 

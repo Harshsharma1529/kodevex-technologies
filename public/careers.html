@@ -334,16 +334,28 @@
 <body>
 
 <header class="site-header">
-  <a class="brand" href="/"><img src="/assets/kodevex-logo.png" alt="KODEVEX logo"><span>KODEVEX <small>CAREERS</small></span></a>
+  <a class="brand" href="/">
+    <img src="/assets/kodevex-logo.png" alt="KODEVEX logo">
+    <div class="brand-text">
+      <span class="brand-name">KODEVEX<span class="brand-dot">.</span></span>
+      <small>CAREERS &amp; CULTURE</small>
+    </div>
+  </a>
   <nav>
     <a href="/">Home</a>
-    <a href="/#about">About</a>
-    <a href="/#services">Services</a>
-    <a href="/#work">Process</a>
+    <a href="/#offerings">Offerings</a>
+    <a href="/#accelerators">Accelerators</a>
+    <a href="/#industries">Industries</a>
+    <a href="/#casestudies">Case Studies</a>
+    <a href="/#partners">Partners</a>
+    <a href="/careers.html" class="active">Careers</a>
     <a href="/#contact">Contact</a>
-    <a class="nav-login" href="/login.html">Employee Login</a>
   </nav>
-  <button class="menu-btn" onclick="document.body.classList.toggle('nav-open')">☰</button>
+  <div class="nav-actions">
+    <a class="btn-header-cta" href="/#contact">Schedule Consultation ↗</a>
+    <a class="nav-login" href="/login.html">Employee Login</a>
+    <button class="menu-btn" onclick="document.body.classList.toggle('nav-open')">☰</button>
+  </div>
 </header>
 
 <main>
