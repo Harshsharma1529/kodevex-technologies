@@ -10,11 +10,15 @@
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     /* Careers specific modern styling */
+    body { background: #08091a; color: #f0f4ff; }
     .careers-hero {
       padding: 70px 6vw 50px;
       text-align: center;
-      background: radial-gradient(circle at 50% 0%, rgba(37, 99, 235, 0.09) 0%, transparent 65%), var(--dark2);
-      border-bottom: 1px solid var(--line);
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(37, 99, 235, 0.2) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 80%, rgba(6,182,212,0.08), transparent 50%),
+        #08091a;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
     }
     .careers-hero-inner {
       max-width: 840px;
@@ -25,10 +29,10 @@
       letter-spacing: -.04em;
       line-height: 1.12;
       margin: 14px 0 18px;
-      color: var(--ink);
+      color: #f0f4ff;
     }
     .careers-hero h1 span {
-      background: linear-gradient(115deg, #2563eb, #7c3aed, #ec4899);
+      background: linear-gradient(115deg, #2563eb, #06b6d4, #7c3aed);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -36,7 +40,7 @@
     .careers-hero p {
       font-size: 16px;
       line-height: 1.8;
-      color: #475569;
+      color: #94a3b8;
       margin: 0 auto 30px;
       max-width: 680px;
     }
@@ -51,19 +55,19 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      background: #ffffff;
-      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 999px;
       padding: 8px 18px;
       font-size: 13px;
       font-weight: 600;
-      color: #334155;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+      color: #94a3b8;
+      backdrop-filter: blur(8px);
     }
     .perk-pill svg {
       width: 16px;
       height: 16px;
-      color: var(--blue);
+      color: #06b6d4;
     }
 
     /* Filters section */
@@ -73,11 +77,11 @@
       padding: 0 6vw;
     }
     .career-controls {
-      background: #ffffff;
-      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 18px;
       padding: 22px 26px;
-      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
       display: flex;
       flex-direction: column;
       gap: 18px;
@@ -87,8 +91,8 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      background: var(--dark2);
-      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 12px;
       padding: 10px 16px;
     }
@@ -103,8 +107,9 @@
       outline: none;
       width: 100%;
       font-size: 14.5px;
-      color: var(--ink);
+      color: #f0f4ff;
     }
+    .career-search-bar input::placeholder { color: #475569; }
     .filter-group {
       display: flex;
       flex-wrap: wrap;
@@ -116,30 +121,30 @@
       font-weight: 800;
       letter-spacing: .12em;
       text-transform: uppercase;
-      color: #64748b;
+      color: #475569;
       margin-right: 6px;
     }
     .career-chip {
-      background: var(--dark2);
-      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 999px;
       padding: 7px 16px;
       font-size: 12.5px;
       font-weight: 600;
-      color: #475569;
+      color: #94a3b8;
       cursor: pointer;
       transition: all .2s;
     }
     .career-chip:hover {
-      background: #ffffff;
-      color: var(--ink);
-      border-color: #cbd5e1;
+      background: rgba(255,255,255,0.09);
+      color: #e0e8ff;
+      border-color: rgba(255,255,255,0.2);
     }
     .career-chip.active {
-      background: linear-gradient(100deg, var(--blue), var(--purple));
+      background: linear-gradient(100deg, #2563eb, #06b6d4);
       color: #ffffff;
       border-color: transparent;
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
     }
 
     /* Jobs grid */
@@ -148,11 +153,11 @@
       gap: 20px;
     }
     .job-card {
-      background: #ffffff;
-      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
       border-radius: 18px;
       padding: 28px 30px;
-      box-shadow: 0 4px 20px rgba(15, 23, 42, 0.04);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -161,8 +166,9 @@
     }
     .job-card:hover {
       transform: translateY(-3px);
-      border-color: rgba(37, 99, 235, 0.35);
-      box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+      border-color: rgba(37, 99, 235, 0.4);
+      box-shadow: 0 14px 34px rgba(0,0,0,0.3), 0 0 20px rgba(37,99,235,0.1);
+      background: rgba(37,99,235,0.06);
     }
     .job-main {
       flex: 1;
@@ -184,30 +190,30 @@
       border-radius: 999px;
     }
     .job-badge.dept {
-      background: #eff6ff;
-      color: #1d4ed8;
-      border: 1px solid #bfdbfe;
+      background: rgba(37,99,235,0.15);
+      color: #93c5fd;
+      border: 1px solid rgba(37,99,235,0.35);
     }
     .job-badge.type {
-      background: #fdf4ff;
-      color: #a21caf;
-      border: 1px solid #f0abfc;
+      background: rgba(124,58,237,0.15);
+      color: #c4b5fd;
+      border: 1px solid rgba(124,58,237,0.35);
     }
     .job-badge.loc {
-      background: #ecfdf5;
-      color: #047857;
-      border: 1px solid #a7f3d0;
+      background: rgba(6,182,212,0.12);
+      color: #67e8f9;
+      border: 1px solid rgba(6,182,212,0.3);
     }
     .job-title {
       font-size: 20px;
       font-weight: 800;
-      color: var(--ink);
+      color: #e0e8ff;
       margin: 0 0 8px;
       letter-spacing: -.02em;
     }
     .job-desc {
       font-size: 13.5px;
-      color: #475569;
+      color: #94a3b8;
       line-height: 1.65;
       margin: 0 0 14px;
       max-width: 720px;
@@ -229,7 +235,7 @@
     .job-meta-item svg {
       width: 15px;
       height: 15px;
-      color: var(--blue);
+      color: #06b6d4;
     }
     .job-side-action {
       display: flex;
@@ -247,8 +253,8 @@
     .apply-modal {
       position: fixed;
       inset: 0;
-      background: rgba(15, 23, 42, 0.55);
-      backdrop-filter: blur(6px);
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -256,29 +262,48 @@
       z-index: 1000;
     }
     .apply-modal-card {
-      background: #ffffff;
-      border: 1px solid var(--line);
+      background: #0d1220;
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 22px;
       width: min(680px, 100%);
       max-height: 90vh;
       overflow-y: auto;
       padding: 32px;
-      box-shadow: 0 25px 60px rgba(15, 23, 42, 0.18);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
       position: relative;
     }
+    .apply-modal-card h2, .apply-modal-card h3 { color: #f0f4ff; }
+    .apply-modal-card p, .apply-modal-card label { color: #94a3b8; }
+    .apply-modal-card input, .apply-modal-card select, .apply-modal-card textarea {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #f0f4ff;
+      border-radius: 9px;
+      padding: 10px 13px;
+      width: 100%;
+      outline: none;
+      font-family: inherit;
+      font-size: 14px;
+    }
+    .apply-modal-card input::placeholder, .apply-modal-card textarea::placeholder { color: #475569; }
+    .apply-modal-card input:focus, .apply-modal-card select:focus, .apply-modal-card textarea:focus {
+      border-color: #06b6d4;
+      box-shadow: 0 0 0 3px rgba(6,182,212,0.15);
+    }
+    .apply-modal-card select option { background: #0d1220; color: #f0f4ff; }
     .apply-close-btn {
       position: absolute;
       top: 22px;
       right: 22px;
-      background: var(--dark2);
-      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
       border-radius: 50%;
       width: 34px;
       height: 34px;
       display: grid;
       place-items: center;
       font-size: 16px;
-      color: #64748b;
+      color: #94a3b8;
       cursor: pointer;
       transition: all .2s;
     }
